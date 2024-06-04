@@ -23,7 +23,7 @@
               <h2>Thanks for reaching here!</h2>
               <hr>
               <label for="gender">How did this portal reach you?<span>*</span></label>
-              <select id="gender">
+              <select id="list gender" onchange="getSelectValue()";>
                 <option value="way">Telegram Group/Channel</option>
                 <option value="way">Whatsapp/Discord Group</option>
                 <option value="way">Facebook page (Follower)</option>
@@ -32,7 +32,14 @@
                 <option value="way">RoundPier</option>
                 <option value="way">LinkedIn</option>
                 <option value="way">Instagram page</option>
-                <option value="way">other</option>
+                <option value="way">Ambassador</option>
+                <option value="way">School Counselor</option>
+                <option value="way">Personal Connections (e.g., Friends and/or Teachers)</option>
+                <option value="way">Search Engines (e.g., Google)</option>
+                <option value="way">WhatsApp Groups</option>
+                <option value="way">Other</option>
+                <input type="text" placeholder="if you have selected 'Other' type here">
+                <input type="text" placeholder="if you have selected 'Ambassador' please type the ambassador referal code">
 
 
               </select>
@@ -53,6 +60,8 @@
         document.getElementById('submit').addEventListener('click', () =>{
             location.href = "portal_submitted.html"
         })
+
+
     </script>
     <script src="comm.js"></script>
 </body>
