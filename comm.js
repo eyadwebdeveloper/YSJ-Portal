@@ -15,9 +15,6 @@ inputTextAreaw2.addEventListener("input", () => {
   wordCountw2.textContent = txt.split(/\s+/).filter((item) => item).length + ' /300';
 });
 
-if(wordCountw1.textContent < 150){
-  wordCountw1.style.color = red;
-}
 
 function textAreaAdjust(element) {
     element.style.height = "1px";
