@@ -1,122 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="portal_style.css">
-    <meta name="theme-color" content="#c32636">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="portal_style.css" />
+    <meta name="theme-color" content="#c32636" />
 
     <link rel="shortcut icon" type="image/x-icon" href="images/Logo.png" />
-<style>
-  
-</style>
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <style></style>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
     <title>Field of Interest | YSJ Portal</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="content">
-        <div class="wrapper portal">
-            <h1><a href="https://www.ys-journal.org" target="_blank"><img class="logo" src="images/Logo.png" alt=""></a> Application Portal</h1>
+      <div class="wrapper portal">
+        <h1>
+          <a href="https://www.ys-journal.org" target="_blank"
+            ><img class="logo" src="images/Logo.png" alt=""
+          /></a>
+          Application Portal
+        </h1>
 
-            <form action="">
-
-              <h2>Fields of Interest</h2>
-              <hr>
-              <label for="areas">What research areas are you interested in? <br><span class="exp"><strong>Important:</strong> Select only the research areas you would like to be considered for if admitted</span></label>
-              <label class="cl-checkbox">
-                <input type="checkbox">
-                <span>Astronomy</span>
-              </label>
-            
-              <label class="cl-checkbox">
-                <input type="checkbox">
-                <span>Architecture</span>
-              </label>
-
-              <label class="cl-checkbox">
-                <input type="checkbox">
-                <span>Biology</span>
-              </label>
-            
-              <label class="cl-checkbox">
-                <input type="checkbox">
-                <span>Business</span>
-              </label>
-
-              <label class="cl-checkbox">
-                <input type="checkbox">
-                <span>Chemistry</span>
-              </label>
-            
-              <label class="cl-checkbox">
-                <input type="checkbox">
-                <span>Computer Science</span>
-              </label>
-
-              <label class="cl-checkbox">
-                <input type="checkbox">
-                <span>Engineering</span>
-              </label>
-            
-              <label class="cl-checkbox">
-                <input type="checkbox">
-                <span>Environmental Studies</span>
-              </label>
-
-              <label class="cl-checkbox">
-                <input type="checkbox">
-                <span>Mathematics</span>
-              </label>
-            
-              <label class="cl-checkbox">
-                <input type="checkbox">
-                <span>Neuroscience</span>
-              </label>
-
-              <label class="cl-checkbox">
-                <input type="checkbox">
-                <span>Physics</span>
-              </label>
-            
-              <label class="cl-checkbox">
-                <input type="checkbox">
-                <span>Political Science</span>
-              </label>
-
-              <label class="cl-checkbox" style="margin-bottom: 30px;">
-                <input type="checkbox">
-                <span>Psychology</span>
-              </label>
-              
-            
-                 
-              <label for="gpa" style="margin-top: 20px;">What is your GPA ? <span>*</span><br><span class="exp">State the most recent one. <br>If your school doesn't support the GPA scale of 4, use this scale</span></label>
-              <select id="gpa" style="margin-top: 10px;">
-                <option value="a+">A+ (From 95% to 100%)</option>
-                <option value="a">A (From 90% to 95%)</option>
-                <option value="b+">B+ (From 85% to 90%)</option>
-                <option value="b">B (From 80% to 85%)</option>
-                <option value="c+">C+ (From 75% to 80%)</option>
-                <option value="c">C (From 70% to 75%)</option>
-              </select>
-              <label for="gp">What is your field's (and/or related field's) GPA?<span>*</span></label>
-              <input name="gp" type="text" required>
-            </form>
-          <div style="display: flex;">
-            <div class="btnss">
-              <a href="info.html" class="switch pree">Previous</a>
-              <a href="writing.html" class="switch nexx">Proceed</a>
-            </div>
-            <!-- <button type="submit" id="submit" class="Btn"></button> -->
+        <form action="">
+          <h2>Fields of Interest</h2>
+          <hr />
+          <label for="areas"
+            >What research areas are you interested in? <br /><span class="exp"
+              ><strong>Important:</strong> Select only the research areas you
+              would like to be considered for if admitted</span
+            ></label
+          >
+          <label class="cl-checkbox">
+            <input type="checkbox" data-slider="slider1" />
+            <span>Astronomy</span>
+          </label>
+          <div class="slider-container" id="slider1">
+            <input type="range" min="0" max="10" value="1" class="slider" />
+            <p>Value: <span>10</span></p>
           </div>
-    </div>
-    <a href="https://www.ys-journal.org" target="_blank" class="fixed">
-      <i class="fa-solid fa-house"></i>
-    </a>
-    </div>
-<script>
 
-</script>
-</body>
+          <label class="cl-checkbox">
+            <input type="checkbox" data-slider="slider2" />
+            <span>Architecture</span>
+          </label>
+          <div class="slider-container" id="slider2">
+            <input type="range" min="0" max="10" value="1" class="slider" />
+            <p>Value: <span>10</span></p>
+          </div>
+
+          <label class="cl-checkbox">
+            <input type="checkbox" data-slider="slider3" />
+            <span>Biology</span>
+          </label>
+          <div class="slider-container" id="slider3">
+            <input type="range" min="0" max="10" value="1" class="slider" />
+            <p>Value: <span>10</span></p>
+          </div>
+
+          <label class="cl-checkbox">
+            <input type="checkbox" data-slider="slider4" />
+            <span>Business</span>
+          </label>
+          <div class="slider-container" id="slider4">
+            <input type="range" min="0" max="10" value="1" class="slider" />
+            <p>Value: <span>10</span></p>
+          </div>
+
+          <label class="cl-checkbox">
+            <input type="checkbox" data-slider="slider5" />
+            <span>Chemistry</span>
+          </label>
+          <div class="slider-container" id="slider5">
+            <input type="range" min="0" max="10" value="1" class="slider" />
+            <p>Value: <span>10</span></p>
+          </div>
+
+          <label class="cl-checkbox">
+            <input type="checkbox" data-slider="slider6" />
+            <span>Computer Science</span>
+          </label>
+          <div class="slider-container" id="slider6">
+            <input type="range" min="0" max="10" value="1" class="slider" />
+            <p>Value: <span>10</span></p>
+          </div>
+
+          <label class="cl-checkbox">
+            <input type="checkbox" data-slider="slider7" />
+            <span>Engineering</span>
+          </label>
+          <div class="slider-container" id="slider7">
+            <input type="range" min="0" max="10" value="1" class="slider" />
+            <p>Value: <span>10</span></p>
+          </div>
+
+          <label class="cl-checkbox">
+            <input type="checkbox" data-slider="slider8" />
+            <span>Environmental Studies</span>
+          </label>
+          <div class="slider-container" id="slider8">
+            <input type="range" min="0" max="10" value="1" class="slider" />
+            <p>Value: <span>10</span></p>
+          </div>
+
+          <label class="cl-checkbox">
+            <input type="checkbox" data-slider="slider9" />
+            <span>Mathematics</span>
+          </label>
+          <div class="slider-container" id="slider9">
+            <input type="range" min="0" max="10" value="1" class="slider" />
+            <p>Value: <span>10</span></p>
+          </div>
+
+          <label class="cl-checkbox">
+            <input type="checkbox" data-slider="slider10" />
+            <span>Neuroscience</span>
+          </label>
+          <div class="slider-container" id="slider10">
+            <input type="range" min="0" max="10" value="1" class="slider" />
+            <p>Value: <span>10</span></p>
+          </div>
+
+          <label class="cl-checkbox">
+            <input type="checkbox" data-slider="slider11" />
+            <span>Physics</span>
+          </label>
+          <div class="slider-container" id="slider11">
+            <input type="range" min="0" max="10" value="1" class="slider" />
+            <p>Value: <span>10</span></p>
+          </div>
+
+          <label class="cl-checkbox">
+            <input type="checkbox" data-slider="slider12" />
+            <span>Political Science</span>
+          </label>
+          <div class="slider-container" id="slider12">
+            <input type="range" min="0" max="10" value="1" class="slider" />
+            <p>Value: <span>10</span></p>
+          </div>
+          <label class="cl-checkbox">
+            <input type="checkbox" data-slider="slider13" />
+            <span>Psychology</span>
+          </label>
+          <div class="slider-container" id="slider13">
+            <input type="range" min="0" max="10" value="1" class="slider" />
+            <p>Value: <span>10</span></p>
+          </div>
+            </label>
+
+          <label for="gpa" style="margin-top: 20px"
+            >What is your GPA ? <span>*</span><br /><span class="exp"
+              >State the most recent one. <br />If your school doesn't support
+              the GPA scale of 4, use this scale</span
+            ></label
+          >
+          <select id="gpa" style="margin-top: 10px">
+            <option value="a+">A+ (From 95% to 100%)</option>
+            <option value="a">A (From 90% to 95%)</option>
+            <option value="b+">B+ (From 85% to 90%)</option>
+            <option value="b">B (From 80% to 85%)</option>
+            <option value="c+">C+ (From 75% to 80%)</option>
+            <option value="c">C (From 70% to 75%)</option>
+          </select>
+          <label for="gp"
+            >What is your field's (and/or related field's) GPA?<span
+              >*</span
+            ></label
+          >
+          <input name="gp" type="text" required />
+        </form>
+        <div style="display: flex">
+          <div class="btnss">
+            <a href="info.html" class="switch pree">Previous</a>
+            <a href="writing.html" class="switch nexx">Proceed</a>
+          </div>
+          <!-- <button type="submit" id="submit" class="Btn"></button> -->
+        </div>
+      </div>
+      <a href="https://www.ys-journal.org" target="_blank" class="fixed">
+        <i class="fa-solid fa-house"></i>
+      </a>
+    </div>
+    <script src="index.js"></script>
+  </body>
 </html>
