@@ -304,37 +304,46 @@ label .exp{
 footer .social{
     display: flex;
 }
-@media screen and (max-width: 1190px){
-    footer{
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-}
-@media screen and (max-width: 900px){
-    footer .social{
-        flex-direction: column;
-    }
-    footer .mar{
-        margin-right: 0;
-        margin-bottom: 30px;
-    }
-}
-@media screen and (max-width: 700px){
-    .rights{
-        width: 100%;
-        margin: 0;
-    }
-    .rights p{
-        width: 100%;
-        text-align: center;
-    }
-} 
-@media only screen and (max-width: 500px){
-  .wrapper{
-    padding-right: 0;
+/* Existing CSS */
+
+/* Media Query for Tablets */
+@media screen and (max-width: 1024px) {
+  .wrapper {
+    width: 90%; /* Adjust width for smaller screens */
+    padding: 20px; /* Adjust padding for smaller screens */
+    margin-top: 50px; /* Adjust margin for smaller screens */
+  }
+  footer h4 {
+    font-size: 2rem; /* Adjust font size for smaller screens */
+    margin-left: 0; /* Remove margin for smaller screens */
+  }
+  footer h4::after {
+    margin-left: 0; /* Remove margin for smaller screens */
+  }
+  .wrapper form textarea {
+    overflow: auto;
+    width: -webkit-fill-available; /* Prevent textarea overflow */
   }
 }
+
+/* Media Query for Phones */
+@media screen and (max-width: 768px) {
+  .wrapper {
+    width: 100%; /* Adjust width for smaller screens */
+    padding: 10px; /* Adjust padding for smaller screens */
+    margin-top: 30px; /* Adjust margin for smaller screens */
+  }
+  footer {
+    padding: 50px; /* Adjust padding for smaller screens */
+  }
+  .wrapper form textarea {
+    overflow: auto; /* Prevent textarea overflow */
+  }
+}
+
+/* Additional Media Queries can be added for smaller devices if needed */
+
+
 
 .wrapper .btnss{
     display: flex;
