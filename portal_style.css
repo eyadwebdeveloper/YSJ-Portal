@@ -382,6 +382,7 @@ footer .social{
     display: inline-block;
     margin-left: 20px;
     margin-top: 15px;
+    display: block;
    }
    .laas{
     margin-bottom: 40px;
