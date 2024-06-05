@@ -363,6 +363,13 @@ footer .social{
     border: 2px solid #e43956;
 }
 
+.textarea{
+  display: block;
+  margin: 20px;
+}
+.textarea-container label{
+  margin: 20px;
+}
 .container {
     display: block;
     position: relative;
