@@ -12,7 +12,7 @@ inputTextAreaw1.addEventListener("input", () => {
 
 inputTextAreaw2.addEventListener("input", () => {
   let txt = inputTextAreaw2.value.trim();
-  wordCountw1.textContent = txt.split(/\s+/).filter((item) => item).length + ' /300';
+  wordCountw2.textContent = txt.split(/\s+/).filter((item) => item).length + ' /300';
 });
 
 
