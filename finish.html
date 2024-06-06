@@ -1,57 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="portal_style.css">
+        <meta name="theme-color" content="#c32636">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="portal_style.css">
-    <meta name="theme-color" content="#c32636">
+        <link rel="shortcut icon" type="image/x-icon" href="images/Logo.png" />
 
-    <link rel="shortcut icon" type="image/x-icon" href="images/Logo.png" />
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+        
+        <title>Almost Done | YSJ Portal</title>
 
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-
-    <title>Almost Done | YSJ Portal</title>
-  </head>
+        <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+    </head>
 </head>
-
 <body>
-  <div class="content">
-    <div class="wrapper portal">
-      <h1><a href="https://www.ys-journal.org" target="_blank"><img class="logo" src="images/Logo.png" alt=""></a>
-        Application Portal</h1>
-      <form action="/submit" method="post">
-        <h2>Thanks for reaching here!</h2>
-        <hr>
-        <label for="gender">How did this portal reach you?<span>*</span></label>
-        <select id="list gender" onchange="getSelectValue()" ;>
-          <option value="way">Telegram Group/Channel</option>
-          <option value="way">Whatsapp/Discord Group</option>
-          <option value="way">Facebook page (Follower)</option>
-          <option value="way">Facebook AD</option>
-          <option value="way">Direct contact with YSJ staff</option>
-          <option value="way">RoundPier</option>
-          <option value="way">LinkedIn</option>
-          <option value="way">Instagram page</option>
-          <option value="way">Ambassador</option>
-          <option value="way">School Counselor</option>
-          <option value="way">Personal Connections (e.g., Friends and/or Teachers)</option>
-          <option value="way">Search Engines (e.g., Google)</option>
-          <option value="way">WhatsApp Groups</option>
-          <option value="way">Other</option>
-          <input type="text" placeholder="if you have selected 'Other' type here">
-          <input type="text" placeholder="if you have selected 'Ambassador' please type the ambassador referal code">
+    <div class="content">
+        <div class="wrapper portal">
+            <h1><a href="https://www.ys-journal.org" target="_blank"><img class="logo" src="images/Logo.png" alt=""></a> Application Portal</h1>
+            <form action="/submit" method="get">
+              <h2>Thanks for reaching here!</h2>
+              <hr>
+              <label for="gender">How did this portal reach you?<span>*</span></label>
+              <select id="list gender" onchange="getSelectValue()";>
+                <option value="way">Telegram Group/Channel</option>
+                <option value="way">Whatsapp/Discord Group</option>
+                <option value="way">Facebook page (Follower)</option>
+                <option value="way">Facebook AD</option>
+                <option value="way">Direct contact with YSJ staff</option>
+                <option value="way">RoundPier</option>
+                <option value="way">LinkedIn</option>
+                <option value="way">Instagram page</option>
+                <option value="way">Ambassador</option>
+                <option value="way">School Counselor</option>
+                <option value="way">Personal Connections (e.g., Friends and/or Teachers)</option>
+                <option value="way">Search Engines (e.g., Google)</option>
+                <option value="way">WhatsApp Groups</option>
+                <option value="way">Other</option>
+                <input type="text" placeholder="if you have selected 'Other' type here">
+                <input type="text" placeholder="if you have selected 'Ambassador' please type the ambassador referal code">
 
 
-        </select>
-        <label for="con">Feel free to add whatever you feel may boost your application even
-          further.<span>*</span></label>
-        <textarea name="con" onkeyup="textAreaAdjust(this)"></textarea required>
+              </select>
+              <label for="con">Feel free to add whatever you feel may boost your application even further.<span>*</span></label>
+              <textarea name="con" onkeyup="textAreaAdjust(this)"></textarea required>
 
                 <div class="btnss">
                   <a href="avaliable.html" class="switch pree" style="height: 20px;margin-top: 20px;">Previous</a>
@@ -63,78 +58,58 @@
             <i class="fa-solid fa-house"></i>
           </a>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
     <script>
-      function saveFormData() {
-        let selectedOption = document.getElementById("reach").value;
-        let otherText = document.getElementById("otherText").value;
-        let ambassadorCode = document.getElementById("ambassadorCode").value;
-        let additionalInfo = document.getElementById("boost").value;
-
-        let formData = {
-          selectedOption: selectedOption,
-          otherText: otherText,
-          ambassadorCode: ambassadorCode,
-          additionalInfo: additionalInfo
-        };
-
-        localStorage.setItem("finishFormData", JSON.stringify(formData));
-      }
-
-      document.getElementById("finishForm").addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevent the default form submission
-        saveFormData(); // Save form data to Local Storage
-
-        // Redirect or perform any other action after form submission
-        window.location.href = "portal_submitted.html"; // Redirect to the next page
-      });
-
       function renderAndClearData() {
-    // Retrieve form data from Local Storage for each form
-    let infoFormData = localStorage.getItem("infoFormData");
-    let interestFormData = localStorage.getItem("interestFormData");
-    let writingFormData = localStorage.getItem("writingFormData");
-    let reflectFormData = localStorage.getItem("reflectFormData");
-    let availabilityFormData = localStorage.getItem("availabilityFormData");
-    let finishFormData = localStorage.getItem("finishFormData");
-
-    // Parse form data from JSON strings
-    let infoData = JSON.parse(infoFormData);
-    let interestData = JSON.parse(interestFormData);
-    let writingData = JSON.parse(writingFormData);
-    let reflectData = JSON.parse(reflectFormData);
-    let availabilityData = JSON.parse(availabilityFormData);
-    let finishData = JSON.parse(finishFormData);
-
-    // Combine all form data into one object
-    let allFormData = {
-        "Personal Information": infoData,
-        "Interest": interestData,
-        "Writing": writingData,
-        "Reflection": reflectData,
-        "Availability": availabilityData,
-        "Finish": finishData
-    };
-
-    // Create an empty workbook
-    let workbook = XLSX.utils.book_new();
-
-    // Add a worksheet for each form section
-    for (let section in allFormData) {
-        let worksheet = XLSX.utils.json_to_sheet([allFormData[section]]);
-        XLSX.utils.book_append_sheet(workbook, worksheet, section);
-    }
-
-    // Generate Excel file
-    XLSX.writeFile(workbook, 'form_data.xlsx');
-
-    // Clear Local Storage after rendering
-    localStorage.clear();
-}
-
-// Call renderAndClearData() when the page loads
-document.addEventListener("DOMContentLoaded", renderAndClearData);
+        // Retrieve form data from Local Storage
+        let infoFormData = JSON.parse(localStorage.getItem("infoFormData"));
+        let interestFormData = JSON.parse(localStorage.getItem("interestFormData"));
+        let writingFormData = JSON.parse(localStorage.getItem("writingFormData"));
+        let reflectFormData = JSON.parse(localStorage.getItem("reflectFormData"));
+        let availabilityFormData = JSON.parse(localStorage.getItem("availabilityFormData"));
+        let finishFormData = JSON.parse(localStorage.getItem("finishFormData"));
+    
+        // Log retrieved data to check for null values or unexpected data
+        console.log("infoFormData:", infoFormData);
+        console.log("interestFormData:", interestFormData);
+        console.log("writingFormData:", writingFormData);
+        console.log("reflectFormData:", reflectFormData);
+        console.log("availabilityFormData:", availabilityFormData);
+        console.log("finishFormData:", finishFormData);
+    
+        // Combine all form data into one object
+        let allFormData = {
+          "Personal Information": infoFormData,
+          "Interest": interestFormData,
+          "Writing": writingFormData,
+          "Reflection": reflectFormData,
+          "Availability": availabilityFormData,
+          "Finish": finishFormData
+        };
+    
+        // Create a new workbook
+        let workbook = XLSX.utils.book_new();
+    
+        // Add a worksheet for each form section
+        for (let section in allFormData) {
+          let formData = allFormData[section];
+          if (formData) {
+            // Create a worksheet for the form section
+            let worksheet = XLSX.utils.json_to_sheet([formData]);
+    
+            // Append the worksheet to the workbook
+            XLSX.utils.book_append_sheet(workbook, worksheet, section);
+          }
+        }
+    
+        // Generate Excel file
+        XLSX.writeFile(workbook, 'form_data.xlsx');
+    
+        // Clear Local Storage after rendering
+        localStorage.clear();
+      }
+    
+      // Call renderAndClearData() when the page loads
+      document.addEventListener("DOMContentLoaded", renderAndClearData);
     </script>
-    <script src="comm.js"></script>
 </body>
 </html>
