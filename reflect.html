@@ -148,41 +148,41 @@
       localStorage.setItem("reflectFormData", JSON.stringify(formData));
     }
 
-    // function handleFileSelect(evt) {
-    //   console.info("[Event] file chooser");
+    function handleFileSelect(evt) {
+      console.info("[Event] file chooser");
 
-    //   // Get the selected files from the FileList object
-    //   let fileList = evt.target.files;
+      // Get the selected files from the FileList object
+      let fileList = evt.target.files;
 
-    //   // Use the first file from the list
-    //   let file = fileList[0];
+      // Use the first file from the list
+      let file = fileList[0];
 
-    //   // Check if a file is selected
-    //   if (file) {
-    //     // Create a FileReader object
-    //     let reader = new FileReader();
+      // Check if a file is selected
+      if (file) {
+        // Create a FileReader object
+        let reader = new FileReader();
 
-    //     // Function to store file contents in Local Storage
-    //     let saveFileToLocalStorage = (e) => {
-    //       console.info('. . got:', e.target.result.length, e);
-    //       localStorage.setItem('fileData', e.target.result);
-    //     };
+        // Function to store file contents in Local Storage
+        let saveFileToLocalStorage = (e) => {
+          console.info('. . got:', e.target.result.length, e);
+          localStorage.setItem('fileData', e.target.result);
+        };
 
-    //     // Function to handle FileReader onload event
-    //     let onReaderLoad = (file) => {
-    //       console.info('. file reader load', file);
-    //       return saveFileToLocalStorage; // Return the saveFileToLocalStorage function
-    //     };
+        // Function to handle FileReader onload event
+        let onReaderLoad = (file) => {
+          console.info('. file reader load', file);
+          return saveFileToLocalStorage; // Return the saveFileToLocalStorage function
+        };
 
-    //     // Set the onload event handler for the FileReader
-    //     reader.onload = onReaderLoad(file);
+        // Set the onload event handler for the FileReader
+        reader.onload = onReaderLoad(file);
 
-    //     // Read the file as data URL
-    //     reader.readAsDataURL(file);
-    //   } else {
-    //     console.error("No file selected.");
-    //   }
-    // }
+        // Read the file as data URL
+        reader.readAsDataURL(file);
+      } else {
+        console.error("No file selected.");
+      }
+    }
 
   </script>
   
