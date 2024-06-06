@@ -59,6 +59,30 @@
           </a>
     </div>
     <script>
+      function saveFormData() {
+        let selectedOption = document.getElementById("reach").value;
+        let otherText = document.getElementById("otherText").value;
+        let ambassadorCode = document.getElementById("ambassadorCode").value;
+        let additionalInfo = document.getElementById("boost").value;
+
+        let formData = {
+          selectedOption: selectedOption,
+          otherText: otherText,
+          ambassadorCode: ambassadorCode,
+          additionalInfo: additionalInfo
+        };
+
+        localStorage.setItem("finishFormData", JSON.stringify(formData));
+      }
+
+      document.getElementById("finishForm").addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent the default form submission
+        saveFormData(); // Save form data to Local Storage
+
+        // Redirect or perform any other action after form submission
+        window.location.href = "portal_submitted.html"; // Redirect to the next page
+      });
+
       function renderAndClearData() {
         // Retrieve form data from Local Storage
         let infoFormData = JSON.parse(localStorage.getItem("infoFormData"));
