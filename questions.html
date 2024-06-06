@@ -22,47 +22,58 @@
              <form action="/submit" method="get">
                 <h2>Personal information</h2>
                 <hr />
-                <label for="name">Full name<span>*</span></label>
-                <input name="name" id="name" type="text" required />
+                <div class="q">
+                  <label for="name">Full name<span>*</span></label>
+                  <input name="name" id="name" type="text" required />
+                </div>
       
-                <label for="phone">Phone number<span>*</span></label>
-                <input name="phone" id="phone" type="tel" required />
+                <div class="q">
+                  <label for="phone">Phone number<span>*</span></label>
+                  <input name="phone" id="phone" type="tel" required />
+                </div>
+                
+                <div class="q">
+                  <label for="birth">Date of birth<span>*</span></label>
+                  <input name="birth" id="birth" type="date" required />
+                </div>
       
-                <label for="birth">Date of birth<span>*</span></label>
-                <input name="birth" id="birth" type="date" required />
-      
-                <label for="gender">Gender <span>*</span></label>
+                <div class="q">
+                  <label for="gender">Gender <span>*</span></label>
                 <select id="gender" name="gender">
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                   <option value="other">Other</option>
                   <option value="no">Prefer not to say</option>
                 </select>
+                </div>
       
-                <label for="school">Current School/University <span>*</span></label>
+                <div class="q">
+                  <label for="school">Current School/University <span>*</span></label>
                 <input name="school" id="school" type="text" required />
+                </div>
       
-                <label for="grade"
+                <div class="q">
+                  <label for="grade"
                   >Educational grade <span>*</span><br /><span class="exp"
                     >(e.g.: G11, G12, University Freshman, e.t.c.)</span
                   ></label
                 >
-                <input
-                  name="grade"
-                  id="grade"
-                  type="text"
-                  required
-                  style="margin-top: 10px"
-                />
+                <input name="grade" id="grade" type="text" required style="margin-top: 10px"/>
+                </div>
       
-                <label for="nationality">Nationality <span>*</span></label>
+                <div class="q">
+                  <label for="nationality">Nationality <span>*</span></label>
                 <input name="nationality" id="nationality" type="text" required />
+                </div>
       
-                <label for="email">Email <span>*</span></label>
+                <div class="q">
+                  <label for="email">Email <span>*</span></label>
                 <input name="email" id="email" type="email" required />
+                </div>
                 <h2>Fields of Interest</h2>
           <hr />
-          <label for="areas"
+          <div class="q">
+            <label for="areas"
             >What research areas are you interested in?<br /><span class="exp"
               ><strong>Important:</strong> Select only the research areas you
               would like to be considered for if admitted</span
@@ -71,8 +82,10 @@
           <div id="checkboxes-container">
             <!-- Checkboxes will be added here -->
           </div>
+          </div>
 
-          <label for="gpa" style="margin-top: 20px"
+          <div class="q">
+            <label for="gpa" style="margin-top: 20px"
             >What is your GPA?<span>*</span><br /><span class="exp"
               >State the most recent one. <br />If your school doesn't support
               the GPA scale of 4, use this scale</span
@@ -86,73 +99,74 @@
             <option value="c+">C+ (From 75% to 80%)</option>
             <option value="c">C (From 70% to 75%)</option>
           </select>
-          <label for="gp"
+          </div>
+          <div class="q">
+            <label for="gp"
             >What is your field's (and/or related field's) GPA?<span
               >*</span
             ></label
           >
           <input name="gp" id="gp" type="text" required />
+          </div>
           <h2>Writing Section</h2>
           <hr />
-          <label for="essay1"
+          <div class="q">
+            <label for="essay1"
             >What qualification do you think you have as a researcher that can
             make you outstanding in such a competitive pool of applicants for
-            the same position? <span>*</span></label
-          >
-          <textarea
-            name="essay1"
-            id="input-textareaw1"
-            onkeyup="textAreaAdjust(this)"
-            required
-          ></textarea>
+            the same position? <span>*</span></label>
+          <textarea name="essay1" id="input-textareaw1" onkeyup="textAreaAdjust(this)" required></textarea>
           <p class="count" id="word-countw1">0 / 150</p>
+          </div>
           <h2 class="mar-top">
             Academic Writing
           </h2>
           <hr>
-          <label for="essay2"
-            >In an essay (max. 300 words), write about one unfamiliar
-            achievement in scientific research that changed constants of science
-            or life. <span>*</span><br /><span class="exp"
-              >(Using citations is obligatory; e.g.: APA, IEEE...)</span
-            ></label
-          >
-          <textarea
-            name="essay2"
-            id="input-textareaw2"
-            onkeyup="textAreaAdjust(this)"
-            required
-          ></textarea>
-          <p class="count" id="word-countw2">0 / 300</p>
+          <div class="q">
+            <label for="essay2">
+              In an essay (max. 300 words), write about one unfamiliar
+              achievement in scientific research that changed constants of science
+              or life. <span>*</span><br /><span class="exp"
+                >(Using citations is obligatory; e.g.: APA, IEEE...)</span></label>
+            <textarea name="essay2" id="input-textareaw2" onkeyup="textAreaAdjust(this)" required></textarea>
+            <p class="count" id="word-countw2">0 / 300</p>
+          </div>
           <h2 class="mar-top">Personal Experience Reflection</h2>
         <hr />
-        <label for="q2">"Albert Einstein once said, 'The important thing is not to stop
-          questioning. Curiosity has its reason for existing.' Mentorship in
-          scientific research requires a comprehensive understanding of the
-          concepts and the ability to motivate and direct students as they go
-          through their difficulties, Analyze this quote and discuss how your
-          experiences and knowledge in scientific research have prepared you
-          enough to fit yourself into YSJ’s high standards. In your response,
-          state your academic and mentoring goals, explaining how some aspects
-          of YSJ would help you direct young researchers toward their
-          potential. Furthermore, give examples of situations where you have
-          helped learners wade through complex problems to aid their growth
-          and excitement for science. <span>*</span></label>
-        <textarea name="essay" id="input-textarear1" onkeyup="textAreaAdjust(this)" required></textarea>
-        <p class="count" id="word-countr1">0 /200-400</p>
+        <div class="q">
+          <label for="q2">"Albert Einstein once said, 'The important thing is not to stop
+            questioning. Curiosity has its reason for existing.' Mentorship in
+            scientific research requires a comprehensive understanding of the
+            concepts and the ability to motivate and direct students as they go
+            through their difficulties, Analyze this quote and discuss how your
+            experiences and knowledge in scientific research have prepared you
+            enough to fit yourself into YSJ’s high standards. In your response,
+            state your academic and mentoring goals, explaining how some aspects
+            of YSJ would help you direct young researchers toward their
+            potential. Furthermore, give examples of situations where you have
+            helped learners wade through complex problems to aid their growth
+            and excitement for science. <span>*</span></label>
+          <textarea name="essay" id="input-textarear1" onkeyup="textAreaAdjust(this)" required></textarea>
+          <p class="count" id="word-countr1">0 /200-400</p>
+        </div>
 
-        <label for="q3" class="mar-top">Please describe your research background, including your areas of
-          expertise, the research projects (e.g., papers, projects, and/or
-          patents) you have been involved in, and/or any publications or
-          presentations resulting from your research. <span>*</span></label>
-        <textarea name="essay" id="input-textarear2" onkeyup="textAreaAdjust(this)" required></textarea>
-        <p class="count" id="word-countr2">0 /150-300</p>
+        <div class="q">
+          <label for="q3" class="mar-top">Please describe your research background, including your areas of
+            expertise, the research projects (e.g., papers, projects, and/or
+            patents) you have been involved in, and/or any publications or
+            presentations resulting from your research. <span>*</span></label>
+          <textarea name="essay" id="input-textarear2" onkeyup="textAreaAdjust(this)" required></textarea>
+          <p class="count" id="word-countr2">0 /150-300</p>
+        </div>
 
-        <label for="q4"  class="mar-top">How do you ensure consistent and effective communication and
-          collaboration in your research team? <span>*</span></label>
-        <textarea name="essay" id="input-textarear3" onkeyup="textAreaAdjust(this)" required></textarea>
-        <p class="count" id="word-countr3">0 /100-200</p>
+        <div class="q">
+          <label for="q4"  class="mar-top">How do you ensure consistent and effective communication and
+            collaboration in your research team? <span>*</span></label>
+          <textarea name="essay" id="input-textarear3" onkeyup="textAreaAdjust(this)" required></textarea>
+          <p class="count" id="word-countr3">0 /100-200</p>
+        </div>
 
+       <div class="q">
         <p class="lapp mar-top">
           Submit any of your research-related work/samples. <span>*</span>
         </p>
@@ -161,12 +175,13 @@
           or
           <input type="file" id="pdf" accept="pdf/*" onchange="handleFileSelect(event)" required />
         </label>
+       </div>
         <h2>Availability</h2>
           <hr />
-          <label for="hours"
+          <div class="q">
+            <label for="hours"
             >How much time (hours per week) are you willing and able to commit
-            to YSJ? <span>*</span></label
-          >
+            to YSJ? <span>*</span></label>
           <select id="hours" name="hours">
             <option value="1">1</option>
             <option value="2">2</option>
@@ -179,18 +194,21 @@
             <option value="9">9</option>
             <option value="10">10</option>
           </select>
-          <label for="time_blocks"
+          </div>
+          <div class="q">
+            <label for="time_blocks"
             >List down the most significant time blocks you would have between
-            the start of June and the end of September. <span>*</span
-            ><br /><span class="exp"
-              >Note: This is for us to fit your schedule with the journal's
+            the start of June and the end of September. <span>*</span>
+            <br /><span class="exp">
+              Note: This is for us to fit your schedule with the journal's
               active and inactive periods.
-            </span></label
-          >
+            </span></label>
           <input name="time_blocks" id="timeBlocks" type="text" required />
+          </div>
           <h2>Thanks for reaching here!</h2>
               <hr>
-              <label for="how">How did this portal reach you?<span>*</span></label>
+              <div class="q">
+                <label for="how">How did this portal reach you?<span>*</span></label>
               <select id="list how" onchange="getSelectValue()";>
                 <option value="way">Telegram Group/Channel</option>
                 <option value="way">Whatsapp/Discord Group</option>
@@ -206,13 +224,17 @@
                 <option value="way">Search Engines (e.g., Google)</option>
                 <option value="way">WhatsApp Groups</option>
                 <option value="way">Other</option>
+              </select>
                 <input type="text" placeholder="if you have selected 'Other' type here" id="other">
                 <input type="text" placeholder="if you have selected 'Ambassador' please type the ambassador referal code" id="ambassador">
+              </div>
 
 
-              </select>
-              <label for="con">Feel free to add whatever you feel may boost your application even further.<span>*</span></label>
+              
+              <div class="q">
+                <label for="con">Feel free to add whatever you feel may boost your application even further.<span>*</span></label>
               <textarea name="con" onkeyup="textAreaAdjust(this)"></textarea required>
+              </div>
 
                 <div class="btnss">
                 <button type="submit" id="submit" class="Btn"></button>
@@ -272,7 +294,7 @@
 
           
        });
-         location.href = 'portal_submitted.html'
+         alert(" Sucessfull  !");
       })
   </script>
 </body>
