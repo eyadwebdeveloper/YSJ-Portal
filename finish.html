@@ -66,83 +66,74 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
     <script>
       function saveFormData() {
-        // Get form data
-        let selectedOption = document.getElementById("list").value;
-        let additionalInfo = document.querySelector("textarea[name='con']").value;
-        let otherText = document.querySelector("input[type='text'][placeholder='if you have selected \'Other\' type here']").value;
-        let ambassadorCode = document.querySelector("input[type='text'][placeholder='if you have selected \'Ambassador\' please type the ambassador referal code']").value;
+        let selectedOption = document.getElementById("reach").value;
+        let otherText = document.getElementById("otherText").value;
+        let ambassadorCode = document.getElementById("ambassadorCode").value;
+        let additionalInfo = document.getElementById("boost").value;
 
-        // Create an object to store form data
         let formData = {
           selectedOption: selectedOption,
-          additionalInfo: additionalInfo,
           otherText: otherText,
-          ambassadorCode: ambassadorCode
+          ambassadorCode: ambassadorCode,
+          additionalInfo: additionalInfo
         };
 
-        // Convert form data to JSON string
-        let formDataJSON = JSON.stringify(formData);
-
-        // Store form data in Local Storage
-        localStorage.setItem("finishFormData", formDataJSON);
+        localStorage.setItem("finishFormData", JSON.stringify(formData));
       }
 
-      // Add event listener for form submission
-      document.getElementById("submit").addEventListener("click", function (event) {
+      document.getElementById("finishForm").addEventListener("submit", function (event) {
         event.preventDefault(); // Prevent the default form submission
-        saveFormData(); // Call the saveFormData function to handle form submission
+        saveFormData(); // Save form data to Local Storage
 
         // Redirect or perform any other action after form submission
-        // You can redirect the user to another page if needed
         window.location.href = "portal_submitted.html"; // Redirect to the next page
       });
+
       function renderAndClearData() {
-        // Retrieve form data from Local Storage
-        let infoFormData = localStorage.getItem("infoFormData");
-        let interestFormData = localStorage.getItem("interestFormData");
-        let writingFormData = localStorage.getItem("writingFormData");
-        let reflectFormData = localStorage.getItem("reflectFormData");
-        let availabilityFormData = localStorage.getItem("availabilityFormData");
-        let finishFormData = localStorage.getItem("finishFormData");
+    // Retrieve form data from Local Storage for each form
+    let infoFormData = localStorage.getItem("infoFormData");
+    let interestFormData = localStorage.getItem("interestFormData");
+    let writingFormData = localStorage.getItem("writingFormData");
+    let reflectFormData = localStorage.getItem("reflectFormData");
+    let availabilityFormData = localStorage.getItem("availabilityFormData");
+    let finishFormData = localStorage.getItem("finishFormData");
 
-        // Parse form data from JSON strings
-        let infoData = JSON.parse(infoFormData);
-        let interestData = JSON.parse(interestFormData);
-        let writingData = JSON.parse(writingFormData);
-        let reflectData = JSON.parse(reflectFormData);
-        let availabilityData = JSON.parse(availabilityFormData);
-        let finishData = JSON.parse(finishFormData);
+    // Parse form data from JSON strings
+    let infoData = JSON.parse(infoFormData);
+    let interestData = JSON.parse(interestFormData);
+    let writingData = JSON.parse(writingFormData);
+    let reflectData = JSON.parse(reflectFormData);
+    let availabilityData = JSON.parse(availabilityFormData);
+    let finishData = JSON.parse(finishFormData);
 
-        // Combine all form data into one object
-        let allFormData = {
-          "Personal Information": infoData,
-          "Interest": interestData,
-          "Writing": writingData,
-          "Reflection": reflectData,
-          "Availability": availabilityData,
-          "Finish": finishData
-        };
+    // Combine all form data into one object
+    let allFormData = {
+        "Personal Information": infoData,
+        "Interest": interestData,
+        "Writing": writingData,
+        "Reflection": reflectData,
+        "Availability": availabilityData,
+        "Finish": finishData
+    };
 
-        // Create an empty workbook
-        let workbook = XLSX.utils.book_new();
+    // Create an empty workbook
+    let workbook = XLSX.utils.book_new();
 
-        // Add a worksheet for each form section
-        for (let section in allFormData) {
-          let worksheet = XLSX.utils.json_to_sheet([allFormData[section]]);
-          XLSX.utils.book_append_sheet(workbook, worksheet, section);
-        }
+    // Add a worksheet for each form section
+    for (let section in allFormData) {
+        let worksheet = XLSX.utils.json_to_sheet([allFormData[section]]);
+        XLSX.utils.book_append_sheet(workbook, worksheet, section);
+    }
 
-        // Generate Excel file
-        XLSX.writeFile(workbook, 'form_data.xlsx');
+    // Generate Excel file
+    XLSX.writeFile(workbook, 'form_data.xlsx');
 
-        // Clear Local Storage after rendering
-        localStorage.removeItem("infoFormData");
-        localStorage.removeItem("interestFormData");
-        localStorage.removeItem("writingFormData");
-        localStorage.removeItem("reflectFormData");
-        localStorage.removeItem("availabilityFormData");
-        localStorage.removeItem("finishFormData");
-      }
+    // Clear Local Storage after rendering
+    localStorage.clear();
+}
+
+// Call renderAndClearData() when the page loads
+document.addEventListener("DOMContentLoaded", renderAndClearData);
     </script>
     <script src="comm.js"></script>
 </body>
