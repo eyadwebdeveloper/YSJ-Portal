@@ -65,10 +65,9 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
     <script>
-      document.getElementById.addEventListener('click', function(){
-          window.open('portal_submitted.html')
-          location.href = 'portal_submitted.html'
-      })
+      document.getElementById('submit').addEventListener('click', () =>{
+            location.href = "portal_submitted.html"
+        })
       function saveFormData() {
         let selectedOption = document.getElementById("reach").value;
         let otherText = document.getElementById("otherText").value;
