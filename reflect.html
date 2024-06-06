@@ -86,7 +86,13 @@
           <label for="pdf" class="drop-container" id="dropcontainer">
             <span class="drop-title">Drop files here</span>
             or
-            <input type="file" id="pdf" accept="pdf/*" required />
+            <input
+              type="file"
+              id="pdf"
+              accept="pdf/*"
+              onchange="handleFileSelect(event)"
+              required
+            />
           </label>
         </form>
         <div class="btnss">
@@ -162,15 +168,43 @@
         };
         localStorage.setItem("reflectFormData", JSON.stringify(formData));
       }
-      
-      function handleFileSelect(event) {
-        var file = event.target.files[0];
-        var reader = new FileReader();
-        reader.onload = function (event) {
-          localStorage.setItem("fileData", event.target.result);
+
+      function handleFileSelect(evt) {
+    console.info("[Event] file chooser");
+
+    // Get the selected files from the FileList object
+    let fileList = evt.target.files;
+
+    // Use the first file from the list
+    let file = fileList[0];
+
+    // Check if a file is selected
+    if (file) {
+        // Create a FileReader object
+        let reader = new FileReader();
+
+        // Function to store file contents in Local Storage
+        let saveFileToLocalStorage = (e) => {
+            console.info('. . got:', e.target.result.length, e);
+            localStorage.setItem('fileData', e.target.result);
         };
+
+        // Function to handle FileReader onload event
+        let onReaderLoad = (file) => {
+            console.info('. file reader load', file);
+            return saveFileToLocalStorage; // Return the saveFileToLocalStorage function
+        };
+
+        // Set the onload event handler for the FileReader
+        reader.onload = onReaderLoad(file);
+
+        // Read the file as data URL
         reader.readAsDataURL(file);
-      }
+    } else {
+        console.error("No file selected.");
+    }
+}
+
     </script>
   </body>
 </html>
