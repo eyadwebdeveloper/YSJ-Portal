@@ -31,7 +31,7 @@
           /></a>
           Application Portal
         </h1>
-        <form action="/submit" method="post">
+        <form id="writingForm" action="/writing" method="post">
           <h2>Writing Section</h2>
           <hr />
           <label for="essay1"
@@ -63,11 +63,10 @@
             required
           ></textarea>
           <p class="count" id="word-countw2">0 / 300</p>
-          <button type="submit">Submit</button>
         </form>
         <div class="btnss">
           <a href="intrest.html" class="switch pree">Previous</a>
-          <a href="reflect.html" class="switch nexx">Proceed</a>
+          <a href="reflect.html" class="switch nexx" onclick="saveFormData()">Proceed</a>
         </div>
       </div>
       <a href="https://www.ys-journal.org" target="_blank" class="fixed">
@@ -75,5 +74,14 @@
       </a>
     </div>
     <script src="comm.js"></script>
+    <script>
+      function saveFormData() {
+          var formData = {
+              essay1: document.getElementById('input-textareaw1').value,
+              essay2: document.getElementById('input-textareaw2').value
+          };
+          localStorage.setItem('writingFormData', JSON.stringify(formData));
+      }
+  </script>
   </body>
 </html>

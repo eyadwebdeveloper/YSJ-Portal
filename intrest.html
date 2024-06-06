@@ -31,26 +31,26 @@
           Application Portal
         </h1>
 
-        <form action="/interest" method="post">
+        <form id="interestForm" action="/interest" method="post">
           <h2>Fields of Interest</h2>
           <hr />
           <label for="areas"
-            >What research areas are you interested in? <br /><span class="exp"
+            >What research areas are you interested in?<br /><span class="exp"
               ><strong>Important:</strong> Select only the research areas you
               would like to be considered for if admitted</span
             ></label
           >
-            <div id="checkboxes-container">
-              <!-- Checkboxes will be added here -->
+          <div id="checkboxes-container">
+            <!-- Checkboxes will be added here -->
           </div>
 
           <label for="gpa" style="margin-top: 20px"
-            >What is your GPA ? <span>*</span><br /><span class="exp"
+            >What is your GPA?<span>*</span><br /><span class="exp"
               >State the most recent one. <br />If your school doesn't support
               the GPA scale of 4, use this scale</span
             ></label
           >
-          <select id="gpa" style="margin-top: 10px">
+          <select id="gpa" name="gpa" style="margin-top: 10px">
             <option value="a+">A+ (From 95% to 100%)</option>
             <option value="a">A (From 90% to 95%)</option>
             <option value="b+">B+ (From 85% to 90%)</option>
@@ -63,12 +63,12 @@
               >*</span
             ></label
           >
-          <input name="gp" type="text" required />
+          <input name="gp" id="gp" type="text" required />
         </form>
         <div style="display: flex">
           <div class="btnss">
             <a href="info.html" class="switch pree">Previous</a>
-            <a href="writing.html" class="switch nexx">Proceed</a>
+            <a href="writing.html" class="switch nexx" onclick="saveFormData()">Proceed</a>
           </div>
           <!-- <button type="submit" id="submit" class="Btn"></button> -->
         </div>
@@ -78,5 +78,26 @@
       </a>
     </div>
     <script src="index.js"></script>
+    <script>
+      function saveFormData() {
+          var selectedAreas = [];
+          var checkboxes = document.querySelectorAll('.checkbox');
+          checkboxes.forEach(function(checkbox, index) {
+              if (checkbox.checked) {
+                  var sliderValue = document.getElementById(`slider-${index}`).querySelector('.slider').value;
+                  var textareaValue = document.getElementById(`textarea-${index}`).querySelector('.textarea').value;
+                  selectedAreas.push({ area: checkbox.nextSibling.textContent, sliderValue: sliderValue, textareaValue: textareaValue });
+              }
+          });
+  
+          var formData = {
+              areas: selectedAreas,
+              gpa: document.getElementById('gpa').value,
+              gp: document.getElementById('gp').value
+          };
+  
+          localStorage.setItem('interestFormData', JSON.stringify(formData));
+      }
+  </script>
   </body>
 </html>
