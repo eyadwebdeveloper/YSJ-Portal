@@ -1,43 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="portal_style.css">
-    <meta name="theme-color" content="#c32636">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="portal_style.css" />
+    <meta name="theme-color" content="#c32636" />
 
     <link rel="shortcut icon" type="image/x-icon" href="images/Logo.png" />
 
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
-    
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+
     <title>Writing Section | YSJ Portal</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="content">
-        <div class="wrapper portal">
-            <h1><a href="https://www.ys-journal.org"><img class="logo" src="images/Logo.png" alt=""></a> Application Portal</h1>
-            <form action="">
-              <h2>Writing Section</h2>
-              <hr>
-              <label for="q1">What qualification do you think you have as a researcher that can make you outstanding in such a competitive pool of applicants for the same position ? <span>*</span></label>
-              <textarea name="essay" id="input-textareaw1" onkeyup="textAreaAdjust(this)"></textarea required>
-              <p class="xount" id="word-countw1">0 /150</p>
-              <h2 style="text-align: center;margin-bottom: 20px;">Academic Writing</h2>
-              <label>In an essay (max. 300 words), write about one unfamiliar achievement in scientific research that changed constants of science or life.
-                <span>*</span><br><span class="exp">(Using citations is obligatory; e.g.: APA, IEEE...)</span></label>
-              <textarea name="essay" id="input-textareaw2" onkeyup="textAreaAdjust(this)"></textarea required>
-              <p class="xount" id="word-countw2">0 /300</p>
-            </form>
-            <div class="btnss">
-              <a href="intrest.html" class="switch pree">Previous</a>
-              <a href="reflect.html" class="switch nexx">Proceed</a>
-            </div>
+      <div class="wrapper portal">
+        <h1>
+          <a href="https://www.ys-journal.org"
+            ><img class="logo" src="images/Logo.png" alt=""
+          /></a>
+          Application Portal
+        </h1>
+        <form action="/submit" method="post">
+          <h2>Writing Section</h2>
+          <hr />
+          <label for="essay1"
+            >What qualification do you think you have as a researcher that can
+            make you outstanding in such a competitive pool of applicants for
+            the same position? <span>*</span></label
+          >
+          <textarea
+            name="essay1"
+            id="input-textareaw1"
+            onkeyup="textAreaAdjust(this)"
+            required
+          ></textarea>
+          <p class="count" id="word-countw1">0 / 150</p>
+          <h2 style="text-align: center; margin-bottom: 20px">
+            Academic Writing
+          </h2>
+          <label for="essay2"
+            >In an essay (max. 300 words), write about one unfamiliar
+            achievement in scientific research that changed constants of science
+            or life. <span>*</span><br /><span class="exp"
+              >(Using citations is obligatory; e.g.: APA, IEEE...)</span
+            ></label
+          >
+          <textarea
+            name="essay2"
+            id="input-textareaw2"
+            onkeyup="textAreaAdjust(this)"
+            required
+          ></textarea>
+          <p class="count" id="word-countw2">0 / 300</p>
+          <button type="submit">Submit</button>
+        </form>
+        <div class="btnss">
+          <a href="intrest.html" class="switch pree">Previous</a>
+          <a href="reflect.html" class="switch nexx">Proceed</a>
         </div>
-        <a href="https://www.ys-journal.org" target="_blank" class="fixed">
-          <i class="fa-solid fa-house"></i>
-        </a>
+      </div>
+      <a href="https://www.ys-journal.org" target="_blank" class="fixed">
+        <i class="fa-solid fa-house"></i>
+      </a>
     </div>
     <script src="comm.js"></script>
-</body>
+  </body>
 </html>

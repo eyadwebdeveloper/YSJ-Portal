@@ -17,28 +17,29 @@
     <div class="content">
         <div class="wrapper portal">
             <h1><a href="https://www.ys-journal.org" target="_blank"><img class="logo" src="images/Logo.png" alt=""></a> Application Portal</h1>
-            <form action="">
+            <form action="/submit" method="post">
               <h2>Availability</h2>
               <hr>
-              <label for="gender">How much time (hours per week) are you willing and able to commit to YSJ?
-                <span>*</span></label>
-              <select id="gender">
-                <option value="no.">1</option>
-                <option value="no.">2</option>
-                <option value="no.">3</option>
-                <option value="no.">4</option>
-                <option value="no.">5</option>
-                <option value="no.">6</option>
-                <option value="no.">7</option>
-                <option value="no.">8</option>
-                <option value="no.">9</option>
-                <option value="no.">10</option>
+              <label for="hours">How much time (hours per week) are you willing and able to commit to YSJ?
+                  <span>*</span></label>
+              <select id="hours" name="hours">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
               </select>
-              <label for="name">List down the most significant time blocks you would have between the start of June and the end of September.
-                <span>*</span><br><span class="exp">Note: This is for us to fit your schedule with the journal's active and inactive periods.
-                </span></label>
-              <input name="name" type="text" required>
-            </form>
+              <label for="time_blocks">List down the most significant time blocks you would have between the start of June and the end of September.
+                  <span>*</span><br><span class="exp">Note: This is for us to fit your schedule with the journal's active and inactive periods.
+                  </span></label>
+              <input name="time_blocks" type="text" required>
+              <button type="submit">Submit</button>
+          </form>
             <div class="btnss">
               <a href="writing.html" class="switch pree">Previous</a>
 
