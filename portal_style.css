@@ -187,6 +187,7 @@ label .exp{
 
 .wrapper h2{
     font-size: 25px;
+    margin-top: 40px;
     margin-bottom: 5px;
     opacity: .7;
 }
@@ -624,4 +625,10 @@ footer .social{
     justify-content: center;
   }
 
+}
+.q{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 20px;
 }
