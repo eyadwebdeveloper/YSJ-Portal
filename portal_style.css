@@ -615,7 +615,9 @@ footer .social{
   display: flex;
   justify-content: end;
   color: gray;
-  margin-bottom: 30px;
+}
+.mar-top{
+  margin-top: 20px;
 }
 @media only screen and (max-width: 620px){
   .btnss {
