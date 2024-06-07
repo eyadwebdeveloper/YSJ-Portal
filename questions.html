@@ -187,7 +187,7 @@
         <hr>
         <div class="q">
           <label for="how">How did this portal reach you?<span>*</span></label>
-          <select id="list how" onchange="getSelectValue()" ;>
+          <select id="how">
             <option value="way">Telegram Group/Channel</option>
             <option value="way">Whatsapp/Discord Group</option>
             <option value="way">Facebook page (Follower)</option>
@@ -213,7 +213,7 @@
         <div class="q">
           <label for="con">Feel free to add whatever you feel may boost your application even
             further.<span>*</span></label>
-          <textarea name="con" onkeyup="textAreaAdjust(this)"></textarea required>
+          <textarea name="con" id="con" onkeyup="textAreaAdjust(this)"></textarea required>
               </div>
 
                 <div class="btnss">
@@ -286,7 +286,8 @@ document.getElementById("submit").addEventListener('click', async function (e) {
             timeBlocks: document.getElementById("timeBlocks").value,
             how: document.getElementById("how").value,
             other: document.getElementById("other").value,
-            ambassador: document.getElementById("ambassador").value
+            ambassador: document.getElementById("ambassador").value,
+            con: document.getElementById("con").value
         });
 
         alert('done');
