@@ -667,10 +667,10 @@ label .exp{
   color: #fff;
 }
 
-.wrapper2 .twitter:hover,
-.wrapper2 .twitter:hover .tooltip,
-.wrapper2 .twitter:hover .tooltip::before {
-  background: #1da1f2;
+.wrapper2 .linkedin:hover,
+.wrapper2 .linkedin:hover .tooltip,
+.wrapper2 .linkedin:hover .tooltip::before {
+  background: #0072b1;
   color: #fff;
 }
 
