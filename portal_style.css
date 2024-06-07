@@ -116,6 +116,38 @@ nav{
     font-size: 50px;
     margin-bottom: 50px;
 }
+@media only screen and (max-width: 768px){
+  .wrapper h1{
+    font-size: 40px;
+  }
+  img.logo{
+    width: 75px;
+  }
+}
+@media only screen and (max-width: 450px){
+  .wrapper h1{
+    font-size: 35px;
+  }
+  img.logo{
+    width: 62px;
+  }
+}
+@media only screen and (max-width: 415px){
+  .wrapper h1{
+    font-size: 30px;
+  }
+  img.logo{
+    width: 50px;
+  }
+}
+@media only screen and (max-width: 350px){
+  .wrapper h1{
+    font-size: 25px;
+  }
+  img.logo{
+    width: 40px;
+  }
+}
 .wrapper form{
     display: flex;
     flex-direction: column;
