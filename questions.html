@@ -39,17 +39,17 @@
           <hr />
           <div class="q">
             <label for="name">Full name<span>*</span></label>
-            <input name="name" id="name" type="text" required />
+            <input name="name" id="name" type="text" />
           </div>
 
           <div class="q">
             <label for="phone">Phone number<span>*</span></label>
-            <input name="phone" id="phone" type="tel" required />
+            <input name="phone" id="phone" type="tel" />
           </div>
 
           <div class="q">
             <label for="birth">Date of birth<span>*</span></label>
-            <input name="birth" id="birth" type="date" required />
+            <input name="birth" id="birth" type="date" />
           </div>
 
           <div class="q">
@@ -64,7 +64,7 @@
 
           <div class="q">
             <label for="school">Current School/University <span>*</span></label>
-            <input name="school" id="school" type="text" required />
+            <input name="school" id="school" type="text" />
           </div>
 
           <div class="q">
@@ -77,19 +77,18 @@
               name="grade"
               id="grade"
               type="text"
-              required
               style="margin-top: 10px"
             />
           </div>
 
           <div class="q">
             <label for="nationality">Nationality <span>*</span></label>
-            <input name="nationality" id="nationality" type="text" required />
+            <input name="nationality" id="nationality" type="text" />
           </div>
 
           <div class="q">
             <label for="email">Email <span>*</span></label>
-            <input name="email" id="email" type="email" required />
+            <input name="email" id="email" type="email" />
           </div>
           <h2>Fields of Interest</h2>
           <hr />
@@ -127,7 +126,7 @@
                 >*</span
               ></label
             >
-            <input name="gp" id="gp" type="text" required />
+            <input name="gp" id="gp" type="text" />
           </div>
           <h2>Writing Section</h2>
           <hr />
@@ -141,7 +140,6 @@
               name="essay1"
               id="input-textareaw1"
               onkeyup="textAreaAdjust(this)"
-              required
             ></textarea>
             <p class="count" id="word-countw1">0 / 150</p>
           </div>
@@ -159,7 +157,6 @@
               name="essay2"
               id="input-textareaw2"
               onkeyup="textAreaAdjust(this)"
-              required
             ></textarea>
             <p class="count" id="word-countw2">0 / 300</p>
           </div>
@@ -184,7 +181,6 @@
               name="essay"
               id="input-textarear1"
               onkeyup="textAreaAdjust(this)"
-              required
             ></textarea>
             <p class="count" id="word-countr1">0 /200-400</p>
           </div>
@@ -200,7 +196,6 @@
               name="essay"
               id="input-textarear2"
               onkeyup="textAreaAdjust(this)"
-              required
             ></textarea>
             <p class="count" id="word-countr2">0 /150-300</p>
           </div>
@@ -214,7 +209,6 @@
               name="essay"
               id="input-textarear3"
               onkeyup="textAreaAdjust(this)"
-              required
             ></textarea>
             <p class="count" id="word-countr3">0 /100-200</p>
           </div>
@@ -226,7 +220,7 @@
             <label for="pdf" class="drop-container" id="dropcontainer">
               <span class="drop-title">Drop files here</span>
               or
-              <input type="file" id="pdf" accept="pdf/*" required />
+              <input type="file" id="pdf" accept="pdf/*" />
               <input type="hidden" id="downloadURL" name="downloadURL" />
             </label>
           </div>
@@ -248,7 +242,7 @@
                 active and inactive periods.
               </span></label
             >
-            <input name="time_blocks" id="timeBlocks" type="text" required />
+            <input name="time_blocks" id="timeBlocks" type="text" />
           </div>
           <h2>Thanks for reaching here!</h2>
           <hr />
@@ -295,7 +289,6 @@
               name="con"
               id="con"
               onkeyup="textAreaAdjust(this)"
-              required
             ></textarea>
           </div>
 
@@ -386,17 +379,67 @@
         .addEventListener("submit", async function (e) {
           e.preventDefault();
           try {
-            // Create a FormData object from the form
             const formData = new FormData(e.target);
-
-            // Convert FormData to object
             const data = {};
+
             formData.forEach((value, key) => {
               data[key] = value;
             });
 
-            console.log("Form data:", data); // Debug: Log form data
+            // Retrieve the values of checked topics and slider values
+            const topics = [
+              "Astronomy",
+              "Architecture",
+              "Biology",
+              "Business",
+              "Chemistry",
+              "Computer Science",
+              "Engineering",
+              "Environmental Studies",
+              "Mathematics",
+              "Neuroscience",
+              "Physics",
+              "Political Science",
+              "Psychology",
+            ];
 
+            // Initialize arrays to store checked topics and slider values
+            const checkedTopics = [];
+            const sliderValues = [];
+
+            // Loop through each checkbox and slider
+            for (let i = 0; i < topics.length; i++) {
+              const checkboxId = `checkbox-${i}`;
+              const sliderId = `slider-${i}`;
+              console.log(sliderId);
+
+              const checkbox = document.getElementById(checkboxId);
+              const slider = document.getElementById(sliderId).querySelector('.slider-value');
+              console.log(slider);
+
+              // Only include checked checkboxes with corresponding sliders
+              if (checkbox.checked && slider) {
+                const topic = topics[i];
+                const value = slider.innerText;
+                console.log(value);
+
+                checkedTopics.push(topic);
+                sliderValues.push(value);
+              }
+            }
+
+            console.log("Checked topics:", checkedTopics); // Debug: Log checked topics
+            console.log("Slider values:", sliderValues); // Debug: Log slider values
+            // Store checked topics and slider values in the data object
+            Object.keys(checkedTopics).forEach((topic) => {
+              if (typeof checkedTopics[topic] === "undefined") {
+                delete checkedTopics[topic];
+              }
+            });
+            data["checkedTopics"] = checkedTopics;
+            data["sliderValues"] = sliderValues;
+
+            console.log("Form data:", data); // Debug: Log form data
             // Store the form data including the download URL in Firestore
             const userRef = doc(db, "users", data.name);
             await setDoc(userRef, data);
