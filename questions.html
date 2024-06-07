@@ -1,234 +1,330 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="portal_style.css" />
+    <meta name="theme-color" content="#c32636" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="portal_style.css">
-  <meta name="theme-color" content="#c32636">
+    <link rel="shortcut icon" type="image/x-icon" href="images/Logo.png" />
 
-  <link rel="shortcut icon" type="image/x-icon" href="images/Logo.png" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
 
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <title>YSJ Portal</title>
 
-  <title>YSJ Portal</title>
+    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+  </head>
 
-  <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
-</head>
-
-<body>
-  <div class="content">
-    <div class="wrapper">
-      <h1><a href="https://www.ys-journal.org" target="_blank"><img class="logo" src="images/Logo.png" alt=""></a>
-        Application Portal</h1>
-      <form action="/submit" method="get">
-        <h2>Personal information</h2>
-        <hr />
-        <div class="q">
-          <label for="name">Full name<span>*</span></label>
-          <input name="name" id="name" type="text" required />
-        </div>
-
-        <div class="q">
-          <label for="phone">Phone number<span>*</span></label>
-          <input name="phone" id="phone" type="tel" required />
-        </div>
-
-        <div class="q">
-          <label for="birth">Date of birth<span>*</span></label>
-          <input name="birth" id="birth" type="date" required />
-        </div>
-
-        <div class="q">
-          <label for="gender">Gender <span>*</span></label>
-          <select id="gender" name="gender">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-            <option value="no">Prefer not to say</option>
-          </select>
-        </div>
-
-        <div class="q">
-          <label for="school">Current School/University <span>*</span></label>
-          <input name="school" id="school" type="text" required />
-        </div>
-
-        <div class="q">
-          <label for="grade">Educational grade <span>*</span><br /><span class="exp">(e.g.: G11, G12, University
-              Freshman, e.t.c.)</span></label>
-          <input name="grade" id="grade" type="text" required style="margin-top: 10px" />
-        </div>
-
-        <div class="q">
-          <label for="nationality">Nationality <span>*</span></label>
-          <input name="nationality" id="nationality" type="text" required />
-        </div>
-
-        <div class="q">
-          <label for="email">Email <span>*</span></label>
-          <input name="email" id="email" type="email" required />
-        </div>
-        <h2>Fields of Interest</h2>
-        <hr />
-        <div class="q">
-          <label for="areas">What research areas are you interested in?<br /><span
-              class="exp"><strong>Important:</strong> Select only the research areas you
-              would like to be considered for if admitted</span></label>
-          <div id="checkboxes-container">
-            <!-- Checkboxes will be added here -->
+  <body>
+    <div class="content">
+      <div class="wrapper">
+        <h1>
+          <a href="https://www.ys-journal.org" target="_blank"
+            ><img class="logo" src="images/Logo.png" alt=""
+          /></a>
+          Application Portal
+        </h1>
+        <form id="applicationForm" action="/submit" method="get">
+          <h2>Personal information</h2>
+          <hr />
+          <div class="q">
+            <label for="name">Full name<span>*</span></label>
+            <input name="name" id="name" type="text" required />
           </div>
-        </div>
 
-        <div class="q">
-          <label for="gpa" style="margin-top: 20px">What is your GPA?<span>*</span><br /><span class="exp">State the
-              most recent one. <br />If your school doesn't support
-              the GPA scale of 4, use this scale</span></label>
-          <select id="gpa" name="gpa" style="margin-top: 10px">
-            <option value="a+">A+ (From 95% to 100%)</option>
-            <option value="a">A (From 90% to 95%)</option>
-            <option value="b+">B+ (From 85% to 90%)</option>
-            <option value="b">B (From 80% to 85%)</option>
-            <option value="c+">C+ (From 75% to 80%)</option>
-            <option value="c">C (From 70% to 75%)</option>
-          </select>
-        </div>
-        <div class="q">
-          <label for="gp">What is your field's (and/or related field's) GPA?<span>*</span></label>
-          <input name="gp" id="gp" type="text" required />
-        </div>
-        <h2>Writing Section</h2>
-        <hr />
-        <div class="q">
-          <label for="essay1">What qualification do you think you have as a researcher that can
-            make you outstanding in such a competitive pool of applicants for
-            the same position? <span>*</span></label>
-          <textarea name="essay1" id="input-textareaw1" onkeyup="textAreaAdjust(this)" required></textarea>
-          <p class="count" id="word-countw1">0 / 150</p>
-        </div>
-        <h2 class="mar-top">
-          Academic Writing
-        </h2>
-        <hr>
-        <div class="q">
-          <label for="essay2">
-            In an essay (max. 300 words), write about one unfamiliar
-            achievement in scientific research that changed constants of science
-            or life. <span>*</span><br /><span class="exp">(Using citations is obligatory; e.g.: APA,
-              IEEE...)</span></label>
-          <textarea name="essay2" id="input-textareaw2" onkeyup="textAreaAdjust(this)" required></textarea>
-          <p class="count" id="word-countw2">0 / 300</p>
-        </div>
-        <h2 class="mar-top">Personal Experience Reflection</h2>
-        <hr />
-        <div class="q">
-          <label for="q2">"Albert Einstein once said, 'The important thing is not to stop
-            questioning. Curiosity has its reason for existing.' Mentorship in
-            scientific research requires a comprehensive understanding of the
-            concepts and the ability to motivate and direct students as they go
-            through their difficulties, Analyze this quote and discuss how your
-            experiences and knowledge in scientific research have prepared you
-            enough to fit yourself into YSJ’s high standards. In your response,
-            state your academic and mentoring goals, explaining how some aspects
-            of YSJ would help you direct young researchers toward their
-            potential. Furthermore, give examples of situations where you have
-            helped learners wade through complex problems to aid their growth
-            and excitement for science. <span>*</span></label>
-          <textarea name="essay" id="input-textarear1" onkeyup="textAreaAdjust(this)" required></textarea>
-          <p class="count" id="word-countr1">0 /200-400</p>
-        </div>
+          <div class="q">
+            <label for="phone">Phone number<span>*</span></label>
+            <input name="phone" id="phone" type="tel" required />
+          </div>
 
-        <div class="q">
-          <label for="q3" class="mar-top">Please describe your research background, including your areas of
-            expertise, the research projects (e.g., papers, projects, and/or
-            patents) you have been involved in, and/or any publications or
-            presentations resulting from your research. <span>*</span></label>
-          <textarea name="essay" id="input-textarear2" onkeyup="textAreaAdjust(this)" required></textarea>
-          <p class="count" id="word-countr2">0 /150-300</p>
-        </div>
+          <div class="q">
+            <label for="birth">Date of birth<span>*</span></label>
+            <input name="birth" id="birth" type="date" required />
+          </div>
 
-        <div class="q">
-          <label for="q4" class="mar-top">How do you ensure consistent and effective communication and
-            collaboration in your research team? <span>*</span></label>
-          <textarea name="essay" id="input-textarear3" onkeyup="textAreaAdjust(this)" required></textarea>
-          <p class="count" id="word-countr3">0 /100-200</p>
-        </div>
+          <div class="q">
+            <label for="gender">Gender <span>*</span></label>
+            <select id="gender" name="gender">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+              <option value="no">Prefer not to say</option>
+            </select>
+          </div>
 
-        <div class="q">
-          <p class="lapp mar-top">
-            Submit any of your research-related work/samples. <span>*</span>
-          </p>
-          <label for="pdf" class="drop-container" id="dropcontainer">
-            <span class="drop-title">Drop files here</span>
-            or
-            <input type="file" id="pdf" accept="pdf/*" onchange="handleFileSelect(event)" required />
-          </label>
-        </div>
-        <h2>Availability</h2>
-        <hr />
-        <div class="q">
-          <label for="hours">How much time (hours per week) are you willing and able to commit
-            to YSJ? <span>*</span></label>
-          <input type="number" id="hours">
-        </div>
-        <div class="q">
-          <label for="time_blocks">List down the most significant time blocks you would have between
-            the start of June and the end of September. <span>*</span>
-            <br /><span class="exp">
-              Note: This is for us to fit your schedule with the journal's
-              active and inactive periods.
-            </span></label>
-          <input name="time_blocks" id="timeBlocks" type="text" required />
-        </div>
-        <h2>Thanks for reaching here!</h2>
-        <hr>
-        <div class="q">
-          <label for="how">How did this portal reach you?<span>*</span></label>
-          <select id="how">
-            <option value="way">Telegram Group/Channel</option>
-            <option value="way">Whatsapp/Discord Group</option>
-            <option value="way">Facebook page (Follower)</option>
-            <option value="way">Facebook AD</option>
-            <option value="way">Direct contact with YSJ staff</option>
-            <option value="way">RoundPier</option>
-            <option value="way">LinkedIn</option>
-            <option value="way">Instagram page</option>
-            <option value="way">Ambassador</option>
-            <option value="way">School Counselor</option>
-            <option value="way">Personal Connections (e.g., Friends and/or Teachers)</option>
-            <option value="way">Search Engines (e.g., Google)</option>
-            <option value="way">WhatsApp Groups</option>
-            <option value="way">Other</option>
-          </select>
-          <input type="text" placeholder="if you have selected 'Other' type here" id="other">
-          <input type="text" placeholder="if you have selected 'Ambassador' please type the ambassador referal code"
-            id="ambassador">
-        </div>
+          <div class="q">
+            <label for="school">Current School/University <span>*</span></label>
+            <input name="school" id="school" type="text" required />
+          </div>
 
+          <div class="q">
+            <label for="grade"
+              >Educational grade <span>*</span><br /><span class="exp"
+                >(e.g.: G11, G12, University Freshman, e.t.c.)</span
+              ></label
+            >
+            <input
+              name="grade"
+              id="grade"
+              type="text"
+              required
+              style="margin-top: 10px"
+            />
+          </div>
 
+          <div class="q">
+            <label for="nationality">Nationality <span>*</span></label>
+            <input name="nationality" id="nationality" type="text" required />
+          </div>
 
-        <div class="q">
-          <label for="con">Feel free to add whatever you feel may boost your application even
-            further.<span>*</span></label>
-          <textarea name="con" id="con" onkeyup="textAreaAdjust(this)" required></textarea>
-              </div>
-
-                <div class="btnss">
-                <button type="submit" id="submit" class="Btn"></button>
+          <div class="q">
+            <label for="email">Email <span>*</span></label>
+            <input name="email" id="email" type="email" required />
+          </div>
+          <h2>Fields of Interest</h2>
+          <hr />
+          <div class="q">
+            <label for="areas"
+              >What research areas are you interested in?<br /><span class="exp"
+                ><strong>Important:</strong> Select only the research areas you
+                would like to be considered for if admitted</span
+              ></label
+            >
+            <div id="checkboxes-container">
+              <!-- Checkboxes will be added here -->
             </div>
+          </div>
+
+          <div class="q">
+            <label for="gpa" style="margin-top: 20px"
+              >What is your GPA?<span>*</span><br /><span class="exp"
+                >State the most recent one. <br />If your school doesn't support
+                the GPA scale of 4, use this scale</span
+              ></label
+            >
+            <select id="gpa" name="gpa" style="margin-top: 10px">
+              <option value="a+">A+ (From 95% to 100%)</option>
+              <option value="a">A (From 90% to 95%)</option>
+              <option value="b+">B+ (From 85% to 90%)</option>
+              <option value="b">B (From 80% to 85%)</option>
+              <option value="c+">C+ (From 75% to 80%)</option>
+              <option value="c">C (From 70% to 75%)</option>
+            </select>
+          </div>
+          <div class="q">
+            <label for="gp"
+              >What is your field's (and/or related field's) GPA?<span
+                >*</span
+              ></label
+            >
+            <input name="gp" id="gp" type="text" required />
+          </div>
+          <h2>Writing Section</h2>
+          <hr />
+          <div class="q">
+            <label for="essay1"
+              >What qualification do you think you have as a researcher that can
+              make you outstanding in such a competitive pool of applicants for
+              the same position? <span>*</span></label
+            >
+            <textarea
+              name="essay1"
+              id="input-textareaw1"
+              onkeyup="textAreaAdjust(this)"
+              required
+            ></textarea>
+            <p class="count" id="word-countw1">0 / 150</p>
+          </div>
+          <h2 class="mar-top">Academic Writing</h2>
+          <hr />
+          <div class="q">
+            <label for="essay2">
+              In an essay (max. 300 words), write about one unfamiliar
+              achievement in scientific research that changed constants of
+              science or life. <span>*</span><br /><span class="exp"
+                >(Using citations is obligatory; e.g.: APA, IEEE...)</span
+              ></label
+            >
+            <textarea
+              name="essay2"
+              id="input-textareaw2"
+              onkeyup="textAreaAdjust(this)"
+              required
+            ></textarea>
+            <p class="count" id="word-countw2">0 / 300</p>
+          </div>
+          <h2 class="mar-top">Personal Experience Reflection</h2>
+          <hr />
+          <div class="q">
+            <label for="q2"
+              >"Albert Einstein once said, 'The important thing is not to stop
+              questioning. Curiosity has its reason for existing.' Mentorship in
+              scientific research requires a comprehensive understanding of the
+              concepts and the ability to motivate and direct students as they
+              go through their difficulties, Analyze this quote and discuss how
+              your experiences and knowledge in scientific research have
+              prepared you enough to fit yourself into YSJ’s high standards. In
+              your response, state your academic and mentoring goals, explaining
+              how some aspects of YSJ would help you direct young researchers
+              toward their potential. Furthermore, give examples of situations
+              where you have helped learners wade through complex problems to
+              aid their growth and excitement for science. <span>*</span></label
+            >
+            <textarea
+              name="essay"
+              id="input-textarear1"
+              onkeyup="textAreaAdjust(this)"
+              required
+            ></textarea>
+            <p class="count" id="word-countr1">0 /200-400</p>
+          </div>
+
+          <div class="q">
+            <label for="q3" class="mar-top"
+              >Please describe your research background, including your areas of
+              expertise, the research projects (e.g., papers, projects, and/or
+              patents) you have been involved in, and/or any publications or
+              presentations resulting from your research. <span>*</span></label
+            >
+            <textarea
+              name="essay"
+              id="input-textarear2"
+              onkeyup="textAreaAdjust(this)"
+              required
+            ></textarea>
+            <p class="count" id="word-countr2">0 /150-300</p>
+          </div>
+
+          <div class="q">
+            <label for="q4" class="mar-top"
+              >How do you ensure consistent and effective communication and
+              collaboration in your research team? <span>*</span></label
+            >
+            <textarea
+              name="essay"
+              id="input-textarear3"
+              onkeyup="textAreaAdjust(this)"
+              required
+            ></textarea>
+            <p class="count" id="word-countr3">0 /100-200</p>
+          </div>
+
+          <div class="q">
+            <p class="lapp mar-top">
+              Submit any of your research-related work/samples. <span>*</span>
+            </p>
+            <label for="pdf" class="drop-container" id="dropcontainer">
+              <span class="drop-title">Drop files here</span>
+              or
+              <input type="file" id="pdf" accept="pdf/*" required />
+              <input type="hidden" id="downloadURL" name="downloadURL">
+            </label>
+          </div>
+          <h2>Availability</h2>
+          <hr />
+          <div class="q">
+            <label for="hours"
+              >How much time (hours per week) are you willing and able to commit
+              to YSJ? <span>*</span></label>
+            <input type="number" id="hours" />
+          </div>
+          <div class="q">
+            <label for="time_blocks"
+              >List down the most significant time blocks you would have between
+              the start of June and the end of September. <span>*</span>
+              <br /><span class="exp">
+                Note: This is for us to fit your schedule with the journal's
+                active and inactive periods.
+              </span></label
+            >
+            <input name="time_blocks" id="timeBlocks" type="text" required />
+          </div>
+          <h2>Thanks for reaching here!</h2>
+          <hr />
+          <div class="q">
+            <label for="how"
+              >How did this portal reach you?<span>*</span></label
+            >
+            <select id="how">
+              <option value="way">Telegram Group/Channel</option>
+              <option value="way">Whatsapp/Discord Group</option>
+              <option value="way">Facebook page (Follower)</option>
+              <option value="way">Facebook AD</option>
+              <option value="way">Direct contact with YSJ staff</option>
+              <option value="way">RoundPier</option>
+              <option value="way">LinkedIn</option>
+              <option value="way">Instagram page</option>
+              <option value="way">Ambassador</option>
+              <option value="way">School Counselor</option>
+              <option value="way">
+                Personal Connections (e.g., Friends and/or Teachers)
+              </option>
+              <option value="way">Search Engines (e.g., Google)</option>
+              <option value="way">WhatsApp Groups</option>
+              <option value="way">Other</option>
+            </select>
+            <input
+              type="text"
+              placeholder="if you have selected 'Other' type here"
+              id="other"
+            />
+            <input
+              type="text"
+              placeholder="if you have selected 'Ambassador' please type the ambassador referal code"
+              id="ambassador"
+            />
+          </div>
+
+          <div class="q">
+            <label for="con"
+              >Feel free to add whatever you feel may boost your application
+              even further.<span>*</span></label
+            >
+            <textarea
+              name="con"
+              id="con"
+              onkeyup="textAreaAdjust(this)"
+              required
+            ></textarea>
+          </div>
+
+          <div class="btnss">
+            <button type="submit" id="submit" class="Btn"></button>
+          </div>
         </form>
-        </div>
+      </div>
     </div>
     <script src="index.js"></script>
     <script src="count.js"></script>
     <script type="module">
       // Import the necessary functions from the Firebase SDKs
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
-      import { getFirestore, doc, setDoc, getDoc, updateDoc, increment, enableIndexedDbPersistence } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js";
-      import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
+      import {
+        getFirestore,
+        doc,
+        setDoc,
+        enableIndexedDbPersistence,
+      } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js";
+      import {
+        getAuth,
+        signInAnonymously,
+      } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
+      import {
+        getStorage,
+        ref,
+        uploadBytes,
+        getDownloadURL,
+      } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-storage.js";
 
       const firebaseConfig = {
         apiKey: "AIzaSyDQtBb8zDA1iPZBRjFtXjcnj2zAIhlHzIY",
@@ -237,19 +333,20 @@
         storageBucket: "ysg-portal.appspot.com",
         messagingSenderId: "91821075370",
         appId: "1:91821075370:web:80369759cd25604e7499d3",
-        measurementId: "G-EC8037VVTR"
+        measurementId: "G-EC8037VVTR",
       };
 
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
       const db = getFirestore(app);
       const auth = getAuth(app);
+      const storage = getStorage(app);
 
       // Enable persistence
       enableIndexedDbPersistence(db).catch((err) => {
-        if (err.code === 'failed-precondition') {
+        if (err.code === "failed-precondition") {
           console.error("Persistence failed: Multiple tabs open");
-        } else if (err.code === 'unimplemented') {
+        } else if (err.code === "unimplemented") {
           console.error("Persistence is not available");
         }
       });
@@ -259,42 +356,64 @@
         console.error("Error signing in anonymously: ", error);
       });
 
-document.getElementById("submit").addEventListener('click', async function (e) {
-    e.preventDefault();
+      // Handle file selection and upload to Firebase Storage
+      async function handleFileSelect(event) {
+        const file = event.target.files[0];
+        if (!file) return;
 
-    try {
-        const name = document.getElementById("name").value;
+        const storageRef = ref(storage, "uploads/" + file.name);
+        try {
+          const snapshot = await uploadBytes(storageRef, file);
+          const downloadURL = await getDownloadURL(snapshot.ref);
+          console.log("File available at", downloadURL);
 
-        const userRef = doc(db, 'users', name); // Corrected document reference
+          // Store the download URL in the hidden input for submission
+          document.getElementById("downloadURL").value = downloadURL;
+        } catch (error) {
+          console.error("Error uploading file:", error);
+        }
+      }
 
-        await setDoc(userRef, {
-            username: name,
-            phone: document.getElementById("phone").value,
-            gender: document.getElementById("gender").value,
-            school: document.getElementById("school").value,
-            grade: document.getElementById("grade").value,
-            nationality: document.getElementById("nationality").value,
-            email: document.getElementById("email").value,
-            gpa: document.getElementById("gpa").value,
-            gp: document.getElementById("gp").value,
-            q1: document.getElementById("input-textareaw1").value,
-            q2: document.getElementById("input-textareaw2").value,
-            q3: document.getElementById("input-textarear1").value,
-            q4: document.getElementById("input-textarear2").value,
-            q5: document.getElementById("input-textarear3").value,
-            hours: document.getElementById("hours").value,
-            timeBlocks: document.getElementById("timeBlocks").value,
-            how: document.getElementById("how").value,
-            other: document.getElementById("other").value,
-            ambassador: document.getElementById("ambassador").value,
-            con: document.getElementById("con").value
+      // Attach handleFileSelect to file input change event
+      document
+        .getElementById("pdf")
+        .addEventListener("change", handleFileSelect);
+
+      // Form submission event listener
+      document
+        .getElementById("applicationForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+          try {
+            // Create a FormData object from the form
+            const formData = new FormData(e.target);
+
+            // Convert FormData to object
+            const data = {};
+            formData.forEach((value, key) => {
+              data[key] = value;
+            });
+
+            // Store the form data including the download URL in Firestore
+            const userRef = doc(db, "users", data.name);
+            await setDoc(userRef, data);
+
+            alert("Form submitted successfully!");
+            window.location.href = "";
+          } catch (error) {
+            console.error("Error submitting form:", error);
+          }
         });
-
-        alert('done');
-    } catch (error) {
-        console.error("Error submitting form: ", error);
-    }
-});
     </script>
-</body>
+  </body>
 </html>
+
+<!-- const firebaseConfig = {
+  apiKey: "AIzaSyDQtBb8zDA1iPZBRjFtXjcnj2zAIhlHzIY",
+  authDomain: "ysg-portal.firebaseapp.com",
+  projectId: "ysg-portal",
+  storageBucket: "ysg-portal.appspot.com",
+  messagingSenderId: "91821075370",
+  appId: "1:91821075370:web:80369759cd25604e7499d3",
+  measurementId: "G-EC8037VVTR"
+}; -->
