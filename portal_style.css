@@ -243,68 +243,7 @@ label .exp{
   .Btn:active {
     transform: scale(0.95);
   }
-  footer{
-    background: #000;
-    display: flex;
-    padding: 100px;
-    justify-content: space-between;
-    color: #fff;
-  }
-  footer img{
-    width: 100px;
-    margin-bottom: 30px;
-  }
-  footer span{
-    color: #676767;
-  }
-  footer h4{
-    text-decoration: underline;
-    font-family: "Lobster", cursive !important;
 
-  }
-  footer h4 {
-    color: #f2f2f2;
-    /* Mikha */
-    /* font-family: -webkit-pictograph; */
-    /* font-size: 2.3rem; */
-    font-size: 2.5rem;
-    font-family: "Lobster", cursive !important;
-    width: fit-content;
-    margin-left: 130px;
-    margin-bottom: 25px;
-  }
-  
-  footer h4::after {
-    content: "";
-    background-color: #f2f2f2ad;
-    height: 1.5px;
-    position: absolute;
-    /* Mikha */
-    /* margin-left: -172px; */
-    /* width: 172px; */
-  }
-  footer .right{
-    margin-top: 90px;
-    margin-right: 100px;
-
-  }
-  footer .colo a{
-    color: #ccc;
-    text-decoration: none;
-    font-size: 20px;
-
-}
-.right p{
-    margin-bottom: 30px;
-    font-size: 16px;
-
-}
-.right .mar{
-    margin-right: 30px;
-}
-footer .social{
-    display: flex;
-}
 /* Existing CSS */
 
 /* Media Query for Tablets */
@@ -313,13 +252,6 @@ footer .social{
     width: 90%; /* Adjust width for smaller screens */
     padding: 20px; /* Adjust padding for smaller screens */
     margin-top: 50px; /* Adjust margin for smaller screens */
-  }
-  footer h4 {
-    font-size: 2rem; /* Adjust font size for smaller screens */
-    margin-left: 0; /* Remove margin for smaller screens */
-  }
-  footer h4::after {
-    margin-left: 0; /* Remove margin for smaller screens */
   }
   .wrapper form textarea {
     overflow: auto;
@@ -333,9 +265,6 @@ footer .social{
     width: 100%; /* Adjust width for smaller screens */
     padding: 10px; /* Adjust padding for smaller screens */
     margin-top: 30px; /* Adjust margin for smaller screens */
-  }
-  footer {
-    padding: 50px; /* Adjust padding for smaller screens */
   }
   .wrapper form textarea {
     overflow: auto; /* Prevent textarea overflow */
