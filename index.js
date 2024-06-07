@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
     topics.forEach((topic, index) => {
         const checkboxId = `checkbox-${index}`;
         const sliderId = `slider-${index}`;
-        const textareaId = `textarea-${index}`;
 
         // Create checkbox
         const checkboxLabel = document.createElement('label');
@@ -28,27 +27,14 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         checkboxesContainer.appendChild(sliderContainer);
 
-        // Create textarea container
-        const textareaContainer = document.createElement('div');
-        textareaContainer.classList.add('textarea-container');
-        textareaContainer.id = textareaId;
-        textareaContainer.innerHTML = `
-            <label for="${textareaId}">Comments:</label>
-            <textarea id="${textareaId}" class="textarea" rows="4" cols="50"></textarea>
-        `;
-        checkboxesContainer.appendChild(textareaContainer);
-
         // Set initial state
         const checkbox = document.getElementById(checkboxId);
         const slider = sliderContainer.querySelector('.slider');
-        const textarea = textareaContainer.querySelector('.textarea');
         sliderContainer.style.display = checkbox.checked ? 'block' : 'none';
-        textareaContainer.style.display = checkbox.checked ? 'block' : 'none';
 
         // Toggle slider container and textarea visibility based on checkbox state
         checkbox.addEventListener('change', function() {
             sliderContainer.style.display = checkbox.checked ? 'block' : 'none';
-            textareaContainer.style.display = checkbox.checked ? 'block' : 'none';
         });
 
         // Update slider value display
