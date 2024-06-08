@@ -638,7 +638,10 @@ footer .social{
   width: 100%;
   margin-bottom: 20px;
 }
-.wrapper2 {
+a{
+            text-decoration: none;
+        }
+         .wrapper2 {
   display: inline-flex;
   list-style: none;
   height: 120px;
