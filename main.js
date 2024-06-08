@@ -9,7 +9,7 @@ const firebaseConfig = {
 };
 
 const app = firebase.initializeApp(firebaseConfig);
-const LoginURL = "http://127.0.0.1:5501";
+const LoginURL = "https://eyadwebdeveloper.github.io/YSJ-Portal/";
 function CheckUserCredits() {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {

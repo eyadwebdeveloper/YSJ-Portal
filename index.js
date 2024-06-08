@@ -13,7 +13,7 @@ button.addEventListener("click", (e) => {
       user.getIdTokenResult().then((idTokenResult) => {
         localStorage.clear();
         localStorage.setItem(idTokenResult.token, idTokenResult.token);
-        location.href = applicationURL
+        location.href = 'https://eyadwebdeveloper.github.io/YSJ-Portal/index2.html'
       });
     })
     .catch((error) => {
