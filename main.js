@@ -9,7 +9,6 @@ const firebaseConfig = {
 };
 
 const app = firebase.initializeApp(firebaseConfig);
-const LoginURL = "https://eyadwebdeveloper.github.io/YSJ-Portal/";
 function CheckUserCredits() {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -17,14 +16,14 @@ function CheckUserCredits() {
         .getIdTokenResult()
         .then((idTokenResult) => {
           if (!localStorage.getItem(idTokenResult.token)) {
-            location.href = LoginURL;
+            location.href = domain;
           }
         })
         .catch((error) => {
           console.log(error.message);
         });
     } else {
-      location.href = LoginURL;
+      location.href = domain;
     }
   });
 }

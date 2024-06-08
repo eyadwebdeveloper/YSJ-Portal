@@ -22,6 +22,11 @@
 <body>
   <div class="content">
     <div class="wrapper">
+      <div class="signoutcontainer">
+        <div class="btnss">
+          <button onclick="signOut()" class="button2">Sign Out</button>
+        </div>
+      </div>
       <h1>
         <a href="https://www.ys-journal.org" target="_blank"><img class="logo" src="images/Logo.png" alt="" /></a>
         Application Portal
@@ -70,10 +75,6 @@
           <input name="nationality" id="nationality" type="text" />
         </div>
 
-        <div class="q">
-          <label for="email">Email <span>*</span></label>
-          <input name="email" id="email" type="email" />
-        </div>
         <h2>Fields of Interest</h2>
         <hr />
         <div class="q">
@@ -207,8 +208,8 @@
             <option value="Other">Other</option>
           </select>
           <input name="Other" type="text" placeholder="if you have selected 'Other' type here" id="other" />
-          <input name="Ambassador" type="text" placeholder="if you have selected 'Ambassador' please type the ambassador referal code"
-            id="ambassador" />
+          <input name="Ambassador" type="text"
+            placeholder="if you have selected 'Ambassador' please type the ambassador referal code" id="ambassador" />
         </div>
 
         <div class="q">
@@ -217,152 +218,48 @@
           <textarea name="con" id="con" onkeyup="textAreaAdjust(this)"></textarea>
         </div>
 
-        <div class="btnss">
-          <button type="submit" id="submit" class="button2">Submit</button>
+        <div class="buttons">
+          <div class="btnss">
+            <button type="submit" id="submit" class="button2">Submit</button>
+          </div>
+
+          <div class="saveProgress btnss">
+            <button class="button2">Save Progress</button>
+          </div>
         </div>
       </form>
       <ul class="wrapper2">
         <a href="https://www.facebook.com/YouthScienceJournall/" target="_blank">
           <li class="icon facebook">
-          <span class="tooltip">Facebook</span>
-          <i class="fa-brands fa-facebook-f"></i>
-        </li>
+            <span class="tooltip">Facebook</span>
+            <i class="fa-brands fa-facebook-f"></i>
+          </li>
         </a>
         <a href="https://www.linkedin.com/company/ysj/" target="_blank">
           <li class="icon linkedin">
-          <span class="tooltip">Llinkedin</span>
-          <i class="fa-brands fa-linkedin-in"></i>
-        </li>
+            <span class="tooltip">Llinkedin</span>
+            <i class="fa-brands fa-linkedin-in"></i>
+          </li>
         </a>
         <a href="https://www.instagram.com/ysciencejournal/" target="_blank">
           <li class="icon instagram">
-          <span class="tooltip">Instagram</span>
-          <i class="fa-brands fa-instagram"></i>
-        </li>
+            <span class="tooltip">Instagram</span>
+            <i class="fa-brands fa-instagram"></i>
+          </li>
         </a>
       </ul>
 
     </div>
   </div>
+  <script src="./globals.js"></script>
   <script src="count.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-storage.js"></script>
   <script src="./main.js"></script>
+  <script src="./submition.js"></script>
 
-
-  <script>
-    const db = firebase.firestore();
-    const auth = firebase.auth(app);
-    const storage = firebase.storage(app);
-
-    // Handle file selection and upload to Firebase Storage
-    async function handleFileSelect(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-
-      const storageRef = storage.ref("uploads/" + file.name);
-      try {
-        const snapshot = await storageRef.put(file);
-        const downloadURL = await snapshot.ref.getDownloadURL();
-        console.log("File available at", downloadURL);
-
-        // Store the download URL in the hidden input for submission
-        document.getElementById("downloadURL").value = downloadURL;
-      } catch (error) {
-        console.error("Error uploading file:", error);
-      }
-    }
-
-    // Attach handleFileSelect to file input change event
-    document.getElementById("pdf").addEventListener("change", handleFileSelect);
-
-    // Form submission event listener
-    document.getElementById("applicationForm").addEventListener("submit", async function (e) {
-      e.preventDefault();
-      try {
-        const formData = new FormData(e.target);
-        const data = {};
-
-        formData.forEach((value, key) => {
-          data[key] = value;
-        });
-
-        // Retrieve the values of checked topics and slider values
-        const topics = [
-          "Astronomy",
-          "Architecture",
-          "Biology",
-          "Business",
-          "Chemistry",
-          "Computer Science",
-          "Engineering",
-          "Environmental Studies",
-          "Mathematics",
-          "Neuroscience",
-          "Physics",
-          "Political Science",
-          "Psychology",
-        ];
-
-        // Initialize arrays to store checked topics and slider values
-        const checkedTopics = [];
-        const sliderValues = [];
-
-        // Loop through each checkbox and slider
-        for (let i = 0; i < topics.length; i++) {
-          const checkboxId = `checkbox-${i}`;
-          const sliderId = `slider-${i}`;
-          console.log(sliderId);
-
-          const checkbox = document.getElementById(checkboxId);
-          const slider = document.getElementById(sliderId).querySelector('.slider-value');
-          console.log(slider);
-
-          // Only include checked checkboxes with corresponding sliders
-          if (checkbox.checked && slider) {
-            const topic = topics[i];
-            const value = slider.innerText;
-            console.log(value);
-
-            checkedTopics.push(topic);
-            sliderValues.push(value);
-          }
-        }
-
-        console.log("Checked topics:", checkedTopics); // Debug: Log checked topics
-        console.log("Slider values:", sliderValues); // Debug: Log slider values
-        // Store checked topics and slider values in the data object
-        Object.keys(checkedTopics).forEach((topic) => {
-          if (typeof checkedTopics[topic] === "undefined") {
-            delete checkedTopics[topic];
-          }
-        });
-        data["checkedTopics"] = checkedTopics;
-        data["sliderValues"] = sliderValues;
-
-        console.log("Form data:", data); // Debug: Log form data
-        // Store the form data including the download URL in Firestore
-        const userRef = db.collection("users").doc(data.name);
-        await userRef.set(data);
-
-        window.location.href = "portal_submitted.html";
-      } catch (error) {
-        console.error("Error submitting form:", error);
-      }
-    });
-  </script>
 </body>
 
 </html>
-
-<!-- const firebaseConfig = {
-  apiKey: "AIzaSyDQtBb8zDA1iPZBRjFtXjcnj2zAIhlHzIY",
-  authDomain: "ysg-portal.firebaseapp.com",
-  projectId: "ysg-portal",
-  storageBucket: "ysg-portal.appspot.com",
-  messagingSenderId: "91821075370",
-  appId: "1:91821075370:web:80369759cd25604e7499d3",
-  measurementId: "G-EC8037VVTR"
-}; -->

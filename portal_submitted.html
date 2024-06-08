@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<link rel="shortcut icon" type="image/x-icon" href="images/Logo.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" type="image/x-icon" href="images/Logo.png" />
+    <link rel="stylesheet" href="./portal_style.css">
     <title>Submitted ! | YSJ Portal</title>
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        body{
+
+        body {
             display: flex;
             justify-content: center;
             min-height: 100vh;
@@ -20,7 +25,8 @@
             background: #fff;
             font-family: sans-serif;
         }
-        .wrap{
+
+        .wrap {
             box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
             padding: 50px;
             text-align: center;
@@ -28,35 +34,41 @@
             border-radius: 20px;
             color: #000;
         }
-        .wrap .icon{
+
+        .wrap .icon {
             padding: 70px;
             width: fit-content;
             border-radius: 50%;
             border: 2px solid #17c917;
             margin: auto;
         }
-        .icon i{
+
+        .icon i {
             color: #17c917;
             font-size: 100px;
         }
-        h2{
+
+        h2 {
             margin-top: 30px;
             font-size: 35px;
         }
-        p{
+
+        p {
             margin-top: 20px;
             font-size: 20px;
             color: grey;
             margin-bottom: 30px;
 
         }
-        a{
+
+        a {
             color: #000;
             text-decoration: none;
             font-size: 20px;
         }
-        .fixed{
-            box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;    
+
+        .fixed {
+            box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
             border-radius: 50%;
             padding: 20px;
             position: fixed;
@@ -65,12 +77,14 @@
             margin: 20px;
             background: #c32636;
         }
-        .fixed i{
+
+        .fixed i {
             color: #fff;
             font-size: 25px;
         }
     </style>
 </head>
+
 <body>
     <div class="wrap">
         <div class="icon">
@@ -78,10 +92,16 @@
         </div>
         <h2>Form Submitted Successfully</h2>
         <p>Thank you for your submition and <br> we will reply to you as soon as possiple !</p>
-        <a href="index.html">Go back</a>
-    </div>
-    <a href="https://www.ys-journal.org" target="_blank" class="fixed">
-        <i class="fa-solid fa-house"></i>
-      </a>
+        <div class="btnss">
+            <button onclick="signOut()" class="button2">Sign Out</button>
+        </div>
+        <a href="https://www.ys-journal.org" target="_blank" class="fixed">
+            <i class="fa-solid fa-house"></i>
+        </a>
+        <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+        <script src="globals.js"></script>
+        <script src="main.js"></script>
 </body>
+
 </html>
