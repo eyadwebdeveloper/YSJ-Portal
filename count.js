@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
     sliderContainer.id = sliderId;
     sliderContainer.innerHTML = `
           <input type="range" min="0" max="10" value="1" class="slider">
-          <p>Value: <span class="slider-value">1</span></p>
+          <p>Rate: <span class="slider-value">1</span></p>
       `;
     checkboxesContainer.appendChild(sliderContainer);
 
