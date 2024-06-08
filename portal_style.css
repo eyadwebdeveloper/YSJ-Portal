@@ -682,7 +682,12 @@ footer .social{
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
-
+.wrapper2 a{
+  color: #000;
+}
+.icon i{
+  font-size: 1.3em;
+}
 .wrapper2 .tooltip {
   position: absolute;
   top: 0;
