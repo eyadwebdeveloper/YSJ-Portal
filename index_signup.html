@@ -94,8 +94,12 @@
                 <div class="wrapper">
                     <form id="applicationForm" action="/submit" method="get">
                         <h1><a href="https://www.ys-journal.org" target="_blank"><img class="logo" src="images/Logo.png"
-                                    alt=""></a>Sign In</h1>
+                                    alt=""></a> Sign Up</h1>
                         <hr />
+                        <div class="q">
+                            <label for="username">Username<span>*</span></label>
+                            <input name="username" id="username" type="text" />
+                        </div>
                         <div class="q">
                             <label for="email">Email<span>*</span></label>
                             <input name="email" id="email" type="email" />
@@ -105,9 +109,10 @@
                             <label for="password">Password<span>*</span></label>
                             <input name="password" id="password" type="password" />
                         </div>
-                            <a href="./index_signup.html" class="switch nexx">Sign Up</a>
+                        <a href="./index.html" class="switch nexx">Sign In</a>
+
                         <div class="btnss">
-                            <a href="" class="switch nexx">Sign In</a>
+                            <a href="questions.html" class="switch nexx">Sign Up</a>
                         </div>
                     </form>
                 </div>
@@ -142,7 +147,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
     <script deter src="./mainsign_in_up.js"></script>
-    <script deter src="./index.js"></script>
+    <script deter src="./index_signUp.js"></script>
 </body>
 
 </html>

@@ -1,10 +1,9 @@
-
 const button = document.querySelector(".btnss a");
 button.addEventListener("click", (e) => {
   e.preventDefault();
   firebase
     .auth()
-    .signInWithEmailAndPassword(
+    .createUserWithEmailAndPassword(
       document.getElementById("email").value,
       document.getElementById("password").value
     )
@@ -14,8 +13,7 @@ button.addEventListener("click", (e) => {
         localStorage.clear();
         localStorage.setItem(idTokenResult.token, idTokenResult.token);
         location.href = applicationURL
-      });
-    })
+      });    })
     .catch((error) => {
       giveAlert(
         error.message ==
@@ -23,6 +21,5 @@ button.addEventListener("click", (e) => {
           ? "Wrong Email or Password"
           : error.message,
         "#e92929", "YSJ:"
-      );
-    });
+      );    });
 });
