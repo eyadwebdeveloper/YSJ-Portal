@@ -242,7 +242,7 @@ label .exp{
   top: 180%;
   width: 160%;
   height: 190%;
-  background-color: #009087;
+  background-color: #e43956;
   border-radius: 50%;
   display: block;
   transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
@@ -251,7 +251,7 @@ label .exp{
 
 .button2:hover {
   color: #ffffff;
-  border: 1px solid #009087;
+  border: 1px solid #e43956;
 }
 
 .button2:hover:before {
@@ -262,7 +262,7 @@ label .exp{
 
 .button2:hover:after {
   top: -45%;
-  background-color: #009087;
+  background-color: #e43956;
   transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
 }
 
@@ -378,24 +378,6 @@ footer .social{
 
 
 
-.btnss .pree, .btnss .nexx{
-    background: #e43956;
-    border-radius: 5px;
-    font-size: 20px;
-    color: #fff;
-    cursor: pointer;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 5vh;
-}
-.btnss .pree{
-    margin-right: 20px;
-    background: none;
-    color: #000;
-    border: 2px solid #e43956;
-}
 
 .textarea{
   display: block;
