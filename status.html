@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.cdnfonts.com/css/lemonmilk" rel="stylesheet">
-    <title>Design</title>
+    <title>ADDMITION STATUS</title>
     <style>
         img{
-            width: 1545px;
+            width: 100%;
         }
         body{
             background: #e7e7e7;
@@ -22,10 +22,14 @@
             padding: 0;
             box-sizing: border-box;
             letter-spacing: 1px;
+            text-decoration: none;
         }
         .wrapperr{
             padding: 50px;
             max-width: 1545px;
+        }
+        .con{
+            width: 1545px;
         }
         .red-row{
             background: #d32424;
@@ -80,21 +84,21 @@
             font-size: 30px;
             margin-bottom: 10px;
         }
-        #two{
+        .middle{
             flex-direction: column;
         }
-        #two h2, #two h5{
+        .middle h2, .middle h5{
             text-align: center;
         }
-        #two h2{
+        .middle h2{
             font-size: 40px;
         }
-        #two h5{
+        .middle h5{
             margin-top: 10px;
             font-size: 20px;
         }
-        .con{
-            width: 100%;
+        .middle{
+            width: 1545p;
             background: #ffff;
             padding: 50px;
             margin-top: 20px;
@@ -107,6 +111,9 @@
             color: #d32424;
             cursor: pointer;
         }
+        .status{
+            background: #ad1b1b;
+        }
     </style>
 </head>
 <body>
@@ -118,8 +125,8 @@
         </div>
         <div class="red-row">
             <nav>
-                <h4 id="status">ADDMITION STATUS</h3>
-                <h4 id="announcments">ANNOUNCMENTS</h3>
+                <h4 class="status">ADDMITION STATUS</h3>
+                <a href="announcments.html"><h4 id="announcments">ANNOUNCMENTS</h3></a>
             </nav>
         </div>
         <div class="content" id="one">
@@ -140,30 +147,7 @@
                 </div>
             </div>
         </div>
-        <div id="two">
-             <div class="con">
-                <h2>ANNOUNCMENTS</h2>
-             <h5>NO ANNOUNCMENTS YET !</h5>
-             </div>
-        </div>
+
     </div>
-    <script>
-      let btn1 = document.getElementById('status');
-      let btn2 = document.getElementById('announcments');
-      btn1.style.background = '#ad1b1b';
-      document.getElementById('two').style.display = 'none';
-      btn2.addEventListener('click', function(){
-          document.getElementById('one').style.display = 'none';
-          document.getElementById('two').style.display = 'flex';
-          btn2.style.background = '#ad1b1b';
-          btn1.style.background = '#d32424';
-      })
-      btn1.addEventListener('click', function(){
-          document.getElementById('one').style.display = 'flex';
-          document.getElementById('two').style.display = 'none';
-          btn2.style.background = '#d32424';
-          btn1.style.background = '#ad1b1b';
-      })
-    </script>
 </body>
 </html>
