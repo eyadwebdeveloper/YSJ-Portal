@@ -171,6 +171,14 @@ async function handleFileSelect(event) {
 }
 document.getElementById("submit").addEventListener("click", async (event) => {
   event.preventDefault();
+
+
+
+
+
+
+
+  
   await giveAlert(
     "Are you sure you want to submit this application?",
     "#e43956",
