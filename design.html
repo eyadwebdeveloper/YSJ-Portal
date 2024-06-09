@@ -1,1 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.cdnfonts.com/css/lemonmilk" rel="stylesheet">
+    <title>Design</title>
+    <style>
+        img{
+            width: 100%;
+        }
+        body{
+            background: #e7e7e7;
+        }
+        *{
+            font-family: 'Lemon/Milk light', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            letter-spacing: 1px;
+        }
+        .wrapperr{
+            padding: 50px;
+        }
+        .red-row{
+            background: #d32424;
+            margin-top: 20px;
+        }
+        .row{
+            display: flex;
+            justify-content: space-between;
+        }
+        nav{
+            display: flex;
+        }
+        nav h4{
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            cursor: pointer;
+            color: #ffff;
+        }
+        .left{
+            width: 250px;
+            padding: 15px;
+            background: #ffff;
+            margin-right: 15px;
+        }
 
+        .left h4{
+            font-size: 20px;
+        }
+        .content{
+            display: flex;
+            margin-top: 20px;
+        }
+        .top, .bottom{
+            background: #ffff;
+            padding: 15px;
+            width: 800px;
+        }
+        span{
+            color: #d32424;
+        }
+        .bottom{
+            margin-top: 15px;
+        }
+        hr{
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        h3{
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+        #two{
+            flex-direction: column;
+        }
+        #two h2, #two h5{
+            text-align: center;
+        }
+        #two h2{
+            font-size: 40px;
+        }
+        #two h5{
+            margin-top: 10px;
+            font-size: 20px;
+        }
+        .con{
+            width: 100%;
+            background: #ffff;
+            padding: 50px;
+            margin-top: 20px;
+        }
+        button{
+            background: none;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            color: #d32424;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <img src="APPLICATION PORTAL.png" alt="">
+    <div class="wrapperr">
+        <div class="row">
+            <h1>2024 YSJ SENIOR RESEARCHERS APPLICATION</h1>
+            <button onclick="signOut()">LOG OUT</button>
+        </div>
+        <div class="red-row">
+            <nav>
+                <h4 id="status">ADDMITION STATUS</h3>
+                <h4 id="announcments">ANNOUNCMENTS</h3>
+            </nav>
+        </div>
+        <div class="content" id="one">
+            <div class="left">
+                <h4>ADDMITION STATUS</h4>
+                <hr>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi dolorem nulla officia sunt delectus repellat cum autem, quibusdam voluptas suscipit esse eaque maxime iure dignissimos.</p>
+            </div>
+            <div class="right">
+                <div class="top">
+                    <h3>STATUS UPDATE</h3>
+                    <h5>AN UPDATE WAS POSTED ON JANUARY 1ST, 2024 <span>VIEW STATUS UPDATE>>></span></h5>
+                </div>
+                <div class="bottom">
+                    <h3>CHECKLIST</h3>
+                    <h5 style="margin-bottom: 5px;"><span>X</span> interview</h5>
+                    <h5><span>X</span> interview</h5>
+                </div>
+            </div>
+        </div>
+        <div id="two">
+             <div class="con">
+                <h2>ANNOUNCMENTS</h2>
+             <h5>NO ANNOUNCMENTS YET !</h5>
+             </div>
+        </div>
+    </div>
+    <script>
+      let btn1 = document.getElementById('status');
+      let btn2 = document.getElementById('announcments');
+      btn1.style.background = '#ad1b1b';
+      document.getElementById('two').style.display = 'none';
+      btn2.addEventListener('click', function(){
+          document.getElementById('one').style.display = 'none';
+          document.getElementById('two').style.display = 'flex';
+          btn2.style.background = '#ad1b1b';
+          btn1.style.background = '#d32424';
+      })
+      btn1.addEventListener('click', function(){
+          document.getElementById('one').style.display = 'flex';
+          document.getElementById('two').style.display = 'none';
+          btn2.style.background = '#d32424';
+          btn1.style.background = '#ad1b1b';
+      })
+    </script>
+</body>
+</html>
