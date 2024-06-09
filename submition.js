@@ -135,8 +135,6 @@ async function saveProgress(body, overlayer, resolve, reject) {
       data = { ...data, ...(await uploadFile(PaperFile)) };
     }
     const userRef = db.collection("users").doc(useremail);
-    console.log(data);
-
     await userRef.set(data, { merge: true });
     resolve();
     body.remove();
@@ -171,7 +169,28 @@ async function handleFileSelect(event) {
     console.error("Error uploading file:", error);
   }
 }
-
+document.getElementById("submit").addEventListener("click", async (event) => {
+  event.preventDefault();
+  await giveAlert(
+    "Are you sure you want to submit this application?",
+    "#e43956",
+    " ",
+    false,
+    () => {},
+    true
+  );
+  await giveAlert(
+    "Submitting Your Application",
+    "#e43956",
+    " ",
+    true,
+    saveProgress
+  );
+  const userRef = db.collection("users").doc(useremail);
+  await userRef.set({ submitted: true }, { merge: true });
+  await giveAlert(" Your Application is now submitted", "#e43956", " ");
+  location.href = domain + "/status.html";
+});
 // HTML elements
 const fileInput = document.getElementById("pdf");
 async function listFileNames(useremail) {

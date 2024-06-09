@@ -1,4 +1,3 @@
-
 const button = document.querySelector(".btnss a");
 button.addEventListener("click", (e) => {
   e.preventDefault();
@@ -13,7 +12,18 @@ button.addEventListener("click", (e) => {
       user.getIdTokenResult().then((idTokenResult) => {
         localStorage.clear();
         localStorage.setItem(idTokenResult.token, idTokenResult.token);
-        location.href = domain + '/index2.html'
+        (async () => {
+          const userRef = firebase
+            .firestore()
+            .collection("users")
+            .doc(user.email);
+          const userData = await userRef.get();
+          const data = await userData.data();
+          if (data.submitted) {
+            location.href = domain + "/status.html";
+          }
+          location.href = domain + "/index2.html";
+        })();
       });
     })
     .catch((error) => {
@@ -22,7 +32,8 @@ button.addEventListener("click", (e) => {
           '{"error":{"code":400,"message":"INVALID_LOGIN_CREDENTIALS","errors":[{"message":"INVALID_LOGIN_CREDENTIALS","domain":"global","reason":"invalid"}]}}'
           ? "Wrong Email or Password"
           : error.message,
-        "#e92929", "YSJ:"
+        "#e92929",
+        "YSJ:"
       );
     });
 });

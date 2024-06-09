@@ -1,4 +1,4 @@
-const domain = "https://eyadwebdeveloper.github.io/YSJ-Portal";
+const domain = "http://127.0.0.1:5501";
 
 function giveAlert(alert, color, from, clicky, callBackFunction, yesNo) {
   return new Promise((resolve, reject) => {
@@ -38,7 +38,7 @@ function giveAlert(alert, color, from, clicky, callBackFunction, yesNo) {
     body.append(admin, text);
     if (yesNo) {
       const no = document.createElement("button");
-      no.innerText = "No, Don't delete";
+      no.innerText = "No";
       no.style.cssText = `width:120px;background-color:#2ecc71;padding:5px 10px;cursor:pointer;border:0;align-self:end;border-radius:10px;color:#fff;`;
       no.addEventListener("click", function () {
         body.remove();
@@ -46,7 +46,7 @@ function giveAlert(alert, color, from, clicky, callBackFunction, yesNo) {
         reject();
       });
       const res = document.createElement("div");
-      response.textContent = "Yes delete";
+      response.textContent = "Yes";
       res.append(no, response);
       res.style.cssText =
         "display:flex;justify-content:flex-end;gap:10px;width:100%;";

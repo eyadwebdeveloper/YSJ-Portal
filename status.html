@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.cdnfonts.com/css/lemonmilk" rel="stylesheet">
     <title>ADDMITION STATUS</title>
     <style>
-        img{
+        img {
             width: 100%;
         }
-        body{
+
+        body {
             background: #e7e7e7;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
         }
-        *{
+
+        * {
             font-family: 'Lemon/Milk light', sans-serif;
             margin: 0;
             padding: 0;
@@ -24,25 +27,31 @@
             letter-spacing: 1px;
             text-decoration: none;
         }
-        .wrapperr{
+
+        .wrapperr {
             padding: 50px;
             max-width: 1545px;
         }
-        .con{
+
+        .con {
             width: 1545px;
         }
-        .red-row{
+
+        .red-row {
             background: #d32424;
             margin-top: 20px;
         }
-        .row{
+
+        .row {
             display: flex;
             justify-content: space-between;
         }
-        nav{
+
+        nav {
             display: flex;
         }
-        nav h4{
+
+        nav h4 {
             padding-left: 10px;
             padding-right: 10px;
             padding-top: 3px;
@@ -50,60 +59,74 @@
             cursor: pointer;
             color: #ffff;
         }
-        .left{
+
+        .left {
             width: 250px;
             padding: 15px;
             background: #ffff;
             margin-right: 15px;
         }
 
-        .left h4{
+        .left h4 {
             font-size: 20px;
         }
-        .content{
+
+        .content {
             display: flex;
             margin-top: 20px;
         }
-        .top, .bottom{
+
+        .top,
+        .bottom {
             background: #ffff;
             padding: 15px;
             width: 1180px;
         }
-        span{
+
+        span {
             color: #d32424;
         }
-        .bottom{
+
+        .bottom {
             margin-top: 15px;
         }
-        hr{
+
+        hr {
             margin-top: 10px;
             margin-bottom: 10px;
         }
 
-        h3{
+        h3 {
             font-size: 30px;
             margin-bottom: 10px;
         }
-        .middle{
+
+        .middle {
             flex-direction: column;
         }
-        .middle h2, .middle h5{
+
+        .middle h2,
+        .middle h5 {
             text-align: center;
         }
-        .middle h2{
+
+        .middle h2 {
             font-size: 40px;
         }
-        .middle h5{
+
+        .middle h5 {
             margin-top: 10px;
             font-size: 20px;
         }
-        .middle{
+
+        .middle {
             width: 1545p;
             background: #ffff;
             padding: 50px;
             margin-top: 20px;
         }
-        button{
+
+        button {
             background: none;
             border: none;
             outline: none;
@@ -111,29 +134,34 @@
             color: #d32424;
             cursor: pointer;
         }
-        .status{
+
+        .status {
             background: #ad1b1b;
         }
     </style>
 </head>
+
 <body>
     <img src="images/APPLICATION PORTAL.png" alt="">
     <div class="wrapperr">
         <div class="row">
             <h1>2024 YSJ SENIOR RESEARCHERS APPLICATION</h1>
-            <button onclick="signOut()">LOG OUT</button>
+            <button onclick="signOut()">Sign Out</button>
         </div>
         <div class="red-row">
             <nav>
                 <h4 class="status">ADDMITION STATUS</h3>
-                <a href="announcments.html"><h4 id="announcments">ANNOUNCMENTS</h3></a>
+                    <a href="announcments.html">
+                        <h4 id="announcments">ANNOUNCMENTS</h3>
+                    </a>
             </nav>
         </div>
         <div class="content" id="one">
             <div class="left">
                 <h4>ADDMITION STATUS</h4>
                 <hr>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi dolorem nulla officia sunt delectus repellat cum autem, quibusdam voluptas suscipit esse.</p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi dolorem nulla officia sunt delectus
+                    repellat cum autem, quibusdam voluptas suscipit esse.</p>
             </div>
             <div class="right">
                 <div class="top">
@@ -149,5 +177,11 @@
         </div>
 
     </div>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+    <script src="globals.js"></script>
+    <script src="main.js"></script>
 </body>
+
 </html>

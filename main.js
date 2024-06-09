@@ -14,13 +14,23 @@ function CheckUserCredits() {
     if (user) {
       user
         .getIdTokenResult()
-        .then((idTokenResult) => {
+        .then(async (idTokenResult) => {
           if (!localStorage.getItem(idTokenResult.token)) {
             location.href = domain;
+          } else {
+            const userRef = firebase
+              .firestore()
+              .collection("users")
+              .doc(user.email);
+            const userData = await userRef.get();
+            const data = await userData.data();
+            if (data.submitted) {
+              location.href = domain + "/status.html";
+            }
           }
         })
         .catch((error) => {
-          console.log(error.message);
+          console.log(error);
         });
     } else {
       location.href = domain;
