@@ -1,4 +1,4 @@
-const domain = "https://eyadwebdeveloper.github.io/YSJ-Portal/";
+const domain = "https://eyadwebdeveloper.github.io/YSJ-Portal";
 
 function giveAlert(alert, color, from, clicky, callBackFunction, yesNo) {
   return new Promise((resolve, reject) => {

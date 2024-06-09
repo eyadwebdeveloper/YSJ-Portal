@@ -165,7 +165,11 @@
           <label for="pdf" class="drop-container" id="dropcontainer">
             <span class="drop-title">Drop files here</span>
             or
-            <input type="file" id="pdf" accept="pdf/*" />
+            <input type="file" hidden id="pdf" accept="pdf/*" />
+            <div class="file-upload">
+              <button> Choose File</button>
+              <span id="filedisplay">No File Chosen</span>
+            </div>
             <input type="hidden" id="downloadURL" name="downloadURL" />
           </label>
         </div>

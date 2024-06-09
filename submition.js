@@ -3,9 +3,11 @@ const auth = firebase.auth(app);
 const storage = firebase.storage(app);
 const data = {};
 let useremail;
+let PaperFile;
 firebase.auth().onAuthStateChanged(async (user) => {
   if (user) {
     useremail = user.email;
+    listFileNames(useremail);
     try {
       const userRef = db.collection("users").doc(useremail);
       const doc = await userRef.get();
@@ -89,7 +91,7 @@ document
   });
 async function saveProgress(body, overlayer, resolve, reject) {
   const formData = new FormData(document.forms[0]);
-  const data = {};
+  let data = {};
   formData.forEach((value, key) => {
     data[key] = value;
   });
@@ -129,8 +131,13 @@ async function saveProgress(body, overlayer, resolve, reject) {
   console.log(data);
 
   try {
+    if (PaperFile) {
+      data = { ...data, ...(await uploadFile(PaperFile)) };
+    }
     const userRef = db.collection("users").doc(useremail);
-    await userRef.set(data);
+    console.log(data);
+
+    await userRef.set(data, { merge: true });
     resolve();
     body.remove();
     overlayer.remove();
@@ -144,7 +151,7 @@ async function handleFileSelect(event) {
   const storageRef = storage.ref("uploads/" + useremail);
   try {
     await giveAlert("Uploading Your File", "#e43956", " ", true, UploadFile);
-    async function UploadFile(body, overlayer, resolve, reject) {
+    async function UploadFile(body, overlayer, resolve) {
       try {
         const snapshot = await storageRef.put(file);
         const downloadURL = await snapshot.ref.getDownloadURL();
@@ -164,6 +171,77 @@ async function handleFileSelect(event) {
     console.error("Error uploading file:", error);
   }
 }
+
+// HTML elements
+const fileInput = document.getElementById("pdf");
+async function listFileNames(useremail) {
+  const folderRef = storage.ref().child(useremail);
+  try {
+    const res = await folderRef.listAll();
+    if (res.items.length) {
+      displayFile(res.items[0].name);
+    }
+  } catch (error) {
+    giveAlert(error.message);
+  }
+}
+var currentFileName = null;
+fileInput.addEventListener("change", function (event) {
+  if (event.target.files.length) {
+    PaperFile = event.target.files[0];
+    displayFile(event.target.files[0].name);
+  }
+});
+function displayFile(file) {
+  document.querySelector("div.file-upload #filedisplay").innerText = file;
+}
+
+async function deleteFolder(folderPath) {
+  const folderRef = storage.ref().child(folderPath);
+  try {
+    const res = await folderRef.listAll();
+    const deletePromises = res.items.map((itemRef) => {
+      return itemRef.delete().catch((error) => {
+        giveAlert(error.message);
+      });
+    });
+    await Promise.all(deletePromises);
+  } catch (error) {
+    giveAlert(error.message);
+  }
+}
+async function uploadFile(file) {
+  //   if (!file) {
+  //     giveAlert("No file selected");
+  //     return;
+  //   }
+  await deleteFolder(useremail);
+  const fileRef = storage.ref(useremail + "/" + file.name);
+  let functionReturnValue;
+  await fileRef
+    .put(file)
+    .then((snapshot) => {
+      return snapshot.ref.getDownloadURL();
+    })
+    .then((downloadURL) => {
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      functionReturnValue = { PaperName: file.name, PaperUrl: downloadURL };
+      /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    })
+    .catch((error) => {
+      console.error("Error uploading file:", error);
+    });
+  return functionReturnValue;
+}
+
+document
+  .querySelector("div.file-upload button")
+  .addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log("clicked");
+    fileInput.click();
+  });
+
 // // Handle file selection and upload to Firebase Storage
 // async function handleFileSelect(event) {
 //   const file = event.target.files[0];

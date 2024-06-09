@@ -564,20 +564,20 @@ footer .social {
   transition: color 0.2s ease-in-out;
 }
 
-input[type="file"] {
-  width: 350px;
+div.file-upload {
+  min-width: fit-content;
   max-width: 100%;
   color: #444;
   padding: 5px;
   background: #fff;
   border-radius: 10px;
   border: 1px solid #555;
-  height: 55px;
 }
 
-input[type="file"]::file-selector-button {
+div.file-upload button {
   margin-right: 20px;
   border: none;
+  font-size: 1.2rem;
   background: #e43956;
   padding: 10px 20px;
   border-radius: 10px;
@@ -586,8 +586,13 @@ input[type="file"]::file-selector-button {
   transition: background 0.2s ease-in-out;
 }
 
-input[type="file"]::file-selector-button:hover {
+div.file-upload button:hover {
   background: #881924;
+}
+
+div.file-upload #filedisplay {
+  color: #787171;
+  padding-inline-end:10px ;
 }
 .xount {
   display: flex;
