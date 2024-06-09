@@ -1,0 +1,23 @@
+body .wrapper {
+  background: #f8f8f8;
+}
+body .wrapper > div {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+body .wrapper > div > div {
+  background: white;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+  grid-column: 1/13;
+}
+
+.status {
+  background-color: #d32424 !important;
+}
+
+#announcments {
+  background-color: #ad1b1b !important;
+}/*# sourceMappingURL=announcement.css.map */

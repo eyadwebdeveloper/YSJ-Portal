@@ -21,8 +21,9 @@ button.addEventListener("click", (e) => {
           const data = await userData.data();
           if (data.submitted) {
             location.href = domain + "/status.html";
+          } else {
+            location.href = domain + "/index2.html";
           }
-          location.href = domain + "/index2.html";
         })();
       });
     })
