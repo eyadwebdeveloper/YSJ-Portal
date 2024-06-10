@@ -1,0 +1,429 @@
+function submitForm(e) {
+  record_array = [];
+  const form = FormApp.openById('129vPVL03rBMQdB2qgiZZWbsgirviOwZS6vOmUkK6qRQ');  // Form ID
+  const formResponses = form.getResponses();
+  const lastResponse = formResponses.length;
+  const formResponse = formResponses[lastResponse - 1];
+  const itemResponses = formResponse.getItemResponses();
+  const name = itemResponses[1].getResponse()
+  const email = itemResponses[0].getResponse();
+  const loginURL = "https://eyadwebdeveloper.github.io/YSJ-Portal";
+  MailApp.sendEmail({
+    to: email,
+    subject: "Thanks for submitting your application for YSJ Senior Researchers",
+    htmlBody:
+      `<!DOCTYPE html>
+    <html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
+
+<head>
+	<title></title>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<!--[if mso]><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch><o:AllowPNG/></o:OfficeDocumentSettings></xml><![endif]--><!--[if !mso]><!-->
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;700;800;900"
+		rel="stylesheet" type="text/css" /><!--<![endif]-->
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			padding: 0;
+		}
+
+		a[x-apple-data-detectors] {
+			color: inherit !important;
+			text-decoration: inherit !important;
+		}
+
+		#MessageViewBody a {
+			color: inherit;
+			text-decoration: none;
+		}
+
+		p {
+			line-height: inherit
+		}
+
+		.desktop_hide,
+		.desktop_hide table {
+			mso-hide: all;
+			display: none;
+			max-height: 0px;
+			overflow: hidden;
+		}
+
+		.image_block img+div {
+			display: none;
+		}
+
+		@media (max-width:700px) {
+
+			.desktop_hide table.icons-inner,
+			.social_block.desktop_hide .social-table {
+				display: inline-block !important;
+			}
+
+			.icons-inner {
+				text-align: center;
+			}
+
+			.icons-inner td {
+				margin: 0 auto;
+			}
+
+			.mobile_hide {
+				display: none;
+			}
+
+			.row-content {
+				width: 100% !important;
+			}
+
+			.stack .column {
+				width: 100%;
+				display: block;
+			}
+
+			.mobile_hide {
+				min-height: 0;
+				max-height: 0;
+				max-width: 0;
+				overflow: hidden;
+				font-size: 0px;
+			}
+
+			.desktop_hide,
+			.desktop_hide table {
+				display: table !important;
+				max-height: none !important;
+			}
+
+			.reverse {
+				display: table;
+				width: 100%;
+			}
+
+			.reverse .column.last {
+				display: table-header-group !important;
+			}
+
+			.row-2 td.column.last .border {
+				padding: 5px 0;
+				border-top: 4px solid #FFFFFF;
+				border-right: 4px solid #FFFFFF;
+				border-bottom: 4px solid #FFFFFF;
+				border-left: 4px solid #FFFFFF;
+			}
+
+			.row-2 .column-1 .block-1.image_block .alignment div {
+				margin: 0 auto 0 0 !important;
+			}
+
+			.row-1 .column-1 .block-1.heading_block td.pad {
+				padding: 15px !important;
+			}
+
+			.row-1 .column-1 .block-1.heading_block h1,
+			.row-1 .column-1 .block-2.heading_block h1 {
+				font-size: 25px !important;
+			}
+
+			.row-1 .column-1,
+			.row-1 .column-1 .block-2.heading_block td.pad {
+				padding: 0 !important;
+			}
+		}
+	</style>
+</head>
+
+<body class="body"
+	style="background-color: #ffffff; margin: 0; padding: 0; -webkit-text-size-adjust: none; text-size-adjust: none;">
+	<table border="0" cellpadding="0" cellspacing="0" class="nl-container" role="presentation"
+		style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff;" width="100%">
+		<tbody>
+			<tr>
+				<td>
+					<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-1"
+						role="presentation"
+						style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #dce9f6; background-image: url('https://i.postimg.cc/FKp3m7sr/2c11c327-dc52-4fab-8fa5-e608dade5384.jpg'); background-repeat: no-repeat; background-size: cover;"
+						width="100%">
+						<tbody>
+							<tr>
+								<td>
+									<table align="center" border="0" cellpadding="0" cellspacing="0"
+										class="row-content stack" role="presentation"
+										style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-size: auto; border-radius: 0 0 0 9px; color: #000000; width: 680px; margin: 0 auto;"
+										width="680">
+										<tbody>
+											<tr>
+												<td class="column column-1"
+													style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 60px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;"
+													width="100%">
+													<table border="0" cellpadding="60" cellspacing="0"
+														class="heading_block block-1" role="presentation"
+														style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;"
+														width="100%">
+														<tr>
+															<td class="pad">
+																<h1
+																	style="margin: 0; color: #021330; direction: ltr; font-family: 'Roboto Slab', Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 38px; font-weight: normal; letter-spacing: normal; line-height: 120%; text-align: center; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 45.6px;">
+																	<strong> </strong><br />
+																</h1>
+															</td>
+														</tr>
+													</table>
+													<table border="0" cellpadding="7" cellspacing="0"
+														class="heading_block block-2" role="presentation"
+														style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;"
+														width="100%">
+														<tr>
+															<td class="pad">
+																<h1
+																	style="margin: 0; color: #021330; direction: ltr; font-family: 'Roboto Slab', Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 38px; font-weight: normal; letter-spacing: normal; line-height: 120%; text-align: center; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 45.6px;">
+																	<strong> </strong><br />
+																</h1>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-2"
+						role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+						<tbody>
+							<tr>
+								<td>
+									<table align="center" border="0" cellpadding="0" cellspacing="0"
+										class="row-content stack" role="presentation"
+										style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; width: 680px; margin: 0 auto;"
+										width="680">
+										<tbody>
+											<tr class="reverse">
+												<td class="column column-1 last"
+													style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; border-bottom: 4px solid #FFFFFF; border-left: 4px solid #FFFFFF; border-right: 4px solid #FFFFFF; border-top: 4px solid #FFFFFF; padding-bottom: 5px; padding-top: 5px; vertical-align: top;"
+													width="100%">
+													<div class="border">
+														<table border="0" cellpadding="0" cellspacing="0"
+															class="image_block block-1" role="presentation"
+															style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;"
+															width="100%">
+															<tr>
+																<td class="pad"
+																	style="padding-bottom:20px;padding-left:15px;padding-top:20px;width:100%;padding-right:0px;">
+																	<div align="left" class="alignment"
+																		style="line-height:10px">
+																		<div style="max-width: 134.4px;"><a
+																				href="https://www.ys-journal.org/"
+																				style="outline:none" tabindex="-1"
+																				target="_blank"><img height="auto"
+																					src="https://i.ibb.co/nzqqL4H/Picture.jpg"
+																					style="display: block; height: auto; border: 0; width: 100%;"
+																					width="134.4" /></a></div>
+																	</div>
+																</td>
+															</tr>
+														</table>
+														<table border="0" cellpadding="0" cellspacing="0"
+															class="text_block block-2" role="presentation"
+															style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;"
+															width="100%">
+															<tr>
+																<td class="pad"
+																	style="padding-bottom:15px;padding-left:20px;padding-right:20px;">
+																	<div style="font-family: sans-serif">
+																		<div class=""
+																			style="font-size: 12px; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 24px; color: #707070; line-height: 2;">
+																			<p
+																				style="margin: 0; mso-line-height-alt: 24px; letter-spacing: normal;">
+																				Greetings from YSJ, ${name.split(" ")[0]} !,<br /><br />We are pleased to inform you that we have successfully received your application</p>
+																			<p
+																				style="margin: 0; mso-line-height-alt: 24px; letter-spacing: normal;">
+																				<br />Your interest in joining our esteemed and dynamic community is greatly appreciated. Sharing your research experience with junior researchers and assisting them in writing their research papers is an exceptional opportunity to contribute to the growth of future scholars.
+<br/>
+Our admissions process begins with a thorough initial review of your application. Applicants who pass this initial screening will advance to the second stage of the admissions process: the interview. The interview is a critical component and weighs as significantly as your application in the final decision.
+We aspire to promote young researchers and writers by walking them through the standard procedures of publishing a scientific article: that is, delivering a manuscript, editing & peer-review, and finally acceptance or rejection. Through our monthly-issues, we hope to bring the hard work of those writers to light while also providing a constant stream of quality, entertaining, and highly scrutinized content for readers hungry for science. These articles, however, are but an initial spark that encourages readers to go beyond and delve more deeply into their topics of interest on their own, advertising independent research and self-learning
+<br/>
+To check the status of your application, please log in to your account <a style="color:#bc1620;font-weight:bold;" href="${loginURL}">here</a>.
+<br/>
+<br/>
+Best regards,  
+<br/>
+Youth Science Journal Admissions Team
+																			</p>
+																		</div>
+																	</div>
+																</td>
+															</tr>
+														</table>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-3"
+						role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+						<tbody>
+							<tr>
+								<td>
+									<table align="center" border="0" cellpadding="0" cellspacing="0"
+										class="row-content stack" role="presentation"
+										style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; width: 680px; margin: 0 auto;"
+										width="680">
+										<tbody>
+											<tr>
+												<td class="column column-1"
+													style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;"
+													width="100%">
+													<div class="spacer_block block-1"
+														style="height:31px;line-height:31px;font-size:1px;"> </div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-4"
+						role="presentation"
+						style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #bc1620;" width="100%">
+						<tbody>
+							<tr>
+								<td>
+									<table align="center" border="0" cellpadding="0" cellspacing="0"
+										class="row-content stack" role="presentation"
+										style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; width: 680px; margin: 0 auto;"
+										width="680">
+										<tbody>
+											<tr>
+												<td class="column column-1"
+													style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;"
+													width="100%">
+													<div class="spacer_block block-1"
+														style="height:15px;line-height:15px;font-size:1px;"> </div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-5"
+						role="presentation"
+						style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #bc1620;" width="100%">
+						<tbody>
+							<tr>
+								<td>
+									<table align="center" border="0" cellpadding="0" cellspacing="0"
+										class="row-content stack" role="presentation"
+										style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; width: 680px; margin: 0 auto;"
+										width="680">
+										<tbody>
+											<tr>
+												<td class="column column-1"
+													style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;"
+													width="16.666666666666668%">
+													<div class="spacer_block block-1 mobile_hide"
+														style="height:20px;line-height:20px;font-size:1px;"> </div>
+												</td>
+												<td class="column column-2"
+													style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;"
+													width="66.66666666666667%">
+													<table border="0" cellpadding="0" cellspacing="0"
+														class="text_block block-1" role="presentation"
+														style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;"
+														width="100%">
+														<tr>
+															<td class="pad"
+																style="padding-bottom:15px;padding-left:20px;padding-right:20px;">
+																<div style="font-family: sans-serif">
+																	<div class=""
+																		style="font-size: 12px; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; mso-line-height-alt: 24px; color: #ffffff; line-height: 2;">
+																		<p
+																			style="margin: 0; font-size: 14px; text-align: center; mso-line-height-alt: 28px;">
+																			Empowering young researchers. Inspiring
+																			future leaders. Welcome to the Youth Science
+																			Journal!</p>
+																	</div>
+																</div>
+															</td>
+														</tr>
+													</table>
+													<table border="0" cellpadding="0" cellspacing="0"
+														class="social_block block-2" role="presentation"
+														style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;"
+														width="100%">
+														<tr>
+															<td class="pad"
+																style="padding-bottom:10px;padding-left:20px;padding-right:10px;padding-top:10px;text-align:center;">
+																<div align="center" class="alignment">
+																	<table border="0" cellpadding="0" cellspacing="0"
+																		class="social-table" role="presentation"
+																		style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-block;"
+																		width="108px">
+																		<tr>
+																			<td style="padding:0 2px 0 2px;"><a
+																					href="https://web.facebook.com/YouthScienceJournall"
+																					target="_blank"><img alt="Facebook"
+																						height="auto"
+																						src="https://i.ibb.co/fkX366d/facebook2x.png"
+																						style="display: block; height: auto; border: 0;"
+																						title="facebook"
+																						width="32" /></a></td>
+																			<td style="padding:0 2px 0 2px;"><a
+																					href="https://www.linkedin.com/company/ysj"
+																					target="_blank"><img alt="Linkedin"
+																						height="auto"
+																						src="https://firebasestorage.googleapis.com/v0/b/ysg-portal.appspot.com/o/uploads%2Flinkedin2x.png?alt=media&token=65c3a495-3cdb-4bd3-ae4e-47d78925ed7b"
+																						style="display: block; height: auto; border: 0;"
+																						title="linkedin"
+																						width="32" /></a></td>
+																			<td style="padding:0 2px 0 2px;"><a
+																					href="https://www.instagram.com/ysciencejournal/"
+																					target="_blank"><img alt="Instagram"
+																						height="auto"
+																						src="https://firebasestorage.googleapis.com/v0/b/ysg-portal.appspot.com/o/uploads%2Finstagram2x.png?alt=media&token=4095c27a-3f22-40cf-8a15-31ef8f41ce2e"
+																						style="display: block; height: auto; border: 0;"
+																						title="instagram"
+																						width="32" /></a></td>
+																		</tr>
+																	</table>
+																</div>
+															</td>
+														</tr>
+													</table>
+												</td>
+												<td class="column column-3"
+													style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;"
+													width="16.666666666666668%">
+													<div class="spacer_block block-1 mobile_hide"
+														style="height:20px;line-height:20px;font-size:1px;"> </div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table><!-- End -->
+</body>
+</html>`
+  });
+}

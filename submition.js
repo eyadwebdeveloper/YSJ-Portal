@@ -335,42 +335,39 @@ async function submitGoogleForm(secret_id) {
   form2Data.append("entry.681681029", secret_id); // Secret Id
 
   const form1Url =
-    "https://docs.google.com/forms/d/e/1FAIpQLScx22hzWiCXswH0YszYxjrIdWKPbG3Ql9hVGcdOdcayg_nZKQ/formResponse";
+    "https://docs.google.com/forms/d/e/1FAIpQLSfo5yvbge92ygJXwTQDiUfus3tSf3_p0ZZsOF8hKUd9pPNizA/formResponse";
   // Form data
   const form1Data = new URLSearchParams();
-  form1Data.append("entry.1227768184", useremail); // Personal Email Address
-  form1Data.append("entry.1129145430", data["Full Name"]); // Full Name
-  form1Data.append("entry.465321940", data["Phone Number"]); // Phone Number
-  form1Data.append("entry.1913890174", data["Gender"]); // Gender
-  form1Data.append("entry.1504118737", data["Birthday"]); // Date of Birth
-  form1Data.append("entry.1724730552", data["Institution"]); // Institution
-  form1Data.append("entry.1198287875", data["Grade"]); // Grade Year
-  form1Data.append("entry.1128845160", data["Nationality"]); // Country of Nationality
+  form1Data.append("entry.1996114666", useremail); // Personal Email Address
+  form1Data.append("entry.1861549469", data["Full Name"]); // Full Name
+  form1Data.append("entry.1397348289", data["Phone Number"]); // Phone Number
+  form1Data.append("entry.2064603247", data["Gender"]); // Gender
+  form1Data.append("entry.1665944602", data["Birthday"]); // Date of Birth
+  form1Data.append("entry.1095177893", data["Institution"]); // Institution
+  form1Data.append("entry.1381235580", data["Grade"]); // Grade Year
+  form1Data.append("entry.994176466", data["Nationality"]); // Country of Nationality
   form1Data.append(
-    "entry.892981149",
+    "entry.1119161873",
     data["fieldsOfInterest"]
       .map((field) => Object.entries(field))
       .flat()
       .join(" ")
   ); // Fields of Interest
-  form1Data.append("entry.732946676", data["GPA"]); // GPA
-  form1Data.append("entry.1751678190", data["Field Grade"]); // Field Grade
-  form1Data.append("entry.1649879170", data["The First Essay"]); // Qualification
-  form1Data.append("entry.1942324246", data["The Second Essay"]); // Unfamiliar Achievement
-  form1Data.append("entry.1524507595", data["The Third Essay"]); // Mentorship Analysis
-  form1Data.append("entry.25080122", data["The Fourth Essay"]); // Research Background
-  form1Data.append("entry.268433779", data["The Fifth Essay"]); // Communication
-  form1Data.append("entry.592898438", data["PaperUrl"]); // Paper URL
-  form1Data.append("entry.520574173", data["Availability"]); // Time commitment
-  form1Data.append("entry.268327327", data["Time Blocks"]); // Time blocks
-  form1Data.append("entry.1775075619", data["how did this portal reach you"]); // How did this portal reach you
-  form1Data.append("entry.367863443", data["Other"]); // Other
-  form1Data.append("entry.578921601", data["Ambassador"]); // Ambassador
-  form1Data.append("entry.92442692", data["Additions"]); // Additional Info
-  form1Data.append("entry.1998235483", secret_id); // Additional Info
-
-  // Submit the form
-
+  form1Data.append("entry.716018883", data["GPA"]); // GPA
+  form1Data.append("entry.610012888", data["Field Grade"]); // Field Grade
+  form1Data.append("entry.1015962206", data["The First Essay"]); // Qualification
+  form1Data.append("entry.1382926679", data["The Second Essay"]); // Unfamiliar Achievement
+  form1Data.append("entry.1650730143", data["The Third Essay"]); // Mentorship Analysis
+  form1Data.append("entry.2126446586", data["The Fourth Essay"]); // Research Background
+  form1Data.append("entry.292796388", data["The Fifth Essay"]); // Communication
+  form1Data.append("entry.566376328", data["PaperUrl"]); // Paper URL
+  form1Data.append("entry.1430288577", data["Availability"]); // Time commitment
+  form1Data.append("entry.609641186", data["Time Blocks"]); // Time blocks
+  form1Data.append("entry.1986455620", data["how did this portal reach you"]); // How did this portal reach you
+  form1Data.append("entry.1328718830", data["Other"]); // Other
+  form1Data.append("entry.646076180", data["Ambassador"]); // Ambassador
+  form1Data.append("entry.398764479", data["Additions"]); // Additional Info
+  form1Data.append("entry.505529661", secret_id); // Additional Info
   try {
     const response2 = await fetch(form2URL, {
       method: "POST",
