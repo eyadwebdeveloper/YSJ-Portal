@@ -1,5 +1,5 @@
-// const domain = "http://127.0.0.1:5501";
-const domain = "https://eyadwebdeveloper.github.io/YSJ-Portal";
+const domain = "http://127.0.0.1:5501";
+// const domain = "https://eyadwebdeveloper.github.io/YSJ-Portal";
 function giveAlert(alert, color, from, clicky, callBackFunction, yesNo) {
   return new Promise((resolve, reject) => {
     let body = document.createElement("div"),

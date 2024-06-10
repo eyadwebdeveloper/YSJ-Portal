@@ -1,7 +1,7 @@
 const db = firebase.firestore();
 const auth = firebase.auth(app);
 const storage = firebase.storage(app);
-const data = {};
+let data = {};
 let useremail;
 let PaperFile;
 firebase.auth().onAuthStateChanged(async (user) => {
@@ -90,7 +90,6 @@ document
   });
 async function saveProgress(body, overlayer, resolve, reject) {
   const formData = new FormData(document.forms[0]);
-  let data = {};
   formData.forEach((value, key) => {
     data[key] = value;
   });
@@ -128,41 +127,16 @@ async function saveProgress(body, overlayer, resolve, reject) {
 
   try {
     if (PaperFile) {
-      data = { ...data, ...(await uploadFile(PaperFile)) };
+      data = { ...data, ...(await uploadFile(PaperFile)), email: useremail };
     }
     const userRef = db.collection("users").doc(useremail);
     await userRef.set(data, { merge: true });
     resolve();
     body.remove();
     overlayer.remove();
+    return data;
   } catch (error) {
     console.error("Error getting document:", error);
-  }
-}
-async function handleFileSelect(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-  const storageRef = storage.ref("uploads/" + useremail);
-  try {
-    await giveAlert("Uploading Your File", "#e43956", " ", true, UploadFile);
-    async function UploadFile(body, overlayer, resolve) {
-      try {
-        const snapshot = await storageRef.put(file);
-        const downloadURL = await snapshot.ref.getDownloadURL();
-        document.getElementById("downloadURL").value = downloadURL;
-      } catch {
-        giveAlert(
-          "An Error Occurred While Uploading Your File",
-          "#e43956",
-          " "
-        );
-      }
-      resolve();
-      body.remove();
-      overlayer.remove();
-    }
-  } catch (error) {
-    console.error("Error uploading file:", error);
   }
 }
 function checkWordLimit(words, min, max) {
@@ -301,58 +275,136 @@ document.getElementById("submit").addEventListener("click", async (event) => {
       () => {},
       true
     );
+    const secret_id = uid();
     await giveAlert(
       "Submitting Your Application",
       "#e43956",
       " ",
       true,
       saveProgress
-    );
-    // submitGoogleForm(data);
+    ).then(submitGoogleForm(secret_id));
     const userRef = db.collection("users").doc(useremail);
-    await userRef.set({ submitted: true, secret_id: uid() }, { merge: true });
+    await userRef.set(
+      { submitted: true, secret_id: secret_id },
+      { merge: true }
+    );
     await giveAlert(" Your Application is now submitted", "#e43956", " ");
     location.href = domain + "/status.html";
   }
 });
 const uid = function () {
-  return Date.now().toString(36) + Math.random().toString(36).substr(2);
+  return (
+    Date.now().toString(36) +
+    (Math.random() ** Math.random()).toString(36).substr(2)
+  );
 };
 // Function to submit the form
-async function submitGoogleForm(data) {
+async function submitGoogleForm(secret_id) {
   // Form URL (action URL)
-  const formUrl =
+  const paper = await db.collection("users").doc(useremail).get();
+  data["PaperUrl"] = paper.data().PaperUrl;
+
+  const form2URL =
+    "https://docs.google.com/forms/d/e/1FAIpQLSdxMjwGQUvXS2D4-yCGXcSphvQfN5MczHkqYkL1gTwWTCcTwA/formResponse";
+  const form2Data = new URLSearchParams();
+  form2Data.append("entry.31478216", data["Gender"]); // Gender
+  form2Data.append("entry.1375354379", data["Birthday"]); // Date of Birth
+  form2Data.append("entry.84534494", data["Grade"]); // Grade Year
+  form2Data.append("entry.868537336", data["Nationality"]); // Country of Nationality
+  form2Data.append(
+    "entry.864427989",
+    data["fieldsOfInterest"]
+      .map((field) => Object.entries(field))
+      .flat()
+      .join(" ")
+  );
+  form2Data.append("entry.429979606", data["GPA"]); // GPA
+  form2Data.append("entry.85609365", data["Field Grade"]); // Field Grade
+  form2Data.append("entry.1643765406", data["The First Essay"]); // Qualification
+  form2Data.append("entry.1111295977", data["The Second Essay"]); // Unfamiliar Achievement
+  form2Data.append("entry.1053895173", data["The Third Essay"]); // Mentorship Analysis
+  form2Data.append("entry.290029710", data["The Fourth Essay"]); // Research Background
+  form2Data.append("entry.1316712035", data["The Fifth Essay"]); // Communication
+  form2Data.append("entry.392665132", data["PaperUrl"]); // Paper URL
+  form2Data.append("entry.161671813", data["Availability"]); // Time commitment
+  form2Data.append("entry.1953658492", data["Time Blocks"]); // Time blocks
+  form2Data.append("entry.1526778532", data["how did this portal reach you"]); // How did this portal reach you
+  form2Data.append("entry.809209439", data["Other"]); // Other
+  form2Data.append("entry.508656515", data["Ambassador"]); // Ambassador
+  form2Data.append("entry.345148640", data["Additions"]); // Additional Info
+  form2Data.append("entry.681681029", secret_id); // Secret Id
+
+  const form1Url =
     "https://docs.google.com/forms/d/e/1FAIpQLScx22hzWiCXswH0YszYxjrIdWKPbG3Ql9hVGcdOdcayg_nZKQ/formResponse";
-
   // Form data
-  console.log(data);
-
-  const formData = new URLSearchParams();
-  formData.append("entry.1227768184", data.email); // Personal Email Address
-  formData.append("entry.1129145430", "John Doe"); // Full Name
-  formData.append("entry.465321940", "123-456-7890"); // Phone Number
-  formData.append("entry.1913890174", "Male"); // Gender
-  formData.append("entry.1504118737", "01/01/1990"); // Date of Birth
-  formData.append("entry.1724730552", "Example Institution"); // Institution
-  formData.append("entry.1198287875", "Sophomore"); // Grade Year
-  formData.append("entry.1128845160", "USA"); // Country of Nationality
-  formData.append("entry.892981149", "Computer Science, Mathematics"); // Fields of Interest
-  formData.append("entry.732946676", "4.0"); // GPA
-  formData.append("entry.1751678190", "A"); // Field Grade
-  formData.append("entry.1649879170", "Example qualification..."); // Qualification
-  formData.append("entry.1942324246", "Example achievement..."); // Unfamiliar Achievement
-  formData.append("entry.1524507595", "Example mentorship analysis..."); // Mentorship Analysis
-  formData.append("entry.25080122", "Research background..."); // Research Background
-  formData.append("entry.268433779", "Effective communication..."); // Communication
-  formData.append("entry.592898438", "http://example.com/paper"); // Paper URL
-  formData.append("entry.520574173", "20"); // Time commitment
-  formData.append("entry.268327327", "June: 9am-5pm; July: 10am-6pm;..."); // Time blocks
-  formData.append("entry.1775075619", "Friend"); // How did this portal reach you
-  formData.append("entry.367863443", "Other response"); // Other
-  formData.append("entry.578921601", "Ambassador"); // Ambassador
-  formData.append("entry.92442692", "Additional info..."); // Additional Info
+  const form1Data = new URLSearchParams();
+  form1Data.append("entry.1227768184", useremail); // Personal Email Address
+  form1Data.append("entry.1129145430", data["Full Name"]); // Full Name
+  form1Data.append("entry.465321940", data["Phone Number"]); // Phone Number
+  form1Data.append("entry.1913890174", data["Gender"]); // Gender
+  form1Data.append("entry.1504118737", data["Birthday"]); // Date of Birth
+  form1Data.append("entry.1724730552", data["Institution"]); // Institution
+  form1Data.append("entry.1198287875", data["Grade"]); // Grade Year
+  form1Data.append("entry.1128845160", data["Nationality"]); // Country of Nationality
+  form1Data.append(
+    "entry.892981149",
+    data["fieldsOfInterest"]
+      .map((field) => Object.entries(field))
+      .flat()
+      .join(" ")
+  ); // Fields of Interest
+  form1Data.append("entry.732946676", data["GPA"]); // GPA
+  form1Data.append("entry.1751678190", data["Field Grade"]); // Field Grade
+  form1Data.append("entry.1649879170", data["The First Essay"]); // Qualification
+  form1Data.append("entry.1942324246", data["The Second Essay"]); // Unfamiliar Achievement
+  form1Data.append("entry.1524507595", data["The Third Essay"]); // Mentorship Analysis
+  form1Data.append("entry.25080122", data["The Fourth Essay"]); // Research Background
+  form1Data.append("entry.268433779", data["The Fifth Essay"]); // Communication
+  form1Data.append("entry.592898438", data["PaperUrl"]); // Paper URL
+  form1Data.append("entry.520574173", data["Availability"]); // Time commitment
+  form1Data.append("entry.268327327", data["Time Blocks"]); // Time blocks
+  form1Data.append("entry.1775075619", data["how did this portal reach you"]); // How did this portal reach you
+  form1Data.append("entry.367863443", data["Other"]); // Other
+  form1Data.append("entry.578921601", data["Ambassador"]); // Ambassador
+  form1Data.append("entry.92442692", data["Additions"]); // Additional Info
+  form1Data.append("entry.1998235483", secret_id); // Additional Info
 
   // Submit the form
+
+  try {
+    const response2 = await fetch(form2URL, {
+      method: "POST",
+      body: form2Data,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+
+    if (response2.ok) {
+      console.log("Form submitted successfully!");
+    } else {
+      console.error("Form submission failed:", response2.statusText);
+    }
+  } catch (error) {
+    console.error("Error submitting form:", error);
+  }
+  try {
+    const response1 = await fetch(form1Url, {
+      method: "POST",
+      body: form1Data,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+
+    if (response1.ok) {
+      console.log("Form submitted successfully!");
+    } else {
+      console.error("Form submission failed:", response1.statusText);
+    }
+  } catch (error) {
+    console.error("Error submitting form:", error);
+  }
 }
 
 // Call the function to submit the form
@@ -395,10 +447,6 @@ async function deleteFolder(folderPath) {
   }
 }
 async function uploadFile(file) {
-  //   if (!file) {
-  //     giveAlert("No file selected");
-  //     return;
-  //   }
   await deleteFolder(useremail);
   const fileRef = storage.ref(useremail + "/" + file.name);
   let functionReturnValue;

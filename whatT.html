@@ -1,35 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Firebase File Upload</title>
-    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-storage.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+    <title>Submit Google Form</title>
 </head>
-
 <body>
-    <input type="file" id="fileInput" />
-    <button id="submitButton">Submit</button>
-    <ul id="fileList"></ul>
+    <!-- Invisible iframe for form submission -->
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+    <form id="googleForm" action="https://docs.google.com/forms/d/e/1FAIpQLScx22hzWiCXswH0YszYxjrIdWKPbG3Ql9hVGcdOdcayg_nZKQ/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+        <input type="hidden" name="entry.1227768184" id="email">
+        <input type="hidden" name="entry.1129145430" id="name">
+        <input type="hidden" name="entry.465321940" id="phone">
+        <input type="hidden" name="entry.1913890174" id="gender">
+        <input type="hidden" name="entry.1504118737" id="dob">
+        <input type="hidden" name="entry.1724730552" id="institution">
+        <input type="hidden" name="entry.1198287875" id="gradeYear">
+        <input type="hidden" name="entry.1128845160" id="nationality">
+        <input type="hidden" name="entry.892981149" id="fieldsOfInterest">
+        <input type="hidden" name="entry.732946676" id="gpa">
+        <input type="hidden" name="entry.1751678190" id="fieldGrade">
+        <input type="hidden" name="entry.1649879170" id="qualification">
+        <input type="hidden" name="entry.1942324246" id="achievement">
+        <input type="hidden" name="entry.1524507595" id="mentorshipAnalysis">
+        <input type="hidden" name="entry.25080122" id="researchBackground">
+        <input type="hidden" name="entry.268433779" id="communication">
+        <input type="hidden" name="entry.592898438" id="paperUrl">
+        <input type="hidden" name="entry.520574173" id="timeCommitment">
+        <input type="hidden" name="entry.268327327" id="timeBlocks">
+        <input type="hidden" name="entry.1775075619" id="portalSource">
+        <input type="hidden" name="entry.367863443" id="otherResponse">
+        <input type="hidden" name="entry.578921601" id="ambassador">
+        <input type="hidden" name="entry.92442692" id="additionalInfo">
+    </form>
+
+    <button onclick="submitGoogleForm()">Submit Form</button>
 
     <script>
-        // Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyDQtBb8zDA1iPZBRjFtXjcnj2zAIhlHzIY",
-            authDomain: "ysg-portal.firebaseapp.com",
-            projectId: "ysg-portal",
-            storageBucket: "ysg-portal.appspot.com",
-            messagingSenderId: "91821075370",
-            appId: "1:91821075370:web:80369759cd25604e7499d3",
-            measurementId: "G-EC8037VVTR",
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
+        var submitted = false;
 
+        function submitGoogleForm() {
+            // Populate form fields
+            document.getElementById('email').value = 'test@example.com';
+            document.getElementById('name').value = 'John Doe';
+            document.getElementById('phone').value = '123-456-7890';
+            document.getElementById('gender').value = 'Male';
+            document.getElementById('dob').value = '01/01/1990';
+            document.getElementById('institution').value = 'Example Institution';
+            document.getElementById('gradeYear').value = 'Sophomore';
+            document.getElementById('nationality').value = 'USA';
+            document.getElementById('fieldsOfInterest').value = 'Computer Science, Mathematics';
+            document.getElementById('gpa').value = '4.0';
+            document.getElementById('fieldGrade').value = 'A';
+            document.getElementById('qualification').value = 'Example qualification...';
+            document.getElementById('achievement').value = 'Example achievement...';
+            document.getElementById('mentorshipAnalysis').value = 'Example mentorship analysis...';
+            document.getElementById('researchBackground').value = 'Research background...';
+            document.getElementById('communication').value = 'Effective communication...';
+            document.getElementById('paperUrl').value = 'http://example.com/paper';
+            document.getElementById('timeCommitment').value = '20';
+            document.getElementById('timeBlocks').value = 'June: 9am-5pm; July: 10am-6pm;...';
+            document.getElementById('portalSource').value = 'Friend';
+            document.getElementById('otherResponse').value = 'Other response';
+            document.getElementById('ambassador').value = 'Ambassador';
+            document.getElementById('additionalInfo').value = 'Additional info...';
+
+            // Submit the form
+            document.getElementById('googleForm').submit();
+
+            // Optionally handle a confirmation message here
+            if (submitted) {
+                alert('Form submitted successfully!');
+            }
+        }
     </script>
 </body>
-
 </html>
