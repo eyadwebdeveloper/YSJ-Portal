@@ -1,4 +1,4 @@
-const applicationURL = domain + "/index2.html";
+const applicationURL = domain + "/Welcome.html";
 const firebaseConfig = {
   apiKey: "AIzaSyDQtBb8zDA1iPZBRjFtXjcnj2zAIhlHzIY",
   authDomain: "ysg-portal.firebaseapp.com",

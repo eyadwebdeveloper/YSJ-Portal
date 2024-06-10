@@ -22,7 +22,7 @@ button.addEventListener("click", (e) => {
           if (data?.submitted) {
             location.href = domain + "/status.html";
           } else {
-            location.href = domain + "/index2.html";
+            location.href = domain + "/Welcome.html";
           }
         })();
       });

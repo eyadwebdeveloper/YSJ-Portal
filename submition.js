@@ -65,6 +65,11 @@ firebase.auth().onAuthStateChanged(async (user) => {
         document.querySelectorAll("textarea").forEach((select) => {
           select.value = data[select.name];
         });
+        textAreaWordCount(inputTextArear3, "100-200", wordCountr3);
+        textAreaWordCount(inputTextArear2, "150-300", wordCountr2);
+        textAreaWordCount(inputTextArear1, "200-400", wordCountr1);
+        textAreaWordCount(inputTextAreaw2, "150-300", wordCountw2);
+        textAreaWordCount(inputTextAreaw1, "150-200", wordCountw1);
       } else {
         console.log("No such document!");
       }
