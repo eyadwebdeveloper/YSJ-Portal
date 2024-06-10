@@ -19,7 +19,7 @@ button.addEventListener("click", (e) => {
             .doc(user.email);
           const userData = await userRef.get();
           const data = await userData.data();
-          if (data.submitted) {
+          if (data?.submitted) {
             location.href = domain + "/status.html";
           } else {
             location.href = domain + "/index2.html";

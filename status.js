@@ -29,8 +29,8 @@ function CheckUserCredits() {
               .doc(user.email);
             const userData = await userRef.get();
             const data = await userData.data();
-            if (data.submitted) {
-              document.querySelector("h1 span#name").innerText = data.name;
+            if (data?.submitted) {
+              document.querySelector("h1 span#name").innerText = data["Full Name"];
             } else {
               location.href = domain + "/questions.html";
             }

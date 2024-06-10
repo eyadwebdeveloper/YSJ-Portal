@@ -1,5 +1,5 @@
-// const domain = "http://127.0.0.1:5501";
-const domain = "https://eyadwebdeveloper.github.io/YSJ-Portal";
+const domain = "http://127.0.0.1:5501";
+// const domain = "https://eyadwebdeveloper.github.io/YSJ-Portal";
 function giveAlert(alert, color, from, clicky, callBackFunction, yesNo) {
   return new Promise((resolve, reject) => {
     let body = document.createElement("div"),
@@ -39,12 +39,13 @@ function giveAlert(alert, color, from, clicky, callBackFunction, yesNo) {
     if (yesNo) {
       const no = document.createElement("button");
       no.innerText = "No";
-      no.style.cssText = `width:120px;background-color:#2ecc71;padding:5px 10px;cursor:pointer;border:0;align-self:end;border-radius:10px;color:#fff;`;
+      no.style.cssText = `width:120px;background-color:#f00;padding:5px 10px;cursor:pointer;border:0;align-self:end;border-radius:10px;color:#fff;`;
       no.addEventListener("click", function () {
         body.remove();
         overlay.remove();
         reject();
       });
+      response.style.cssText = `width:100px;background-color:#2ecc71;padding:5px 10px;cursor:pointer;border:0;align-self:end;border-radius:10px;color:#fff;`;
       const res = document.createElement("div");
       response.textContent = "Yes";
       res.append(no, response);

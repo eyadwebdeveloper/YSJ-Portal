@@ -57,7 +57,6 @@ firebase.auth().onAuthStateChanged(async (user) => {
                 .map((field) => field[topics[index]])
                 .filter((ele) => ele)[0];
             }
-            // field.value = data[field.name];
           });
 
         document.querySelectorAll("select").forEach((select) => {
@@ -118,7 +117,6 @@ async function saveProgress(body, overlayer, resolve, reject) {
     const slider = document
       .getElementById(sliderId)
       .querySelector(".slider-value");
-    console.log(slider);
     // Only include checked checkboxes with corresponding sliders
     if (checkbox.checked && slider) {
       const topic = topics[i];
@@ -127,8 +125,6 @@ async function saveProgress(body, overlayer, resolve, reject) {
     }
   }
   data["fieldsOfInterest"] = checkedTopics;
-
-  console.log(data);
 
   try {
     if (PaperFile) {
@@ -169,37 +165,155 @@ async function handleFileSelect(event) {
     console.error("Error uploading file:", error);
   }
 }
+function checkWordLimit(words, min, max) {
+  return words.split(" ").length > min && words.split(" ").length <= max;
+}
 document.getElementById("submit").addEventListener("click", async (event) => {
   event.preventDefault();
+  let isvalid = true;
+  let count = 1;
+  const formData = new FormData(document.forms[0]);
+  formData.forEach(async (value, key) => {
+    if (
+      !value &&
+      key !== "downloadURL" &&
+      key !== "Other" &&
+      key !== "Ambassador" &&
+      key !== "Field Grade" &&
+      key !== "Additions"
+    ) {
+      if (count) {
+        count--;
+        giveAlert("Please enter a valid " + key, "#e43956", " ");
+        isvalid = false;
+      }
+    } else if (
+      key === "Birthday" &&
+      !/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/.test(value)
+    ) {
+      if (count) {
+        count--;
+        giveAlert("Please enter a valid " + key, "#e43956", " ");
+        isvalid = false;
+      }
+    } else if (key === "The First Essay" && !checkWordLimit(value, 150, 200)) {
+      if (count) {
+        count--;
+        giveAlert(
+          "Please enter " + key + " within the word limit",
+          "#e43956",
+          " "
+        );
+        isvalid = false;
+      }
+    } else if (key === "The Second Essay" && !checkWordLimit(value, 150, 300)) {
+      if (count) {
+        count--;
+        giveAlert(
+          "Please enter " + key + " within the word limit",
+          "#e43956",
+          " "
+        );
+        isvalid = false;
+      }
+    } else if (key === "The Third Essay" && !checkWordLimit(value, 200, 400)) {
+      if (count) {
+        count--;
+        giveAlert(
+          "Please enter " + key + " within the word limit",
+          "#e43956",
+          " "
+        );
+        isvalid = false;
+      }
+    } else if (key === "The Fourth Essay" && !checkWordLimit(value, 150, 300)) {
+      if (count) {
+        count--;
+        giveAlert(
+          "Please enter " + key + " within the word limit",
+          "#e43956",
+          " "
+        );
+        isvalid = false;
+      }
+    } else if (key === "The Fifth Essay" && !checkWordLimit(value, 100, 200)) {
+      if (count) {
+        count--;
+        giveAlert(
+          "Please enter " + key + " within the word limit",
+          "#e43956",
+          " "
+        );
+        isvalid = false;
+      }
+    }
+  });
 
+  const topics = [
+    "Astronomy",
+    "Architecture",
+    "Biology",
+    "Business",
+    "Chemistry",
+    "Computer Science",
+    "Engineering",
+    "Environmental Studies",
+    "Mathematics",
+    "Neuroscience",
+    "Physics",
+    "Political Science",
+    "Psychology",
+  ];
 
+  const checkedTopics = [];
+  const sliderValues = [];
 
+  // Loop through each checkbox and slider
+  for (let i = 0; i < topics.length; i++) {
+    const checkboxId = `checkbox-${i}`;
+    const sliderId = `slider-${i}`;
 
+    const checkbox = document.getElementById(checkboxId);
+    const slider = document
+      .getElementById(sliderId)
+      .querySelector(".slider-value");
 
+    // Only include checked checkboxes with corresponding sliders
+    if (checkbox.checked && slider) {
+      const topic = topics[i];
+      const value = slider.innerText;
 
+      checkedTopics.push(topic);
+      sliderValues.push(value);
+    }
+  }
 
-  
-  await giveAlert(
-    "Are you sure you want to submit this application?",
-    "#e43956",
-    " ",
-    false,
-    () => {},
-    true
-  );
-  await giveAlert(
-    "Submitting Your Application",
-    "#e43956",
-    " ",
-    true,
-    saveProgress
-  );
-  const userRef = db.collection("users").doc(useremail);
-  await userRef.set({ submitted: true }, { merge: true });
-  await giveAlert(" Your Application is now submitted", "#e43956", " ");
-  location.href = domain + "/status.html";
+  if (!checkedTopics.length) {
+    await giveAlert("Please enter your fields of interest", "#e43956", " ");
+    isvalid = false;
+  }
+  if (isvalid) {
+    await giveAlert(
+      "Are you sure you want to submit this application?",
+      "#e43956",
+      " ",
+      false,
+      () => {},
+      true
+    );
+    await giveAlert(
+      "Submitting Your Application",
+      "#e43956",
+      " ",
+      true,
+      saveProgress
+    );
+    const userRef = db.collection("users").doc(useremail);
+    await userRef.set({ submitted: true }, { merge: true });
+    await giveAlert(" Your Application is now submitted", "#e43956", " ");
+    location.href = domain + "/status.html";
+  }
 });
-// HTML elements
 const fileInput = document.getElementById("pdf");
 async function listFileNames(useremail) {
   const folderRef = storage.ref().child(useremail);
@@ -265,83 +379,8 @@ document
   .querySelector("div.file-upload button")
   .addEventListener("click", (e) => {
     e.preventDefault();
-    console.log("clicked");
     fileInput.click();
   });
-
-// // Handle file selection and upload to Firebase Storage
-// async function handleFileSelect(event) {
-//   const file = event.target.files[0];
-//   if (!file) return 0;
-
-//   const storageRef = storage.ref("uploads/" + file.name);
-//   try {
-//     const snapshot = await storageRef.put(file);
-//     const downloadURL = await snapshot.ref.getDownloadURL();
-//     console.log("File available at", downloadURL);
-
-//     // Store the download URL in the hidden input for submission
-//     document.getElementById("downloadURL").value = downloadURL;
-//   } catch (error) {
-//     console.error("Error uploading file:", error);
-//   }
-// }
-
-// // Attach handleFileSelect to file input change event
-// document.getElementById("pdf").addEventListener("change", handleFileSelect);
-
-// // Form submission event listener
-// document.getElementById("applicationForm").addEventListener("submit", async function (e) {
-//   e.preventDefault();
-//   try {
-//     const formData = new FormData(e.target);
-//     const data = {};
-
-//     formData.forEach((value, key) => {
-//       data[key] = value;
-//     });
-
-//     // Retrieve the values of checked topics and slider values
-//     const topics = [
-//       "Astronomy",
-//       "Architecture",
-//       "Biology",
-//       "Business",
-//       "Chemistry",
-//       "Computer Science",
-//       "Engineering",
-//       "Environmental Studies",
-//       "Mathematics",
-//       "Neuroscience",
-//       "Physics",
-//       "Political Science",
-//       "Psychology",
-//     ];
-
-//     // Initialize arrays to store checked topics and slider values
-//     const checkedTopics = [];
-//     const sliderValues = [];
-
-//     // Loop through each checkbox and slider
-//     for (let i = 0; i < topics.length; i++) {
-//       const checkboxId = `checkbox-${i}`;
-//       const sliderId = `slider-${i}`;
-//       console.log(sliderId);
-
-//       const checkbox = document.getElementById(checkboxId);
-//       const slider = document.getElementById(sliderId).querySelector('.slider-value');
-//       console.log(slider);
-
-//       // Only include checked checkboxes with corresponding sliders
-//       if (checkbox.checked && slider) {
-//         const topic = topics[i];
-//         const value = slider.innerText;
-//         console.log(value);
-
-//         checkedTopics.push(topic);
-//         sliderValues.push(value);
-//       }
-//     }
 
 //     console.log("Checked topics:", checkedTopics); // Debug: Log checked topics
 //     console.log("Slider values:", sliderValues); // Debug: Log slider values

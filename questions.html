@@ -36,22 +36,22 @@
         <hr />
         <div class="q">
           <label for="name">Full name<span>*</span></label>
-          <input name="name" id="name" type="text" />
+          <input name="Full Name" id="name" type="text" />
         </div>
 
         <div class="q">
           <label for="phone">Phone number<span>*</span></label>
-          <input name="phone" id="phone" type="tel" />
+          <input name="Phone Number" id="phone" type="tel" />
         </div>
 
         <div class="q">
           <label for="birth">Date of birth<span>*</span></label>
-          <input name="birth" id="birth" type="date" />
+          <input name="Birthday" id="birth" type="date" />
         </div>
 
         <div class="q">
           <label for="gender">Gender <span>*</span></label>
-          <select id="gender" name="gender">
+          <select id="gender" name="Gender">
             <option value="male">Male</option>
             <option value="female">Female</option>
             <option value="other">Other</option>
@@ -61,18 +61,18 @@
 
         <div class="q">
           <label for="school">Current School/University <span>*</span></label>
-          <input name="school" id="school" type="text" />
+          <input name="Institution" id="school" type="text" />
         </div>
 
         <div class="q">
           <label for="grade">Educational grade <span>*</span><br /><span class="exp">(e.g.: G11, G12, University
               Freshman, e.t.c.)</span></label>
-          <input name="grade" id="grade" type="text" style="margin-top: 10px" />
+          <input name="Grade" id="grade" type="text" style="margin-top: 10px" />
         </div>
 
         <div class="q">
           <label for="nationality">Nationality <span>*</span></label>
-          <input name="nationality" id="nationality" type="text" />
+          <input name="Nationality" id="nationality" type="text" />
         </div>
 
         <h2>Fields of Interest</h2>
@@ -90,7 +90,7 @@
           <label for="gpa" style="margin-top: 20px">What is your GPA?<span>*</span><br /><span class="exp">State the
               most recent one. <br />If your school doesn't support
               the GPA scale of 4, use this scale</span></label>
-          <select id="gpa" name="gpa" style="margin-top: 10px">
+          <select id="gpa" name="GPA" style="margin-top: 10px">
             <option value="a+">A+ (From 95% to 100%)</option>
             <option value="a">A (From 90% to 95%)</option>
             <option value="b+">B+ (From 85% to 90%)</option>
@@ -100,27 +100,28 @@
           </select>
         </div>
         <div class="q">
-          <label for="gp">What is your field's (and/or related field's) GPA?<span>*</span></label>
-          <input name="gp" id="gp" type="text" />
+          <label for="gp">What is your field's (and/or related field's) Grade?<span></span></label>
+          <input name="Field Grade" id="gp" type="text" />
         </div>
         <h2>Writing Section</h2>
         <hr />
         <div class="q">
           <label for="essay1">What qualification do you think you have as a researcher that can
             make you outstanding in such a competitive pool of applicants for
-            the same position? <span>*</span></label>
-          <textarea name="essay1" id="input-textareaw1" onkeyup="textAreaAdjust(this)"></textarea>
+            the same position? (Word Limit: 150-200 words) <span>*</span></label>
+          <textarea name="The First Essay" id="input-textareaw1" onkeyup="textAreaAdjust(this)"></textarea>
           <p class="count" id="word-countw1">0 / 150</p>
         </div>
         <h2 class="mar-top">Academic Writing</h2>
         <hr />
         <div class="q">
           <label for="essay2">
-            In an essay (max. 300 words), write about one unfamiliar
+            In an essay, write about one unfamiliar
             achievement in scientific research that changed constants of
-            science or life. <span>*</span><br /><span class="exp">(Using citations is obligatory; e.g.: APA,
+            science or life. (Word Limit: 150-300 words) <span>*</span><br /><span class="exp">(Using citations is
+              obligatory; e.g.: APA,
               IEEE...)</span></label>
-          <textarea name="essay2" id="input-textareaw2" onkeyup="textAreaAdjust(this)"></textarea>
+          <textarea name="The Second Essay" id="input-textareaw2" onkeyup="textAreaAdjust(this)"></textarea>
           <p class="count" id="word-countw2">0 / 300</p>
         </div>
         <h2 class="mar-top">Personal Experience Reflection</h2>
@@ -137,8 +138,8 @@
             how some aspects of YSJ would help you direct young researchers
             toward their potential. Furthermore, give examples of situations
             where you have helped learners wade through complex problems to
-            aid their growth and excitement for science. <span>*</span></label>
-          <textarea name="essay3" id="input-textarear1" onkeyup="textAreaAdjust(this)"></textarea>
+            aid their growth and excitement for science. (Word Limit: 200-400 words)<span>*</span></label>
+          <textarea name="The Third Essay" id="input-textarear1" onkeyup="textAreaAdjust(this)"></textarea>
           <p class="count" id="word-countr1">0 /200-400</p>
         </div>
 
@@ -146,24 +147,24 @@
           <label for="q3" class="mar-top">Please describe your research background, including your areas of
             expertise, the research projects (e.g., papers, projects, and/or
             patents) you have been involved in, and/or any publications or
-            presentations resulting from your research. <span>*</span></label>
-          <textarea name="essay4" id="input-textarear2" onkeyup="textAreaAdjust(this)"></textarea>
+            presentations resulting from your research. (Word Limit: 150-300 words) <span>*</span></label>
+          <textarea name="The Fourth Essay" id="input-textarear2" onkeyup="textAreaAdjust(this)"></textarea>
           <p class="count" id="word-countr2">0 /150-300</p>
         </div>
 
         <div class="q">
           <label for="q4" class="mar-top">How do you ensure consistent and effective communication and
-            collaboration in your research team? <span>*</span></label>
-          <textarea name="essay5" id="input-textarear3" onkeyup="textAreaAdjust(this)"></textarea>
+            collaboration in your research team? (Word Limit: 100-200 words)<span>*</span></label>
+          <textarea name="The Fifth Essay" id="input-textarear3" onkeyup="textAreaAdjust(this)"></textarea>
           <p class="count" id="word-countr3">0 /100-200</p>
         </div>
 
         <div class="q">
           <p class="lapp mar-top">
-            Submit any of your research-related work/samples. <span>*</span>
+            Submit your most significant research-related work/sample. <span>*</span>
           </p>
           <label for="pdf" class="drop-container" id="dropcontainer">
-            <span class="drop-title">Drop files here</span>
+            <span class="drop-title">Drop file here</span>
             or
             <input type="file" hidden id="pdf" accept="pdf/*" />
             <div class="file-upload">
@@ -178,7 +179,7 @@
         <div class="q">
           <label for="hours">How much time (hours per week) are you willing and able to commit
             to YSJ? <span>*</span></label>
-          <input type="number" id="hours" name="hours" />
+          <input type="number" id="hours" name="Availability" />
         </div>
         <div class="q">
           <label for="time_blocks">List down the most significant time blocks you would have between
@@ -187,7 +188,7 @@
               Note: This is for us to fit your schedule with the journal's
               active and inactive periods.
             </span></label>
-          <input name="time_blocks" id="timeBlocks" type="text" />
+          <input name="Time Blocks" id="timeBlocks" type="text" />
         </div>
         <h2>Thanks for reaching here!</h2>
         <hr />
@@ -218,8 +219,8 @@
 
         <div class="q">
           <label for="con">Feel free to add whatever you feel may boost your application
-            even further.<span>*</span></label>
-          <textarea name="con" id="con" onkeyup="textAreaAdjust(this)"></textarea>
+            even further.</label>
+          <textarea name="Additions" id="con" onkeyup="textAreaAdjust(this)"></textarea>
         </div>
 
         <div class="buttons">
@@ -252,7 +253,6 @@
           </li>
         </a>
       </ul>
-
     </div>
   </div>
   <script src="./globals.js"></script>

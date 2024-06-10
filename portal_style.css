@@ -333,8 +333,6 @@ footer .social {
 /* Media Query for Phones */
 @media screen and (max-width: 768px) {
   .wrapper {
-    width: 100%; /* Adjust width for smaller screens */
-    padding: 10px; /* Adjust padding for smaller screens */
     margin-top: 30px; /* Adjust margin for smaller screens */
   }
   footer {
