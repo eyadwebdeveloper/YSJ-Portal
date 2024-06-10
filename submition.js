@@ -308,12 +308,55 @@ document.getElementById("submit").addEventListener("click", async (event) => {
       true,
       saveProgress
     );
+    // submitGoogleForm(data);
     const userRef = db.collection("users").doc(useremail);
-    await userRef.set({ submitted: true }, { merge: true });
+    await userRef.set({ submitted: true, secret_id: uid() }, { merge: true });
     await giveAlert(" Your Application is now submitted", "#e43956", " ");
     location.href = domain + "/status.html";
   }
 });
+const uid = function () {
+  return Date.now().toString(36) + Math.random().toString(36).substr(2);
+};
+// Function to submit the form
+async function submitGoogleForm(data) {
+  // Form URL (action URL)
+  const formUrl =
+    "https://docs.google.com/forms/d/e/1FAIpQLScx22hzWiCXswH0YszYxjrIdWKPbG3Ql9hVGcdOdcayg_nZKQ/formResponse";
+
+  // Form data
+  console.log(data);
+
+  const formData = new URLSearchParams();
+  formData.append("entry.1227768184", data.email); // Personal Email Address
+  formData.append("entry.1129145430", "John Doe"); // Full Name
+  formData.append("entry.465321940", "123-456-7890"); // Phone Number
+  formData.append("entry.1913890174", "Male"); // Gender
+  formData.append("entry.1504118737", "01/01/1990"); // Date of Birth
+  formData.append("entry.1724730552", "Example Institution"); // Institution
+  formData.append("entry.1198287875", "Sophomore"); // Grade Year
+  formData.append("entry.1128845160", "USA"); // Country of Nationality
+  formData.append("entry.892981149", "Computer Science, Mathematics"); // Fields of Interest
+  formData.append("entry.732946676", "4.0"); // GPA
+  formData.append("entry.1751678190", "A"); // Field Grade
+  formData.append("entry.1649879170", "Example qualification..."); // Qualification
+  formData.append("entry.1942324246", "Example achievement..."); // Unfamiliar Achievement
+  formData.append("entry.1524507595", "Example mentorship analysis..."); // Mentorship Analysis
+  formData.append("entry.25080122", "Research background..."); // Research Background
+  formData.append("entry.268433779", "Effective communication..."); // Communication
+  formData.append("entry.592898438", "http://example.com/paper"); // Paper URL
+  formData.append("entry.520574173", "20"); // Time commitment
+  formData.append("entry.268327327", "June: 9am-5pm; July: 10am-6pm;..."); // Time blocks
+  formData.append("entry.1775075619", "Friend"); // How did this portal reach you
+  formData.append("entry.367863443", "Other response"); // Other
+  formData.append("entry.578921601", "Ambassador"); // Ambassador
+  formData.append("entry.92442692", "Additional info..."); // Additional Info
+
+  // Submit the form
+}
+
+// Call the function to submit the form
+
 const fileInput = document.getElementById("pdf");
 async function listFileNames(useremail) {
   const folderRef = storage.ref().child(useremail);
