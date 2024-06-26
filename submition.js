@@ -9,7 +9,7 @@ firebase.auth().onAuthStateChanged(async (user) => {
     useremail = user.email;
     listFileNames(useremail);
     try {
-      const userRef = db.collection("users").doc(useremail);
+      const userRef = db.collection("juniors").doc(useremail);
       const doc = await userRef.get();
 
       if (doc.exists) {
@@ -133,7 +133,7 @@ async function saveProgress(body, overlayer, resolve, reject) {
     if (PaperFile) {
       data = { ...data, ...(await uploadFile(PaperFile)), email: useremail };
     }
-    const userRef = db.collection("users").doc(useremail);
+    const userRef = db.collection("juniors").doc(useremail);
     await userRef.set(data, { merge: true });
     resolve();
     body.remove();
@@ -154,9 +154,6 @@ document.getElementById("submit").addEventListener("click", async (event) => {
   formData.forEach(async (value, key) => {
     if (
       !value &&
-      key !== "downloadURL" &&
-      key !== "Other" &&
-      key !== "Ambassador" &&
       key !== "Field Grade" &&
       key !== "Additions"
     ) {
@@ -277,7 +274,7 @@ document.getElementById("submit").addEventListener("click", async (event) => {
       true,
       saveProgress
     ).then(submitGoogleForm(secret_id));
-    const userRef = db.collection("users").doc(useremail);
+    const userRef = db.collection("juniors").doc(useremail);
     await userRef.set(
       { submitted: true, secret_id: secret_id },
       { merge: true }
@@ -295,7 +292,7 @@ const uid = function () {
 // Function to submit the form
 async function submitGoogleForm(secret_id) {
   // Form URL (action URL)
-  const paper = await db.collection("users").doc(useremail).get();
+  const paper = await db.collection("juniors").doc(useremail).get();
   data["PaperUrl"] = paper.data().PaperUrl;
 
   const form2URL =
@@ -475,7 +472,7 @@ document
 
 //     console.log("Form data:", data); // Debug: Log form data
 //     // Store the form data including the download URL in Firestore
-//     const userRef = db.collection("users").doc(data.name);
+//     const userRef = db.collection("juniors").doc(data.name);
 //     await userRef.set(data);
 
 //     window.location.href = "portal_submitted.html";
