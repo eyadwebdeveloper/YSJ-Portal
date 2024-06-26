@@ -65,11 +65,10 @@ firebase.auth().onAuthStateChanged(async (user) => {
         document.querySelectorAll("textarea").forEach((select) => {
           select.value = data[select.name];
         });
-        textAreaWordCount(inputTextArear3, "100-200", wordCountr3);
-        textAreaWordCount(inputTextArear2, "150-300", wordCountr2);
-        textAreaWordCount(inputTextArear1, "200-400", wordCountr1);
+        textAreaWordCount(inputTextAreaw1, "200-400", wordCountw1);
         textAreaWordCount(inputTextAreaw2, "150-300", wordCountw2);
-        textAreaWordCount(inputTextAreaw1, "150-200", wordCountw1);
+        textAreaWordCount(inputTextArear1, "200-400", wordCountr1);
+        textAreaWordCount(inputTextArear2, "150-300", wordCountr2);
       } else {
         console.log("No such document!");
       }
@@ -175,7 +174,7 @@ document.getElementById("submit").addEventListener("click", async (event) => {
         giveAlert("Please enter a valid " + key, "#e43956", " ");
         isvalid = false;
       }
-    } else if (key === "The First Essay" && !checkWordLimit(value, 150, 200)) {
+    } else if (key === "The First Essay" && !checkWordLimit(value, 200, 400)) {
       if (count) {
         count--;
         giveAlert(
@@ -185,7 +184,7 @@ document.getElementById("submit").addEventListener("click", async (event) => {
         );
         isvalid = false;
       }
-    } else if (key === "The Second Essay" && !checkWordLimit(value, 150, 300)) {
+    } else if (key === "The Second Essay" && !checkWordLimit(value, 100, 250)) {
       if (count) {
         count--;
         giveAlert(
@@ -195,7 +194,7 @@ document.getElementById("submit").addEventListener("click", async (event) => {
         );
         isvalid = false;
       }
-    } else if (key === "The Third Essay" && !checkWordLimit(value, 200, 400)) {
+    } else if (key === "The Third Essay" && !checkWordLimit(value, 100, 250)) {
       if (count) {
         count--;
         giveAlert(
@@ -205,17 +204,7 @@ document.getElementById("submit").addEventListener("click", async (event) => {
         );
         isvalid = false;
       }
-    } else if (key === "The Fourth Essay" && !checkWordLimit(value, 150, 300)) {
-      if (count) {
-        count--;
-        giveAlert(
-          "Please enter " + key + " within the word limit",
-          "#e43956",
-          " "
-        );
-        isvalid = false;
-      }
-    } else if (key === "The Fifth Essay" && !checkWordLimit(value, 100, 200)) {
+    } else if (key === "The Fourth Essay" && !checkWordLimit(value, 200, 400)) {
       if (count) {
         count--;
         giveAlert(

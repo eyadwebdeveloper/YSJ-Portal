@@ -22,13 +22,14 @@
 
 <body>
   <section id="landing">
-    <img src="images/Logo-rev.png" alt="">
+    <img src="images/Logo-rev.png" alt="" />
     <h1>Application Portal</h1>
   </section>
   <header>
     <div>
-
-      <h1 style="font-size:1.5rem;">2024 YSJ SENIOR RESEARCHERS APPLICATION</h1>
+      <h1 style="font-size: 1.5rem">
+        2024 YSJ Juniors RESEARCHERS APPLICATION
+      </h1>
       <button onclick="signOut()">Sign Out</button>
     </div>
   </header>
@@ -78,10 +79,15 @@
           <input name="Nationality" id="nationality" type="text" />
         </div>
 
-        <h2>Fields of Interest </h2>
+        <div class="q">
+          <label for="address">Address <span>*</span></label>
+          <input name="Address" id="address" type="text" />
+        </div>
+
+        <h2>Fields of Interest</h2>
         <hr />
         <div class="q">
-          <label for="areas">What research areas are you interested in?<span>*</span><br /><span
+          <label for="areas">What research areas are you interested in? <span>*</span><br /><span
               class="exp"><strong>Important:</strong> Select only the research areas you
               would like to be considered for if admitted</span></label>
           <div id="checkboxes-container">
@@ -90,7 +96,7 @@
         </div>
 
         <div class="q">
-          <label for="gpa" style="margin-top: 20px">What is your GPA?<span>*</span><br /><span class="exp">State the
+          <label for="gpa" style="margin-top: 20px">What is your GPA? <span>*</span><br /><span class="exp">State the
               most recent one. <br />If your school doesn't support
               the GPA scale of 4, use this scale</span></label>
           <select id="gpa" name="GPA" style="margin-top: 10px">
@@ -109,79 +115,70 @@
         <h2>Writing Section</h2>
         <hr />
         <div class="q">
-          <label for="essay1">What qualification do you think you have as a researcher that can
-            make you outstanding in such a competitive pool of applicants for
-            the same position? (Word Limit: 150-200 words) <span>*</span></label>
+          <label for="essay1">
+            Please share a personal statement outlining your research
+            aspirations, ambitions, and drive to pursue scientific inquiry.
+            How has science impacted your life, and what fuels your passion
+            for learning? <br><br>(Min. 200 words - Max. 400 words)
+            <span>*</span>
+          </label><br>
           <textarea name="The First Essay" id="input-textareaw1" onkeyup="textAreaAdjust(this)"></textarea>
-          <p class="count" id="word-countw1">0 / 150-200</p>
+          <p class="count" id="word-countw1">0 / 200-400</p>
         </div>
-        <h2 class="mar-top">Academic Writing</h2>
-        <hr />
+        <br>
         <div class="q">
           <label for="essay2">
-            In an essay, write about one unfamiliar
-            achievement in scientific research that changed constants of
-            science or life. (Word Limit: 150-300 words) <span>*</span><br /><span class="exp">(Using citations is
-              obligatory; e.g.: APA,
-              IEEE...)</span></label>
+            Why do you want to join YSJ? Please explain what aspects of YSJ's
+            mission and values resonate with you.<br><br>(Min. 100 words - Max. 250
+            words) <span>*</span><br /><span class="exp"></label><br>
           <textarea name="The Second Essay" id="input-textareaw2" onkeyup="textAreaAdjust(this)"></textarea>
-          <p class="count" id="word-countw2">0 /150-300</p>
+          <p class="count" id="word-countw2">0 /100-250</p>
         </div>
-        <h2 class="mar-top">Personal Experience Reflection</h2>
+        <br>
+        <div class="q">
+          <label for="q2">Have you participated in any previous research projects or
+            programs? Please describe your research experience, including the
+            objectives, methodologies used, and any notable outcomes or
+            contributions. <br><br>(Min. 100 words - Max. 250 words) <span>*</span></label><br>
+          <textarea name="The Third Essay" id="input-textarear1" onkeyup="textAreaAdjust(this)"></textarea>
+          <p class="count" id="word-countr1">0 /100-250</p>
+        </div>
+        <h2>Writing assestment</h2>
         <hr />
         <div class="q">
-          <label for="q2">"Albert Einstein once said, 'The important thing is not to stop
-            questioning. Curiosity has its reason for existing.' Mentorship in
-            scientific research requires a comprehensive understanding of the
-            concepts and the ability to motivate and direct students as they
-            go through their difficulties, Analyze this quote and discuss how
-            your experiences and knowledge in scientific research have
-            prepared you enough to fit yourself into YSJ’s high standards. In
-            your response, state your academic and mentoring goals, explaining
-            how some aspects of YSJ would help you direct young researchers
-            toward their potential. Furthermore, give examples of situations
-            where you have helped learners wade through complex problems to
-            aid their growth and excitement for science. (Word Limit: 200-400 words)<span>*</span></label>
-          <textarea name="The Third Essay" id="input-textarear1" onkeyup="textAreaAdjust(this)"></textarea>
-          <p class="count" id="word-countr1">0 /200-400</p>
-        </div>
-
-        <div class="q">
-          <label for="q3" class="mar-top">Please describe your research background, including your areas of
-            expertise, the research projects (e.g., papers, projects, and/or
-            patents) you have been involved in, and/or any publications or
-            presentations resulting from your research. (Word Limit: 150-300 words) <span>*</span></label>
-          <textarea name="The Fourth Essay" id="input-textarear2" onkeyup="textAreaAdjust(this)"></textarea>
-          <p class="count" id="word-countr2">0 /150-300</p>
-        </div>
-
-        <div class="q">
-          <label for="q4" class="mar-top">How do you ensure consistent and effective communication and
-            collaboration in your research team? (Word Limit: 100-200 words)<span>*</span></label>
-          <textarea name="The Fifth Essay" id="input-textarear3" onkeyup="textAreaAdjust(this)"></textarea>
-          <p class="count" id="word-countr3">0 /100-200</p>
-        </div>
-
-        <div class="q">
-          <p class="lapp mar-top">
-            Submit your most significant research-related work/sample.
-          </p>
-          <label for="pdf" class="drop-container" id="dropcontainer">
-            <span class="drop-title">Drop file here</span>
-            or
-            <input type="file" hidden id="pdf" accept="pdf/*" />
-            <div class="file-upload">
-              <button> Choose File</button>
-              <span id="filedisplay">No File Chosen</span>
-            </div>
-            <input type="hidden" id="downloadURL" name="downloadURL" />
+          <label for="assestment" style="margin-top: 20px">
+            Please select one of the following topics and write an academic essay about it.<br><br />
+            Choose a topic that interests you and aligns with the purpose of this application and the research areas you
+            chose before
           </label>
+
+          <select id="gpa" name="GPA" style="margin-top: 10px">
+            <option value="The Rise of Artificial Intelligence: Exploring the Impact and Ethical Considerations">The
+              Rise of Artificial Intelligence: Exploring the Impact and Ethical Considerations</option>
+            <option value="Climate Change: Understanding the Science and Taking Action for a Sustainable Future">Climate
+              Change: Understanding the Science and Taking Action for a Sustainable Future</option>
+            <option value="Exploring Space: Unlocking the Wonders of the Universe through Astronomy and Astrophysics">
+              Exploring Space: Unlocking the Wonders of the Universe through Astronomy and Astrophysics</option>
+            <option value="The Hidden Mathematics in Nature: Unveiling Patterns and Fractals">The Hidden Mathematics in
+              Nature: Unveiling Patterns and Fractals</option>
+          </select>
         </div>
+        <br>
+        <div class="q">
+          <label for="q2">Please provide your essay response in the space below. Your essay should address the selected
+            topic, demonstrate your critical thinking skills, and showcase your ability to present a well-structured
+            argument. Ensure your essay is clear and concise.
+            <br><br>(Min. 200 words - Max. 400 words)
+            <span>*</span></label><br>
+          <textarea name="The Fourth Essay" id="input-textarear2" onkeyup="textAreaAdjust(this)"></textarea>
+          <p class="count" id="word-countr2">0 /200-400</p>
+        </div>
+        <br>
         <h2>Availability</h2>
         <hr />
         <div class="q">
-          <label for="hours">How much time (hours per week) are you willing and able to commit
-            to YSJ? <span>*</span></label>
+          <label for="hours">How much time (hours per week) are you willing and able to commit to YSJ?
+            <span>*</span></label>
           <input type="number" id="hours" name="Availability" />
         </div>
         <div class="q">
@@ -193,16 +190,25 @@
             </span></label>
           <input name="Time Blocks" id="timeBlocks" type="text" />
         </div>
+
         <h2>Thanks for reaching here!</h2>
         <hr />
         <div class="q">
           <label for="how">How did this portal reach you?<span>*</span></label>
           <select id="how" name="how did this portal reach you">
-            <option value="Telegram Group/Channel">Telegram Group/Channel</option>
-            <option value="Whatsapp/Discord Group">Whatsapp/Discord Group</option>
-            <option value="Facebook page (Follower)">Facebook page (Follower)</option>
+            <option value="Telegram Group/Channel">
+              Telegram Group/Channel
+            </option>
+            <option value="Whatsapp/Discord Group">
+              Whatsapp/Discord Group
+            </option>
+            <option value="Facebook page (Follower)">
+              Facebook page (Follower)
+            </option>
             <option value="Facebook AD">Facebook AD</option>
-            <option value="Direct contact with YSJ staff">Direct contact with YSJ staff</option>
+            <option value="Direct contact with YSJ staff">
+              Direct contact with YSJ staff
+            </option>
             <option value="RoundPier">RoundPier</option>
             <option value="LinkedIn">LinkedIn</option>
             <option value="Instagram page">Instagram page</option>
@@ -211,13 +217,12 @@
             <option value="Personal Connections (e.g., Friends and/or Teachers)">
               Personal Connections (e.g., Friends and/or Teachers)
             </option>
-            <option value="Search Engines (e.g., Google)">Search Engines (e.g., Google)</option>
+            <option value="Search Engines (e.g., Google)">
+              Search Engines (e.g., Google)
+            </option>
             <option value="WhatsApp Groups">WhatsApp Groups</option>
             <option value="Other">Other</option>
           </select>
-          <input name="Other" type="text" placeholder="if you have selected 'Other' type here" id="other" />
-          <input name="Ambassador" type="text"
-            placeholder="if you have selected 'Ambassador' please type the ambassador referal code" id="ambassador" />
         </div>
 
         <div class="q">
@@ -258,15 +263,14 @@
       </ul>
     </div>
   </div>
-  <script src="./globals.js"></script>
+  <!-- <script src="./globals.js"></script> -->
   <script src="count.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+  <!-- <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-storage.js"></script>
-  <script src="./main.js"></script>
-  <script src="./submition.js"></script>
-
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-storage.js"></script> -->
+  <!-- <script src="./main.js"></script> -->
+  <!-- <script src="./submition.js"></script> -->
 </body>
 
 </html>
