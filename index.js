@@ -15,7 +15,7 @@ button.addEventListener("click", (e) => {
         (async () => {
           const userRef = firebase
             .firestore()
-            .collection("users")
+            .collection("juniors")
             .doc(user.email);
           const userData = await userRef.get();
           const data = await userData.data();

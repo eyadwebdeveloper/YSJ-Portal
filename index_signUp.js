@@ -13,7 +13,8 @@ button.addEventListener("click", (e) => {
         localStorage.clear();
         localStorage.setItem(idTokenResult.token, idTokenResult.token);
         location.href = applicationURL
-      });    })
+      });
+    })
     .catch((error) => {
       giveAlert(
         error.message ==
@@ -21,5 +22,6 @@ button.addEventListener("click", (e) => {
           ? "Wrong Email or Password"
           : error.message,
         "#e92929", "YSJ:"
-      );    });
+      );
+    });
 });

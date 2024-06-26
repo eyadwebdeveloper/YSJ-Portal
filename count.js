@@ -10,9 +10,6 @@ let wordCountr1 = document.getElementById("word-countr1");
 let inputTextArear2 = document.getElementById("input-textarear2");
 let wordCountr2 = document.getElementById("word-countr2");
 
-let inputTextArear3 = document.getElementById("input-textarear3");
-let wordCountr3 = document.getElementById("word-countr3");
-
 document.addEventListener("DOMContentLoaded", function () {
   const topics = [
     "Astronomy",

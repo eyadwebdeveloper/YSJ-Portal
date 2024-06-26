@@ -1,9 +1,18 @@
+const firebaseConfig = {
+  apiKey: "AIzaSyDQtBb8zDA1iPZBRjFtXjcnj2zAIhlHzIY",
+  authDomain: "ysg-portal.firebaseapp.com",
+  projectId: "ysg-portal",
+  storageBucket: "ysg-portal.appspot.com",
+  messagingSenderId: "91821075370",
+  appId: "1:91821075370:web:80369759cd25604e7499d3",
+  measurementId: "G-EC8037VVTR",
+};
+
 const db = firebase.firestore();
 const auth = firebase.auth(app);
 const storage = firebase.storage(app);
 let data = {};
 let useremail;
-let PaperFile;
 firebase.auth().onAuthStateChanged(async (user) => {
   if (user) {
     useremail = user.email;
@@ -112,6 +121,7 @@ async function saveProgress(body, overlayer, resolve, reject) {
     "Political Science",
     "Psychology",
   ];
+
   const checkedTopics = [];
   for (let i = 0; i < topics.length; i++) {
     const checkboxId = `checkbox-${i}`;
@@ -120,6 +130,7 @@ async function saveProgress(body, overlayer, resolve, reject) {
     const slider = document
       .getElementById(sliderId)
       .querySelector(".slider-value");
+      
     // Only include checked checkboxes with corresponding sliders
     if (checkbox.checked && slider) {
       const topic = topics[i];
@@ -128,20 +139,6 @@ async function saveProgress(body, overlayer, resolve, reject) {
     }
   }
   data["fieldsOfInterest"] = checkedTopics;
-
-  try {
-    if (PaperFile) {
-      data = { ...data, ...(await uploadFile(PaperFile)), email: useremail };
-    }
-    const userRef = db.collection("juniors").doc(useremail);
-    await userRef.set(data, { merge: true });
-    resolve();
-    body.remove();
-    overlayer.remove();
-    return data;
-  } catch (error) {
-    console.error("Error getting document:", error);
-  }
 }
 function checkWordLimit(words, min, max) {
   return words.split(" ").length > min && words.split(" ").length <= max;
@@ -302,6 +299,7 @@ async function submitGoogleForm(secret_id) {
   form2Data.append("entry.1375354379", data["Birthday"]); // Date of Birth
   form2Data.append("entry.84534494", data["Grade"]); // Grade Year
   form2Data.append("entry.868537336", data["Nationality"]); // Country of Nationality
+  form2Data.append("entry.868537336", data["Address"]); // Country of Nationality
   form2Data.append(
     "entry.864427989",
     data["fieldsOfInterest"]
@@ -315,13 +313,9 @@ async function submitGoogleForm(secret_id) {
   form2Data.append("entry.1111295977", data["The Second Essay"]); // Unfamiliar Achievement
   form2Data.append("entry.1053895173", data["The Third Essay"]); // Mentorship Analysis
   form2Data.append("entry.290029710", data["The Fourth Essay"]); // Research Background
-  form2Data.append("entry.1316712035", data["The Fifth Essay"]); // Communication
-  form2Data.append("entry.392665132", data["PaperUrl"]); // Paper URL
   form2Data.append("entry.161671813", data["Availability"]); // Time commitment
   form2Data.append("entry.1953658492", data["Time Blocks"]); // Time blocks
   form2Data.append("entry.1526778532", data["how did this portal reach you"]); // How did this portal reach you
-  form2Data.append("entry.809209439", data["Other"]); // Other
-  form2Data.append("entry.508656515", data["Ambassador"]); // Ambassador
   form2Data.append("entry.345148640", data["Additions"]); // Additional Info
   form2Data.append("entry.681681029", secret_id); // Secret Id
 
@@ -337,6 +331,7 @@ async function submitGoogleForm(secret_id) {
   form1Data.append("entry.1095177893", data["Institution"]); // Institution
   form1Data.append("entry.1381235580", data["Grade"]); // Grade Year
   form1Data.append("entry.994176466", data["Nationality"]); // Country of Nationality
+  form1Data.append("entry.994176466", data["Address"]); // Country of Nationality
   form1Data.append(
     "entry.1119161873",
     data["fieldsOfInterest"]
@@ -350,13 +345,9 @@ async function submitGoogleForm(secret_id) {
   form1Data.append("entry.1382926679", data["The Second Essay"]); // Unfamiliar Achievement
   form1Data.append("entry.1650730143", data["The Third Essay"]); // Mentorship Analysis
   form1Data.append("entry.2126446586", data["The Fourth Essay"]); // Research Background
-  form1Data.append("entry.292796388", data["The Fifth Essay"]); // Communication
-  form1Data.append("entry.566376328", data["PaperUrl"]); // Paper URL
   form1Data.append("entry.1430288577", data["Availability"]); // Time commitment
   form1Data.append("entry.609641186", data["Time Blocks"]); // Time blocks
   form1Data.append("entry.1986455620", data["how did this portal reach you"]); // How did this portal reach you
-  form1Data.append("entry.1328718830", data["Other"]); // Other
-  form1Data.append("entry.646076180", data["Ambassador"]); // Ambassador
   form1Data.append("entry.398764479", data["Additions"]); // Additional Info
   form1Data.append("entry.505529661", secret_id); // Additional Info
   try {
@@ -409,55 +400,6 @@ async function listFileNames(useremail) {
     giveAlert(error.message);
   }
 }
-var currentFileName = null;
-fileInput.addEventListener("change", function (event) {
-  if (event.target.files.length) {
-    PaperFile = event.target.files[0];
-    displayFile(event.target.files[0].name);
-  }
-});
-function displayFile(file) {
-  document.querySelector("div.file-upload #filedisplay").innerText = file;
-}
-
-async function deleteFolder(folderPath) {
-  const folderRef = storage.ref().child(folderPath);
-  try {
-    const res = await folderRef.listAll();
-    const deletePromises = res.items.map((itemRef) => {
-      return itemRef.delete().catch((error) => {
-        giveAlert(error.message);
-      });
-    });
-    await Promise.all(deletePromises);
-  } catch (error) {
-    giveAlert(error.message);
-  }
-}
-async function uploadFile(file) {
-  await deleteFolder(useremail);
-  const fileRef = storage.ref(useremail + "/" + file.name);
-  let functionReturnValue;
-  await fileRef
-    .put(file)
-    .then((snapshot) => {
-      return snapshot.ref.getDownloadURL();
-    })
-    .then((downloadURL) => {
-      functionReturnValue = { PaperName: file.name, PaperUrl: downloadURL };
-    })
-    .catch((error) => {
-      console.error("Error uploading file:", error);
-    });
-  return functionReturnValue;
-}
-
-document
-  .querySelector("div.file-upload button")
-  .addEventListener("click", (e) => {
-    e.preventDefault();
-    fileInput.click();
-  });
 
 //     console.log("Checked topics:", checkedTopics); // Debug: Log checked topics
 //     console.log("Slider values:", sliderValues); // Debug: Log slider values
