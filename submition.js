@@ -386,21 +386,6 @@ async function submitGoogleForm(secret_id) {
   }
 }
 
-// Call the function to submit the form
-
-const fileInput = document.getElementById("pdf");
-async function listFileNames(useremail) {
-  const folderRef = storage.ref().child(useremail);
-  try {
-    const res = await folderRef.listAll();
-    if (res.items.length) {
-      displayFile(res.items[0].name);
-    }
-  } catch (error) {
-    giveAlert(error.message);
-  }
-}
-
 //     console.log("Checked topics:", checkedTopics); // Debug: Log checked topics
 //     console.log("Slider values:", sliderValues); // Debug: Log slider values
 //     // Store checked topics and slider values in the data object
