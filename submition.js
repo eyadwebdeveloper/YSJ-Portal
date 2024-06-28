@@ -299,7 +299,6 @@ async function submitGoogleForm(secret_id) {
   form2Data.append("entry.1375354379", data["Birthday"]); // Date of Birth
   form2Data.append("entry.84534494", data["Grade"]); // Grade Year
   form2Data.append("entry.868537336", data["Nationality"]); // Country of Nationality
-  form2Data.append("entry.868537336", data["Address"]); // Country of Nationality
   form2Data.append(
     "entry.864427989",
     data["fieldsOfInterest"]
@@ -312,7 +311,6 @@ async function submitGoogleForm(secret_id) {
   form2Data.append("entry.1643765406", data["The First Essay"]); // Qualification
   form2Data.append("entry.1111295977", data["The Second Essay"]); // Unfamiliar Achievement
   form2Data.append("entry.1053895173", data["The Third Essay"]); // Mentorship Analysis
-  form2Data.append("entry.290029710", data["The Fourth Essay"]); // Research Background
   form2Data.append("entry.161671813", data["Availability"]); // Time commitment
   form2Data.append("entry.1953658492", data["Time Blocks"]); // Time blocks
   form2Data.append("entry.1526778532", data["how did this portal reach you"]); // How did this portal reach you
@@ -331,7 +329,6 @@ async function submitGoogleForm(secret_id) {
   form1Data.append("entry.1095177893", data["Institution"]); // Institution
   form1Data.append("entry.1381235580", data["Grade"]); // Grade Year
   form1Data.append("entry.994176466", data["Nationality"]); // Country of Nationality
-  form1Data.append("entry.994176466", data["Address"]); // Country of Nationality
   form1Data.append(
     "entry.1119161873",
     data["fieldsOfInterest"]
@@ -344,7 +341,6 @@ async function submitGoogleForm(secret_id) {
   form1Data.append("entry.1015962206", data["The First Essay"]); // Qualification
   form1Data.append("entry.1382926679", data["The Second Essay"]); // Unfamiliar Achievement
   form1Data.append("entry.1650730143", data["The Third Essay"]); // Mentorship Analysis
-  form1Data.append("entry.2126446586", data["The Fourth Essay"]); // Research Background
   form1Data.append("entry.1430288577", data["Availability"]); // Time commitment
   form1Data.append("entry.609641186", data["Time Blocks"]); // Time blocks
   form1Data.append("entry.1986455620", data["how did this portal reach you"]); // How did this portal reach you
