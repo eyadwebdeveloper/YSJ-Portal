@@ -1,12 +1,12 @@
 const applicationURL = domain + "/Welcome.html";
 const firebaseConfig = {
-  apiKey: "AIzaSyBUvo1R8ubtWG2p4dCCf4Gy-iwnfOCOyX0",
-  authDomain: "ysj-juniors.firebaseapp.com",
-  projectId: "ysj-juniors",
-  storageBucket: "ysj-juniors.appspot.com",
-  messagingSenderId: "529403106761",
-  appId: "1:529403106761:web:359111c36f1e7d00348418",
-  measurementId: "G-TLJT4228V1"
+  apiKey: "AIzaSyDQtBb8zDA1iPZBRjFtXjcnj2zAIhlHzIY",
+  authDomain: "ysg-portal.firebaseapp.com",
+  projectId: "ysg-portal",
+  storageBucket: "ysg-portal.appspot.com",
+  messagingSenderId: "91821075370",
+  appId: "1:91821075370:web:80369759cd25604e7499d3",
+  measurementId: "G-EC8037VVTR"
 };
 
 const app = firebase.initializeApp(firebaseConfig);

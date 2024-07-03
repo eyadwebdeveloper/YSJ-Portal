@@ -12,7 +12,7 @@ button.addEventListener("click", (e) => {
       user.getIdTokenResult().then((idTokenResult) => {
         localStorage.clear();
         localStorage.setItem(idTokenResult.token, idTokenResult.token);
-        location.href = applicationURL
+        location.href = domain
       });
     })
     .catch((error) => {

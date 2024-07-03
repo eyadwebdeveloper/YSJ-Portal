@@ -33,6 +33,15 @@
       <button onclick="signOut()">Sign Out</button>
     </div>
   </header>
+<nav>
+    <div>
+      <a href="./instructions.html">
+        <h4 id="announcments" >Instructions</h4>
+      </a>
+            <h4 class="status">Application</h4>
+            
+    </div>
+</nav>
   <div class="content">
     <div class="wrapper">
       <form id="applicationForm" action="/submit" method="get">
@@ -143,10 +152,10 @@
           <textarea name="The Third Essay" id="input-textarear1" onkeyup="textAreaAdjust(this)"></textarea>
           <p class="count" id="word-countr1">0 /100-250</p>
         </div>
-        <h2>Writing assestment</h2>
+        <h2>Writing assessment</h2>
         <hr />
         <div class="q">
-          <label for="assestment" style="margin-top: 20px">
+          <label for="assessment" style="margin-top: 20px">
             Please select one of the following topics and write an academic essay about it.<br><br />
             Choose a topic that interests you and aligns with the purpose of this application and the research areas you
             chose before
@@ -196,6 +205,7 @@
         <div class="q">
           <label for="how">How did this portal reach you?<span>*</span></label>
           <select id="how" name="how did this portal reach you">
+            <option value="STEM October Physics Club">STEM October's Physics Club</option>
             <option value="Telegram Group/Channel">
               Telegram Group/Channel
             </option>
@@ -222,10 +232,14 @@
               Search Engines (e.g., Google)
             </option>
             <option value="WhatsApp Groups">WhatsApp Groups</option>
+            <option value="October Bio Club">October Bio Club</option>
             <option value="Other">Other</option>
           </select>
         </div>
-
+        <div class="q">
+         <label for="Other">If Other Please State</label>
+          <input name="Other" id="Other" type="text" />
+        </div>
         <div class="q">
           <label for="con">Feel free to add whatever you feel may boost your application
             even further.</label>

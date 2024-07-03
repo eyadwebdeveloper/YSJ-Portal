@@ -9,6 +9,7 @@ button.addEventListener("click", (e) => {
     )
     .then((userCredential) => {
       const user = userCredential.user;
+      console.log(user);
       user.getIdTokenResult().then((idTokenResult) => {
         localStorage.clear();
         localStorage.setItem(idTokenResult.token, idTokenResult.token);
