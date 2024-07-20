@@ -9,13 +9,14 @@ button.addEventListener("click", (e) => {
     )
     .then((userCredential) => {
       const user = userCredential.user;
+      console.log(user);
       user.getIdTokenResult().then((idTokenResult) => {
         localStorage.clear();
         localStorage.setItem(idTokenResult.token, idTokenResult.token);
         (async () => {
           const userRef = firebase
             .firestore()
-            .collection("users")
+            .collection("juniors")
             .doc(user.email);
           const userData = await userRef.get();
           const data = await userData.data();

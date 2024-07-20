@@ -10,7 +10,7 @@ function submitForm(e) {
   const loginURL = "https://eyadwebdeveloper.github.io/YSJ-Portal";
   MailApp.sendEmail({
     to: email,
-    subject: "Thanks for submitting your application for YSJ Senior Researchers",
+    subject: "Thanks for submitting your application for YSJ Junior Researchers",
     htmlBody:
       `<!DOCTYPE html>
     <html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">

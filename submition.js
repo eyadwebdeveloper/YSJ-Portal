@@ -3,21 +3,16 @@ const auth = firebase.auth(app);
 const storage = firebase.storage(app);
 let data = {};
 let useremail;
-let PaperFile;
 firebase.auth().onAuthStateChanged(async (user) => {
   if (user) {
     useremail = user.email;
-    listFileNames(useremail);
     try {
-      const userRef = db.collection("users").doc(useremail);
+      const userRef = db.collection("juniors").doc(useremail);
       const doc = await userRef.get();
-
       if (doc.exists) {
         const data = doc.data();
         document
-          .querySelectorAll(
-            "input:not([type=checkbox]):not([type=range]):not([type=file])"
-          )
+          .querySelectorAll("input:not([type=checkbox]):not([type=range])")
           .forEach((field) => {
             field.value = data[field.name];
           });
@@ -65,11 +60,10 @@ firebase.auth().onAuthStateChanged(async (user) => {
         document.querySelectorAll("textarea").forEach((select) => {
           select.value = data[select.name];
         });
-        textAreaWordCount(inputTextArear3, "100-200", wordCountr3);
-        textAreaWordCount(inputTextArear2, "150-300", wordCountr2);
-        textAreaWordCount(inputTextArear1, "200-400", wordCountr1);
+        textAreaWordCount(inputTextAreaw1, "200-400", wordCountw1);
         textAreaWordCount(inputTextAreaw2, "150-300", wordCountw2);
-        textAreaWordCount(inputTextAreaw1, "150-200", wordCountw1);
+        textAreaWordCount(inputTextArear1, "200-400", wordCountr1);
+        textAreaWordCount(inputTextArear2, "150-300", wordCountr2);
       } else {
         console.log("No such document!");
       }
@@ -113,6 +107,7 @@ async function saveProgress(body, overlayer, resolve, reject) {
     "Political Science",
     "Psychology",
   ];
+
   const checkedTopics = [];
   for (let i = 0; i < topics.length; i++) {
     const checkboxId = `checkbox-${i}`;
@@ -121,6 +116,7 @@ async function saveProgress(body, overlayer, resolve, reject) {
     const slider = document
       .getElementById(sliderId)
       .querySelector(".slider-value");
+
     // Only include checked checkboxes with corresponding sliders
     if (checkbox.checked && slider) {
       const topic = topics[i];
@@ -129,18 +125,16 @@ async function saveProgress(body, overlayer, resolve, reject) {
     }
   }
   data["fieldsOfInterest"] = checkedTopics;
-
   try {
-    if (PaperFile) {
-      data = { ...data, ...(await uploadFile(PaperFile)), email: useremail };
-    }
-    const userRef = db.collection("users").doc(useremail);
+    data.email = useremail;
+    const userRef = db.collection("juniors").doc(useremail);
     await userRef.set(data, { merge: true });
     resolve();
     body.remove();
     overlayer.remove();
     return data;
   } catch (error) {
+    reject();
     console.error("Error getting document:", error);
   }
 }
@@ -153,14 +147,7 @@ document.getElementById("submit").addEventListener("click", async (event) => {
   let count = 1;
   const formData = new FormData(document.forms[0]);
   formData.forEach(async (value, key) => {
-    if (
-      !value &&
-      key !== "downloadURL" &&
-      key !== "Other" &&
-      key !== "Ambassador" &&
-      key !== "Field Grade" &&
-      key !== "Additions"
-    ) {
+    if (!value && key !== "Field Grade" && key !== "Additions") {
       if (count) {
         count--;
         giveAlert("Please enter a valid " + key, "#e43956", " ");
@@ -175,7 +162,7 @@ document.getElementById("submit").addEventListener("click", async (event) => {
         giveAlert("Please enter a valid " + key, "#e43956", " ");
         isvalid = false;
       }
-    } else if (key === "The First Essay" && !checkWordLimit(value, 150, 200)) {
+    } else if (key === "The First Essay" && !checkWordLimit(value, 200, 400)) {
       if (count) {
         count--;
         giveAlert(
@@ -185,7 +172,7 @@ document.getElementById("submit").addEventListener("click", async (event) => {
         );
         isvalid = false;
       }
-    } else if (key === "The Second Essay" && !checkWordLimit(value, 150, 300)) {
+    } else if (key === "The Second Essay" && !checkWordLimit(value, 100, 250)) {
       if (count) {
         count--;
         giveAlert(
@@ -195,7 +182,7 @@ document.getElementById("submit").addEventListener("click", async (event) => {
         );
         isvalid = false;
       }
-    } else if (key === "The Third Essay" && !checkWordLimit(value, 200, 400)) {
+    } else if (key === "The Third Essay" && !checkWordLimit(value, 100, 250)) {
       if (count) {
         count--;
         giveAlert(
@@ -205,21 +192,11 @@ document.getElementById("submit").addEventListener("click", async (event) => {
         );
         isvalid = false;
       }
-    } else if (key === "The Fourth Essay" && !checkWordLimit(value, 150, 300)) {
+    } else if (key === "The Fourth Essay" && !checkWordLimit(value, 200, 400)) {
       if (count) {
         count--;
         giveAlert(
-          "Please enter " + key + " within the word limit",
-          "#e43956",
-          " "
-        );
-        isvalid = false;
-      }
-    } else if (key === "The Fifth Essay" && !checkWordLimit(value, 100, 200)) {
-      if (count) {
-        count--;
-        giveAlert(
-          "Please enter " + key + " within the word limit",
+          "Please enter The Writing assessment " + " within the word limit",
           "#e43956",
           " "
         );
@@ -288,7 +265,7 @@ document.getElementById("submit").addEventListener("click", async (event) => {
       true,
       saveProgress
     ).then(submitGoogleForm(secret_id));
-    const userRef = db.collection("users").doc(useremail);
+    const userRef = db.collection("juniors").doc(useremail);
     await userRef.set(
       { submitted: true, secret_id: secret_id },
       { merge: true }
@@ -303,194 +280,62 @@ const uid = function () {
     (Math.random() ** Math.random()).toString(36).substr(2)
   );
 };
-// Function to submit the form
 async function submitGoogleForm(secret_id) {
-  // Form URL (action URL)
-  const paper = await db.collection("users").doc(useremail).get();
-  data["PaperUrl"] = paper.data().PaperUrl;
-
-  const form2URL =
-    "https://docs.google.com/forms/d/e/1FAIpQLSdxMjwGQUvXS2D4-yCGXcSphvQfN5MczHkqYkL1gTwWTCcTwA/formResponse";
-  const form2Data = new URLSearchParams();
-  form2Data.append("entry.31478216", data["Gender"]); // Gender
-  form2Data.append("entry.1375354379", data["Birthday"]); // Date of Birth
-  form2Data.append("entry.84534494", data["Grade"]); // Grade Year
-  form2Data.append("entry.868537336", data["Nationality"]); // Country of Nationality
-  form2Data.append(
-    "entry.864427989",
+console.log('submitted');
+/*
+*/
+console.log(data);
+console.log(data["Gender"]);
+  const formURL =
+    "https://docs.google.com/forms/d/e/1FAIpQLSeEEmU5fKIxLE_q9z4XI4pRlY8juKHoxhBb18T53X7x4MWoXQ/formResponse";
+  // JavaScript code with names
+  const formData = new URLSearchParams();
+  formData.append("entry.1140876366", data["Gender"]); // Gender
+  formData.append("entry.2006819519", data["Birthday"]); // Date of Birth
+  formData.append("entry.1934188000", data["Grade"]); // Grade Year
+  formData.append("entry.635480977", data["Nationality"]); // Country of Nationality
+  formData.append(
+    "entry.1926290846",
     data["fieldsOfInterest"]
       .map((field) => Object.entries(field))
       .flat()
       .join(" ")
   );
-  form2Data.append("entry.429979606", data["GPA"]); // GPA
-  form2Data.append("entry.85609365", data["Field Grade"]); // Field Grade
-  form2Data.append("entry.1643765406", data["The First Essay"]); // Qualification
-  form2Data.append("entry.1111295977", data["The Second Essay"]); // Unfamiliar Achievement
-  form2Data.append("entry.1053895173", data["The Third Essay"]); // Mentorship Analysis
-  form2Data.append("entry.290029710", data["The Fourth Essay"]); // Research Background
-  form2Data.append("entry.1316712035", data["The Fifth Essay"]); // Communication
-  form2Data.append("entry.392665132", data["PaperUrl"]); // Paper URL
-  form2Data.append("entry.161671813", data["Availability"]); // Time commitment
-  form2Data.append("entry.1953658492", data["Time Blocks"]); // Time blocks
-  form2Data.append("entry.1526778532", data["how did this portal reach you"]); // How did this portal reach you
-  form2Data.append("entry.809209439", data["Other"]); // Other
-  form2Data.append("entry.508656515", data["Ambassador"]); // Ambassador
-  form2Data.append("entry.345148640", data["Additions"]); // Additional Info
-  form2Data.append("entry.681681029", secret_id); // Secret Id
+  formData.append("entry.1652991539", data["GPA"]); // GPA
+  formData.append("entry.1018788432", data["Field Grade"]); // Field Grade
+  formData.append("entry.305643536", data["The First Essay"]); // Qualification
+  formData.append("entry.1645390855", data["The Second Essay"]); // Unfamiliar Achievement
+  formData.append("entry.1372192977", data["The Third Essay"]); // Mentorship Analysis
+  formData.append("entry.1934197111", data["Availability"]); // Time commitment
+  formData.append("entry.486269580", data["Time Blocks"]); // Time blocks
+  formData.append("entry.1843752743", data["how did this portal reach you"]); // How did this portal reach you
+  formData.append("entry.493747616", data["Additions"]); // Additional Info
+  // Newly created names for missing fields
+  formData.append("entry.1165181263", useremail); // Personal Email Address
+  formData.append("entry.504705542", data["Full Name"]); // Full Name
+  formData.append("entry.929741563", data["Phone Number"]); // Phone Number
+  formData.append("entry.1633552997", data["Institution"]); // Institution
+  formData.append("entry.101552372", data["Address"]); // Address
+  formData.append("entry.1699758998", data["Concept"]); // Assessment
+  formData.append("entry.1684392433", data["The Fourth Essay"]); // Essay 4
+  formData.append("entry.782441624", data["Other"]); // Essay 4
+  formData.append("entry.1784949897", secret_id); //
 
-  const form1Url =
-    "https://docs.google.com/forms/d/e/1FAIpQLSfo5yvbge92ygJXwTQDiUfus3tSf3_p0ZZsOF8hKUd9pPNizA/formResponse";
-  // Form data
-  const form1Data = new URLSearchParams();
-  form1Data.append("entry.1996114666", useremail); // Personal Email Address
-  form1Data.append("entry.1861549469", data["Full Name"]); // Full Name
-  form1Data.append("entry.1397348289", data["Phone Number"]); // Phone Number
-  form1Data.append("entry.2064603247", data["Gender"]); // Gender
-  form1Data.append("entry.1665944602", data["Birthday"]); // Date of Birth
-  form1Data.append("entry.1095177893", data["Institution"]); // Institution
-  form1Data.append("entry.1381235580", data["Grade"]); // Grade Year
-  form1Data.append("entry.994176466", data["Nationality"]); // Country of Nationality
-  form1Data.append(
-    "entry.1119161873",
-    data["fieldsOfInterest"]
-      .map((field) => Object.entries(field))
-      .flat()
-      .join(" ")
-  ); // Fields of Interest
-  form1Data.append("entry.716018883", data["GPA"]); // GPA
-  form1Data.append("entry.610012888", data["Field Grade"]); // Field Grade
-  form1Data.append("entry.1015962206", data["The First Essay"]); // Qualification
-  form1Data.append("entry.1382926679", data["The Second Essay"]); // Unfamiliar Achievement
-  form1Data.append("entry.1650730143", data["The Third Essay"]); // Mentorship Analysis
-  form1Data.append("entry.2126446586", data["The Fourth Essay"]); // Research Background
-  form1Data.append("entry.292796388", data["The Fifth Essay"]); // Communication
-  form1Data.append("entry.566376328", data["PaperUrl"]); // Paper URL
-  form1Data.append("entry.1430288577", data["Availability"]); // Time commitment
-  form1Data.append("entry.609641186", data["Time Blocks"]); // Time blocks
-  form1Data.append("entry.1986455620", data["how did this portal reach you"]); // How did this portal reach you
-  form1Data.append("entry.1328718830", data["Other"]); // Other
-  form1Data.append("entry.646076180", data["Ambassador"]); // Ambassador
-  form1Data.append("entry.398764479", data["Additions"]); // Additional Info
-  form1Data.append("entry.505529661", secret_id); // Additional Info
   try {
-    const response2 = await fetch(form2URL, {
+    const response = await fetch(formURL, {
       method: "POST",
-      body: form2Data,
+      body: formData,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
     });
 
-    if (response2.ok) {
+    if (response.ok) {
       console.log("Form submitted successfully!");
     } else {
-      console.error("Form submission failed:", response2.statusText);
-    }
-  } catch (error) {
-    console.error("Error submitting form:", error);
-  }
-  try {
-    const response1 = await fetch(form1Url, {
-      method: "POST",
-      body: form1Data,
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-    });
-
-    if (response1.ok) {
-      console.log("Form submitted successfully!");
-    } else {
-      console.error("Form submission failed:", response1.statusText);
+      console.error("Form submission failed:", response.statusText);
     }
   } catch (error) {
     console.error("Error submitting form:", error);
   }
 }
-
-// Call the function to submit the form
-
-const fileInput = document.getElementById("pdf");
-async function listFileNames(useremail) {
-  const folderRef = storage.ref().child(useremail);
-  try {
-    const res = await folderRef.listAll();
-    if (res.items.length) {
-      displayFile(res.items[0].name);
-    }
-  } catch (error) {
-    giveAlert(error.message);
-  }
-}
-var currentFileName = null;
-fileInput.addEventListener("change", function (event) {
-  if (event.target.files.length) {
-    PaperFile = event.target.files[0];
-    displayFile(event.target.files[0].name);
-  }
-});
-function displayFile(file) {
-  document.querySelector("div.file-upload #filedisplay").innerText = file;
-}
-
-async function deleteFolder(folderPath) {
-  const folderRef = storage.ref().child(folderPath);
-  try {
-    const res = await folderRef.listAll();
-    const deletePromises = res.items.map((itemRef) => {
-      return itemRef.delete().catch((error) => {
-        giveAlert(error.message);
-      });
-    });
-    await Promise.all(deletePromises);
-  } catch (error) {
-    giveAlert(error.message);
-  }
-}
-async function uploadFile(file) {
-  await deleteFolder(useremail);
-  const fileRef = storage.ref(useremail + "/" + file.name);
-  let functionReturnValue;
-  await fileRef
-    .put(file)
-    .then((snapshot) => {
-      return snapshot.ref.getDownloadURL();
-    })
-    .then((downloadURL) => {
-      functionReturnValue = { PaperName: file.name, PaperUrl: downloadURL };
-    })
-    .catch((error) => {
-      console.error("Error uploading file:", error);
-    });
-  return functionReturnValue;
-}
-
-document
-  .querySelector("div.file-upload button")
-  .addEventListener("click", (e) => {
-    e.preventDefault();
-    fileInput.click();
-  });
-
-//     console.log("Checked topics:", checkedTopics); // Debug: Log checked topics
-//     console.log("Slider values:", sliderValues); // Debug: Log slider values
-//     // Store checked topics and slider values in the data object
-//     Object.keys(checkedTopics).forEach((topic) => {
-//       if (typeof checkedTopics[topic] === "undefined") {
-//         delete checkedTopics[topic];
-//       }
-//     });
-//     data["checkedTopics"] = checkedTopics;
-//     data["sliderValues"] = sliderValues;
-
-//     console.log("Form data:", data); // Debug: Log form data
-//     // Store the form data including the download URL in Firestore
-//     const userRef = db.collection("users").doc(data.name);
-//     await userRef.set(data);
-
-//     window.location.href = "portal_submitted.html";
-//   } catch (error) {
-//     console.error("Error submitting form:", error);
-//   }
-// });

@@ -10,9 +10,6 @@ let wordCountr1 = document.getElementById("word-countr1");
 let inputTextArear2 = document.getElementById("input-textarear2");
 let wordCountr2 = document.getElementById("word-countr2");
 
-let inputTextArear3 = document.getElementById("input-textarear3");
-let wordCountr3 = document.getElementById("word-countr3");
-
 document.addEventListener("DOMContentLoaded", function () {
   const topics = [
     "Astronomy",
@@ -75,22 +72,18 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 inputTextAreaw1.addEventListener("input", () => {
-  textAreaWordCount(inputTextAreaw1, "150-200", wordCountw1);
+  textAreaWordCount(inputTextAreaw1, "200-400", wordCountw1);
 });
 inputTextAreaw2.addEventListener("input", () => {
-  textAreaWordCount(inputTextAreaw2, "150-300", wordCountw2);
+  textAreaWordCount(inputTextAreaw2, "100-250", wordCountw2);
 });
 
 inputTextArear1.addEventListener("input", () => {
-  textAreaWordCount(inputTextArear1, "200-400", wordCountr1);
+  textAreaWordCount(inputTextArear1, "100-250", wordCountr1);
 });
 
 inputTextArear2.addEventListener("input", () => {
-  textAreaWordCount(inputTextArear2, "150-300", wordCountr2);
-});
-
-inputTextArear3.addEventListener("input", () => {
-  textAreaWordCount(inputTextArear3, "100-200", wordCountr3);
+  textAreaWordCount(inputTextArear2, "200-400", wordCountr2);
 });
 
 function textAreaAdjust(element) {
