@@ -78,7 +78,7 @@ firebase.auth().onAuthStateChanged(async (user) => {
     }
   } else {
     giveAlert("No user is signed in.", "#e43956", " ");
-    location.href = LoginURL;
+    location.href = domain;
   }
 });
 
