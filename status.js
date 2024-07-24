@@ -66,7 +66,7 @@ const showStatus = function (data) {
 };
 function rejected(data) {
   viewdecision(
-    "Your Application for YSJ's 2025 Senior Researchers Decision update",
+    "Your Application for YSJ's 2024 Senior Researchers Decision update",
     `Dear ${data["Full Name"].split(" ")[0]},
 <br/>
 <br/>
