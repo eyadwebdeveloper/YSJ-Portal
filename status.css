@@ -243,11 +243,6 @@ video.hidden {
     width: 90%;
   }
 }
-@media screen and (max-width:600px) {
-  :root{
-    font-size: 12px;
-  }
-}
 .modal-container-header {
   padding: 16px 32px;
   border-bottom: 1px solid #ddd;
