@@ -54,7 +54,6 @@ function CheckUserCredits() {
 }
 const showStatus = function (data) {
   const viewstatusbutton = document.querySelector("button#viewstatus");
-  console.log(data);
   if (data.decision === "AC") {
     viewstatusbutton.addEventListener("click", () => accepted(data));
   } else {
