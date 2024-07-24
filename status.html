@@ -10,6 +10,27 @@
 </head>
 
 <body>
+    <canvas id="canvas">Canvas is not supported in your browser.</canvas>
+    <div class="modal hidden">
+        <article class="modal-container">
+            <header class="modal-container-header">
+                <h1 class="modal-container-title">
+                    Decision: </h1>
+                <button class="icon-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path fill="currentColor"
+                            d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" />
+                    </svg>
+                </button>
+            </header>
+            <section class="modal-container-body rtf">
+                <h2 id="subject"></h2>
+                <p id="body">
+                </p>
+            </section>
+        </article>
+    </div>
     <section id="landing">
         <img src="images/Logo-rev.png" alt="">
         <h1>Application Portal</h1>
@@ -18,9 +39,9 @@
         <header>
             <div>
 
-                <h1><span id="name"></span> | 2024 YSJ Junior RESEARCHERS APPLICATION</h1>
-            <button onclick="signOut()">Sign Out</button>
-        </div>
+                <h1><span id="name"></span> | 2024 YSJ Senior RESEARCHERS APPLICATION</h1>
+                <button onclick="signOut()">Sign Out</button>
+            </div>
         </header>
         <nav>
             <div>
@@ -36,19 +57,36 @@
                 <div class="admission-status">
                     <h4>Admission STATUS</h4>
                     <hr>
-                    <p>Your Application is currently being reviewed.</p>
+                    <p>Your Application was reviewed.</p>
                 </div>
                 <div class="announcement-status">
                     <h3>STATUS UPDATE</h3>
-                    <h5>A decision has not yet been made.</h5>
+                    <h5>The Senior Researchers Decisions are out,<button id="viewstatus"> click
+                            here</button>to see your decision </h5>
                 </div>
                 <div class="checklist">
                     <h3>CHECKLIST</h3>
                     <h5 style="margin-bottom: 5px;"><span>✅</span> Application</h5>
+                    <h5 style="margin-bottom: 5px;"><span>✅</span> Decision</h5>
                 </div>
             </div>
         </div>
     </section>
+    <!-- setup our canvas element -->
+    <style>
+        canvas {
+            cursor: pointer !important;
+            display: none;
+            position: absolute;
+            top: 0;
+            z-index: 400;
+            left: 0;
+            pointer-events: none; /* Allow clicks to pass through */
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+    =
     <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>

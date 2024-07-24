@@ -7,7 +7,7 @@ firebase.auth().onAuthStateChanged(async (user) => {
   if (user) {
     useremail = user.email;
     try {
-      const userRef = db.collection("juniors").doc(useremail);
+      const userRef = db.collection("users").doc(useremail);
       const doc = await userRef.get();
       if (doc.exists) {
         const data = doc.data();
@@ -127,7 +127,7 @@ async function saveProgress(body, overlayer, resolve, reject) {
   data["fieldsOfInterest"] = checkedTopics;
   try {
     data.email = useremail;
-    const userRef = db.collection("juniors").doc(useremail);
+    const userRef = db.collection("users").doc(useremail);
     await userRef.set(data, { merge: true });
     resolve();
     body.remove();
@@ -265,13 +265,13 @@ document.getElementById("submit").addEventListener("click", async (event) => {
       true,
       saveProgress
     ).then(submitGoogleForm(secret_id));
-    const userRef = db.collection("juniors").doc(useremail);
+    const userRef = db.collection("users").doc(useremail);
     await userRef.set(
       { submitted: true, secret_id: secret_id },
       { merge: true }
     );
     await giveAlert(" Your Application is now submitted", "#e43956", " ");
-    location.href = domain + "/status.html";
+    location.href = domain + "status.html";
   }
 });
 const uid = function () {

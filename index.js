@@ -16,14 +16,14 @@ button.addEventListener("click", (e) => {
         (async () => {
           const userRef = firebase
             .firestore()
-            .collection("juniors")
+            .collection("users")
             .doc(user.email);
           const userData = await userRef.get();
           const data = await userData.data();
           if (data?.submitted) {
-            location.href = domain + "/status.html";
+            location.href = domain + "status.html";
           } else {
-            location.href = domain + "/Welcome.html";
+            location.href = domain + "Welcome.html";
           }
         })();
       });
