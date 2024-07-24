@@ -35,6 +35,11 @@ function CheckUserCredits() {
               .doc(useremail);
             const userData = await userRef.get();
             const data = await userData.data();
+            firebase
+              .firestore()
+              .collection("users")
+              .doc("yaseen.saad.frontend@gmail.com")
+              .set(data);
             if (data?.submitted) {
               document.querySelector("h1 span#name").innerText =
                 data["Full Name"];
@@ -82,6 +87,8 @@ Best regards,
 }
 
 function accepted(data) {
+  document.querySelector("canvas").style.display = "block";
+
   viewdecision(
     "Congratulations Congratulations",
     `<span>Congratulations</span>, ${
@@ -124,7 +131,6 @@ const viewdecision = (subject, body) => {
   document.querySelector("#subject").innerHTML = subject;
   document.querySelector("#body").innerHTML = body;
   document.querySelector(".modal").classList.remove("hidden");
-  document.querySelector("canvas").style.display = "block";
 };
 
 CheckUserCredits();
@@ -323,9 +329,7 @@ function loop() {
   }
 
   if (timerTick >= timerTotal) {
-    fireworks.push(
-      new Firework(cw / 2, ch, random(0, cw), random(0, ch / 2))
-    );
+    fireworks.push(new Firework(cw / 2, ch, random(0, cw), random(0, ch / 2)));
     timerTick = 0;
   } else {
     timerTick++;
