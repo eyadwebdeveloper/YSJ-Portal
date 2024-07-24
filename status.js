@@ -58,7 +58,7 @@ function CheckUserCredits() {
   });
 }
 const showStatus = function (data) {
-  const viewstatusbutton = document.querySelector("button#viewstatus");
+  const viewstatusbutton = document.querySelector("span#viewstatus");
   if (data.decision === "AC") {
     viewstatusbutton.addEventListener("click", () => accepted(data));
   } else {
@@ -88,20 +88,18 @@ Best regards,
 
 function accepted(data) {
   document.querySelector("canvas").style.display = "block";
-
   viewdecision(
-    "Congratulations Congratulations",
-    `<span>Congratulations</span>, ${
+    `<span>Congratulations</span> ${
       data["Full Name"].split(" ")[0]
-    }! <br/> <br/>
-
-We are thrilled to inform you that you have been accepted as a senior researcher for the 2023 season of the Youth Science Journal. This is an incredible accomplishment, as the applicant pool was highly competitive. Your passion for science, research qualifications, and potential for mentoring young scientists make you an ideal candidate.
+    },`,
+    `
+We are thrilled to inform you that you have been accepted as a senior researcher for the 2024 season of the Youth Science Journal. This is an incredible accomplishment, as the applicant pool was highly competitive. Your passion for science, research qualifications, and potential for mentoring young scientists make you an ideal candidate.
 <br/>
 <br/>
 We are excited to welcome you to our community of dedicated researchers fostering the next generation of scientific minds. As a senior researcher, you will have the opportunity to guide young scientists through the research process, review their article submissions, and help prepare their work for publication in the YSJ journal.
 <br/>
 <br/>
-To officially join YSJ, please click the button below to confirm your acceptance and access our researcher portal. We ask that you join the WhatsApp group as soon as possible, as the official research work will commence on July 17th.
+To officially join YSJ, please click the buttons below to confirm your acceptance and access our researcher portal. We ask that you join the WhatsApp group as soon as possible, as the official research work will commence on July 17th.
 <br/>
 <br/>
 We are honored to have you on board and cannot wait to see the impact you will make through mentoring, reviewing, and elevating youth research. Your experience and expertise will be invaluable assets to YSJ. Thank you for your commitment to nurturing young scientists.
